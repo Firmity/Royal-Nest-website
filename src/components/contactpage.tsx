@@ -110,25 +110,12 @@ export default function ContactPage() {
             transition={{ duration: 1, delay: 0.3 }}
             whileHover={{ scale: 1.02 }}
           >
-            {/* Placeholder for family image */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-400 via-green-500 to-green-600 flex items-center justify-center">
-              <motion.div 
-                className="text-white text-center p-6"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                <motion.div 
-                  className="text-4xl sm:text-5xl lg:text-6xl mb-4"
-                  animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  👨‍👩‍👧‍👦
-                </motion.div>
-                <p className="text-base sm:text-lg font-medium">Family Photo Placeholder</p>
-                <p className="text-sm mt-2 opacity-75">Add your family image here</p>
-              </motion.div>
-            </div>
+            {/* Family image */}
+            <img 
+              src="/family.jpg" 
+              alt="Family" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
             
             {/* Contact Info Overlay */}
             <motion.div 
