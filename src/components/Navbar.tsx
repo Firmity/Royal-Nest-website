@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Hamburger from "./Hamburger";
 
 const navLinks = [
@@ -9,21 +10,53 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show navbar when scrolling up or at the top
+      if (currentScrollY < lastScrollY || currentScrollY < 100) {
+        setIsVisible(true);
+      } else {
+        // Hide navbar when scrolling down
+        setIsVisible(false);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <nav
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         position: "fixed",
         top: 0,
         left: 0,
         width: "100%",
         zIndex: 50,
-        background: "transparent",
+        background: "rgba(0, 0, 0, 0.1)",
+        backdropFilter: isHovered ? "blur(10px)" : "none",
+        WebkitBackdropFilter: isHovered ? "blur(10px)" : "none",
         color: "#fff",
         fontFamily: "inherit",
         display: "flex",
         flexDirection: "column",
         alignItems: "stretch",
         padding: "0 4rem",
+        transform: isVisible ? "translateY(0)" : "translateY(-100%)",
+        transition: "transform 0.3s ease-in-out",
       }}
     >
       {/* Top Row: Menu Icon, Logo, Contact Us */}

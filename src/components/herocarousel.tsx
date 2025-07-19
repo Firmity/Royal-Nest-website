@@ -3,17 +3,17 @@ import { useState, useEffect } from "react";
 
 const slides = [
   {
-    image: "/Herocarousel/banner1.webp",
+    image: "/Herocarousel/Royal Nest Hill View Fountain Area.jpg",
     title: "Amstoria | Sector 102, Gurugram",
     link: "#"
   },
   {
-    image: "/Herocarousel/banner1.webp",
+    image: "/Herocarousel/Royal Nest Hill View Penthouse Terrace.jpg",
     title: "Another Property | Location",
     link: "#"
   },
   {
-    image: "/Herocarousel/banner1.webp",
+    image: "/Herocarousel/Royal Nest Hill View Pool to Landscape Area.jpg",
     title: "Sample Project | City",
     link: "#"
   }
@@ -25,19 +25,16 @@ export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
   const [arrowAnim, setArrowAnim] = useState("");
   const [showArrow, setShowArrow] = useState(true);
-  const [slideDirection, setSlideDirection] = useState<"left" | "right" | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isTransitioning) {
-        setSlideDirection("right");
         setIsTransitioning(true);
         setTimeout(() => {
           setCurrent((prev) => (prev + 1) % slides.length);
           setIsTransitioning(false);
-          setSlideDirection(null);
-        }, 400);
+        }, 600);
       }
     }, 4000);
     return () => clearInterval(interval);
@@ -57,19 +54,15 @@ export default function HeroCarousel() {
     }, ARROW_ANIM_DURATION * 1000);
   };
 
-  // Manual navigation with smooth transitions
+  // Manual navigation with fade transitions
   const goToSlide = (index: number) => {
     if (isTransitioning || index === current) return;
     
-    const direction = index > current ? "right" : "left";
-    setSlideDirection(direction);
     setIsTransitioning(true);
-    
     setTimeout(() => {
       setCurrent(index);
       setIsTransitioning(false);
-      setSlideDirection(null);
-    }, 400);
+    }, 600);
   };
 
   // Dot styles with enhanced animations
@@ -81,7 +74,7 @@ export default function HeroCarousel() {
     <>
       <div
         style={{
-          width: "100vw",
+          width: "100%",
           height: "100vh",
           position: "relative",
           overflow: "hidden",
@@ -99,21 +92,16 @@ export default function HeroCarousel() {
               position: "absolute",
               top: 0,
               left: 0,
-              width: "100vw",
-              height: "100vh",
+              width: "100%",
+              height: "100%",
               objectFit: "cover",
+              objectPosition: "center",
               opacity: idx === current ? 1 : 0,
-              transform: idx === current ? "scale(1)" : "scale(1.05)",
-              transition: "opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              transform: idx === current ? "scale(1.15)" : "scale(1)",
+              transition: "opacity 0.6s ease-in-out, transform 6s ease-in-out",
               zIndex: idx === current ? 1 : 0,
             }}
-            className={
-              idx === current && slideDirection
-                ? slideDirection === "right"
-                  ? "slide-in-right"
-                  : "slide-in-left"
-                : ""
-            }
+            className={idx === current ? "zoom-in-out" : ""}
           />
         ))}
         
