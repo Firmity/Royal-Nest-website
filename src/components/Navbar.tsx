@@ -89,7 +89,7 @@ export default function Navbar() {
         </div>
         {/* Logo */}
         <Link href="/">
-        <div style={{ position: "relative", height: "48px", width: "auto", minWidth: 120 }}>
+        <div style={{ position: "relative", height: "60px", width: "80px", minWidth: 400 }}>
           <Image
             src="/Royalnest.png"
             alt="Royal Nest Logo"

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, Facebook, Linkedin, Youtube, Instagram } from 'lucide-react';
+import Link from 'next/link';
 
 const Footer = () => {
   type SectionType = 'officeAddress' | 'registeredOffice' | 'salesQueries' | 'customerCare';
@@ -118,9 +119,9 @@ const Footer = () => {
               </div>
             </div>
 
-            <div>
+            <Link href="/Aboutus"><div>
               <h3 className="font-semibold text-lg mb-4">About Us</h3>
-            </div>
+            </div></Link>
 
             <div>
               <h3 className="font-semibold text-lg mb-4">Career</h3>

@@ -142,35 +142,35 @@ export default function AboutPage() {
     <div className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 relative overflow-x-hidden">
       <Navbar />
       {/* Hero Section with animated overlay */}
-      <section className="relative flex items-center justify-center min-h-[70vh] w-full overflow-hidden">
+      <section className="relative flex items-center justify-center min-h-[80vh] w-full overflow-hidden">
         <motion.div
-          className="absolute inset-0 bg-black/40 z-0"
+          className="absolute inset-0 bg-black/80"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         />
         <Image
-          src="/Herocarousel/Royal Nest Hill View Fountain Area.jpg"
+          src="/Aboutus/about.webp"
           alt="Hero"
           fill
-          className="absolute inset-0 w-full h-full object-cover z-0 scale-105 opacity-65"
+          className="absolute inset-0 w-full h-full object-cover z-0 scale-105"
         />
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center px-4">
           <motion.h1
-            className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg tracking-wide"
-            initial={{ y: 40, opacity: 0 }}
+            className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl tracking-wide"
+            initial={{ y: 40, opacity: 1 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
             ABOUT ROYAL NEST GROUP
           </motion.h1>
           <motion.p
-            className="text-lg md:text-2xl text-white max-w-2xl mx-auto font-light shadow-text-xl"
-            initial={{ y: 40, opacity: 0 }}
+            className="text-lg md:text-2xl text-white max-w-2xl mx-auto font-light drop-shadow-2xl"
+            initial={{ y: 40, opacity: 1 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            Building sustainable luxury and vibrant communities across India since 1999.
+            Building sustainable luxury and vibrant communities across India since 1999
           </motion.p>
         </div>
       </section>
@@ -258,18 +258,18 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-extrabold mb-10 text-black text-center tracking-tight drop-shadow-sm">Key Milestones of Royal Nest Group</h2>
           <div className="w-full overflow-x-auto custom-scrollbar">
-            <div className="relative inline-block min-w-[1200px]">
+            <div className="relative inline-block ">
               <div className="flex gap-10 px-10">
                 {milestones.map((item, idx) => (
                   <motion.div
                     key={idx}
                     className="w-[300px] shrink-0 bg-blue-50 rounded-xl shadow-md p-6 border border-blue-100 flex flex-col gap-2 hover:shadow-lg transition-shadow"
-                    whileHover={{ scale: 1.04 }}
+
                   >
                     <img src={item.img} alt={item.title} className="w-full h-32 object-cover rounded mb-2" />
                     <span className="text-xs text-white font-bold bg-blue-500 px-2 py-1 rounded uppercase self-start">{item.title}</span>
                     <h3 className="text-xl text-black font-bold mt-2">{item.year}</h3>
-                    <p className="text-black mt-2">{item.description}</p>
+                    <p className="text-black mt-2 h-20 overflow-y-auto pr-1">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
