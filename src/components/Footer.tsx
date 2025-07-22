@@ -45,12 +45,11 @@ const Footer = () => {
               </button>
               {expandedSections.officeAddress && (
                 <div className="space-y-2 text-sm text-gray-300">
-                  <p>BPTP Limited</p>
+                  <p>Royal Nest Group</p>
                   <p>(CIN: U45201HR2003PLC082732)</p>
-                  <p>BPTP Capital City</p>
-                  <p>6th Floor, Plot No. 2B, Sector-94,</p>
-                  <p>Gautam Budh Nagar, Noida,</p>
-                  <p>Uttar Pradesh-201301.</p>
+                  <p>Royal Nest</p>
+                  <p>Noida,</p>
+                  <p>Uttar Pradesh-201301</p>
                   <p>Contact No. +91 120 4492650</p>
                 </div>
               )}
@@ -66,7 +65,7 @@ const Footer = () => {
               </button>
               {expandedSections.registeredOffice && (
                 <div className="space-y-2 text-sm text-gray-300">
-                  <p>BPTP Limited</p>
+                  <p>Royal Nest Group</p>
                   <p>Registered Office Address</p>
                 </div>
               )}
@@ -99,7 +98,7 @@ const Footer = () => {
               {expandedSections.customerCare && (
                 <div className="space-y-2 text-sm text-gray-300">
                   <p>Customer Support</p>
-                  <p>Email: support@bptp.com</p>
+                  <p>Email: support@royalnest.com</p>
                 </div>
               )}
             </div>
