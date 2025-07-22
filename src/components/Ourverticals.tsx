@@ -42,19 +42,19 @@ const OurVerticals: React.FC = () => {
   const verticals = [
     {
       title: "Residential Real Estate Development",
-      imageSrc: "/verticals.jpg",
+      imageSrc: "/Verticals/residential.jpg",
       imageAlt: "Luxury Residences - Fountain Area",
       link: "/residences"
     },
     {
       title: "Commercial & Mixed-Use Developments",
-      imageSrc: "/verticals.jpg",
+      imageSrc: "/Verticals/commercial.jpg",
       imageAlt: "Commercial Spaces - Penthouse Terrace",
       link: "/commercial"
     },
     {
       title: "Hospitality",
-      imageSrc: "/verticals.jpg",
+      imageSrc: "/Verticals/hospitality.jpg",
       imageAlt: "Hospitality & Hotels - Pool and Landscape",
       link: "/hospitality"
     },
@@ -66,19 +66,19 @@ const OurVerticals: React.FC = () => {
     },
     {
       title: "Construction Materials",
-      imageSrc: "/verticals.jpg",
+      imageSrc: "/Verticals/construction.jpg",
       imageAlt: "Construction Materials",
       link: "/infrastructure"
     },
     {
       title: "Health & Fitness",
-      imageSrc: "/verticals.jpg",
+      imageSrc: "/Verticals/health.jpg",
       imageAlt: "Health & Fitness",
       link: "/infrastructure"
     },
     {
       title: "Agriculture & Food Processing",
-      imageSrc: "/verticals.jpg",
+      imageSrc: "/Verticals/food.jpg",
       imageAlt: "Agriculture & Food Processing",
       link: "/infrastructure"
     }
