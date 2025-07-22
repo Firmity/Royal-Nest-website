@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, Phone, Mail, MapPin, Facebook, Linkedin, Youtube, Instagram, Plus } from 'lucide-react';
+import { ChevronDown, Facebook, Linkedin, Youtube, Instagram } from 'lucide-react';
 
 const Footer = () => {
   type SectionType = 'officeAddress' | 'registeredOffice' | 'salesQueries' | 'customerCare';

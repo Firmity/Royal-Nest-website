@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
+import Image from "next/image";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -111,9 +112,10 @@ export default function ContactPage() {
             whileHover={{ scale: 1.02 }}
           >
             {/* Family image */}
-            <img 
+            <Image 
               src="/family.jpg" 
               alt="Family" 
+              fill
               className="absolute inset-0 w-full h-full object-cover"
             />
             
@@ -216,7 +218,7 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              Got a question? Want to explore opportunities? Whether you're a future homeowner or a channel partner, we're here to listen, guide, and grow together. Let's connect.
+              Got a question? Want to explore opportunities? Whether you are a future homeowner or a channel partner, we are here to listen, guide, and grow together. Lets connect.
             </motion.p>
 
             {/* Contact Form */}

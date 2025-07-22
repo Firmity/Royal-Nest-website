@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const slides = [
   {
@@ -84,10 +85,11 @@ export default function HeroCarousel() {
         }}
       >
         {slides.map((slide, idx) => (
-          <img
+          <Image
             key={`${slide.image}-${idx}`}
             src={slide.image}
             alt={slide.title}
+            fill
             style={{
               position: "absolute",
               top: 0,
@@ -97,9 +99,9 @@ export default function HeroCarousel() {
               objectFit: "cover",
               objectPosition: "center",
               opacity: idx === current ? 1 : 0,
-              transform: idx === current ? "scale(1.15)" : "scale(1)",
               transition: "opacity 0.6s ease-in-out, transform 6s ease-in-out",
               zIndex: idx === current ? 1 : 0,
+              transform: idx === current ? undefined : "scale(1)",
             }}
             className={idx === current ? "zoom-in-out" : ""}
           />

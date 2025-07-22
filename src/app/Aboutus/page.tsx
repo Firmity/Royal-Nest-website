@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useInView, useAnimation } from "framer-motion";
 import Navbar from "../../components/Navbar";
 import ContactPage from "@/components/contactpage";
+import Image from "next/image";
 
 // --- DATA ARRAYS ---
 const milestones = [
@@ -119,7 +119,7 @@ const AnimatedNumber = ({ to }: { to: number }) => {
 
   useEffect(() => {
     if (!inView) return;
-    let start = 0;
+    const start = 0;
     const duration = 1500;
     const startTime = performance.now();
     function animate(now: number) {
@@ -149,9 +149,10 @@ export default function AboutPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         />
-        <img
+        <Image
           src="/Herocarousel/Royal Nest Hill View Fountain Area.jpg"
           alt="Hero"
+          fill
           className="absolute inset-0 w-full h-full object-cover z-0 scale-105 opacity-65"
         />
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center px-4">
@@ -226,9 +227,11 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="rounded-2xl overflow-hidden shadow-lg w-full max-w-md"
           >
-            <img
+            <Image
               src="/Aboutus/Vision.jpg"
               alt="Our Vision"
+              width={600}
+              height={400}
               className="object-cover w-full h-72 md:h-96 hover:scale-105 transition-transform duration-500"
             />
           </motion.div>
