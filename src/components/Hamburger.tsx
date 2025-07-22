@@ -1,18 +1,17 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 
 const menuLinks = [
-  { label: "Retail" },
-  { label: "Residential" },
-  { label: "Commercial" },
-  { label: "Upcoming Projects" },
-  { label: "Delivered Projects" },
-  { label: "About Us" },
-  { label: "Careers" },
-  { label: "Media" },
+  { label: "Retail", href:"#" },
+  { label: "Residential", href:"#" },
+  { label: "Commercial", href:"#" },
+  { label: "Upcoming Projects", href:"#" },
+  { label: "Delivered Projects", href:"#" },
+  { label: "About Us", href:"/Aboutus" },
+  { label: "Careers", href:"#" },
+  { label: "Media", href:"#" },
 ];
-const aboutSubLinks = ["Vision & Values", "Leadership", "Milestones", "Awards"];
-const mediaSubLinks = ["News", "Event"];
 const socialIcons = [
   { label: "LinkedIn", icon: (
     <svg width="25" height="25" viewBox="0 0 24 24" fill="black"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
@@ -71,9 +70,9 @@ export default function Hamburger({ size = 34, color = "white" }) {
           <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "1rem" }}>
             {menuLinks.map((link, idx) => (
               <React.Fragment key={link.label}>
-                <a
+                <Link
                   key={link.label}
-                  href="#"
+                  href={link.href}
                   style={{
                     color: "#222",
                     textDecoration: "none",
@@ -84,27 +83,7 @@ export default function Hamburger({ size = 34, color = "white" }) {
                   }}
                 >
                   {link.label}
-                </a>
-                {/* About Us sublinks */}
-                {link.label === "About Us" && (
-                  <div style={{ color: "#888", fontSize: "1rem", margin: "0rem 0 0rem 0", letterSpacing: 1 }}>
-                    {aboutSubLinks.map((s, i) => (
-                      <span key={s} style={{ marginRight: i !== aboutSubLinks.length - 1 ? "1rem" : 0 }}>
-                        / {s}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {/* Media sublinks */}
-                {link.label === "Media" && (
-                  <div style={{ color: "#888", fontSize: "1rem", margin: "0rem 0 0rem 0", letterSpacing: 1 }}>
-                    {mediaSubLinks.map((s, i) => (
-                      <span key={s} style={{ marginRight: i !== mediaSubLinks.length - 1 ? "1rem" : 0 }}>
-                        / {s}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                </Link>
               </React.Fragment>
             ))}
             {/* Contact Us and Social Icons */}
