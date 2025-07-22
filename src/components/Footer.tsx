@@ -109,12 +109,8 @@ const Footer = () => {
             <div>
               <h3 className="font-semibold text-lg mb-4">Projects</h3>
               <div className="space-y-2 text-sm text-gray-300">
-                <p>Amstoria Verti-Greens</p>
-                <p>Amstoria</p>
-                <p>Astaire Gardens</p>
-                <p>Parklands Pride</p>
-                <p>Discovery Park</p>
-                <p>The Deck</p>
+                <p>Royal Nest Saffron, Katra</p>
+                <p>Royal Nest Green, GK</p>
               </div>
             </div>
 
