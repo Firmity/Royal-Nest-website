@@ -4,6 +4,7 @@ import React from 'react';
 import { motion, easeOut } from 'framer-motion';
 import InfiniteNumbers from './ui/InfiniteNumbers';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const AboutUs: React.FC = () => {
   // Simple animation variants for images and numbers
@@ -77,10 +78,12 @@ const AboutUs: React.FC = () => {
             variants={scaleIn}
           >
             <div className="relative rounded-2xl overflow-hidden">
-              <img
+              <Image
                 src="/Herocarousel/Royal Nest Hill View Fountain Area.jpg"
                 alt="Fountain area with modern architecture"
-                className="w-full h-96 object-cover"
+                width={1200}
+                height={1400}
+                className="object-cover"
               />
             </div>
           </motion.div>
@@ -90,7 +93,6 @@ const AboutUs: React.FC = () => {
             {/* Infinite Numbers */}
             <motion.div
               className="w-full"
-              initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInUp}
@@ -109,16 +111,17 @@ const AboutUs: React.FC = () => {
             {/* Bottom Image */}
             <motion.div
               className="w-full"
-              initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={scaleIn}
             >
               <div className="relative rounded-2xl overflow-hidden">
-                <img
+                <Image
                   src="/Herocarousel/Royal Nest Hill View Fountain Area.jpg"
                   alt="Luxury residential complex with modern design"
-                  className="w-full h-64 object-cover"
+                  width={1200}
+                  height={600}
+                  className="object-cover"
                 />
               </div>
             </motion.div>

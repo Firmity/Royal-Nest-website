@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Hamburger from "./Hamburger";
 import Link  from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   {
@@ -88,11 +89,12 @@ export default function Navbar() {
         </div>
         {/* Logo */}
         <Link href="/">
-        <div style={{ flex: 1, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", minWidth: 0 }}>
-          <img
+        <div style={{ position: "relative", height: "48px", width: "auto", minWidth: 120 }}>
+          <Image
             src="/Royalnest.png"
             alt="Royal Nest Logo"
-            style={{ height: "48px", width: "auto", objectFit: "contain" }}
+            fill
+            style={{ objectFit: "contain" }}
           />
         </div>
         </Link>
