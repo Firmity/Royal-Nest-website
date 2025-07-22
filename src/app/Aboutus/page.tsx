@@ -143,19 +143,19 @@ export default function AboutPage() {
       <Navbar />
       {/* Hero Section with animated overlay */}
       <section className="relative flex items-center justify-center min-h-[80vh] w-full overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-black/80"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        />
         <Image
           src="/Aboutus/about.webp"
           alt="Hero"
           fill
           className="absolute inset-0 w-full h-full object-cover z-0 scale-105"
         />
-        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center px-4">
+        <motion.div
+          className="absolute inset-0 bg-black/40 z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        />
+        <div className="relative z-20 flex flex-col items-center justify-center w-full h-full text-center px-4">
           <motion.h1
             className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl tracking-wide"
             initial={{ y: 40, opacity: 1 }}
