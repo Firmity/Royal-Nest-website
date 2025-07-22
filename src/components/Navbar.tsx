@@ -1,18 +1,39 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Hamburger from "./Hamburger";
+import Link  from "next/link";
 
 const navLinks = [
-  { label: "RETAIL", href: "#" },
-  { label: "RESIDENTIAL", href: "#" },
-  { label: "COMMERCIAL", href: "#" },
-  { label: "HOSPITALITY", href: "#" },
+  {
+    label: "REAL ESTATE",
+    href: "#",
+    submenu: [
+      { label: "RESIDENTIAL", href: "#" },
+      { label: "COMMERCIAL", href: "#" },
+      { label: "Construction Materials", href: "#" },
+    ],
+  },
+  {
+    label: "HOSPITALITY",
+    href: "#",
+  },
+  {
+    label: "SERVICES",
+    href: "#",
+    submenu: [
+      { label: "Integrated Facility Management", href: "#" },
+      { label: "Health & Fitness", href: "#" },
+      { label: "Agriculture & Food Processing", href: "#" },
+    ],
+  },
 ];
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  // Remove old submenuOpen state, use an index for multiple submenus
+  const [openSubmenuIndex, setOpenSubmenuIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,15 +87,15 @@ export default function Navbar() {
           <Hamburger size={34} color="white" />
         </div>
         {/* Logo */}
+        <Link href="/">
         <div style={{ flex: 1, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", minWidth: 0 }}>
-          {/* Big RN */}
-          <span style={{ fontSize: "2.5rem", fontWeight: 700, letterSpacing: 2, lineHeight: 1, marginRight: "0.8rem" }}>RN</span>
-          {/* TREHAN and IRIS stacked to the right */}
-          <span style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", lineHeight: 1 }}>
-            <span style={{ fontSize: "0.7rem", letterSpacing: 1, fontWeight: 300, marginBottom: 0 }}>ROYAL NEST</span>
-            <span style={{ fontSize: "1.2rem", letterSpacing: 1, fontWeight: 400, marginTop: 0 }}>GROUP</span>
-          </span>
+          <img
+            src="/Royalnest.png"
+            alt="Royal Nest Logo"
+            style={{ height: "48px", width: "auto", objectFit: "contain" }}
+          />
         </div>
+        </Link>
         {/* Contact Us */}
         <a
           href="#"
@@ -92,15 +113,69 @@ export default function Navbar() {
       </div>
       {/* Links Row: Centered below logo */}
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1.2rem", marginTop: "0.5rem", marginBottom: "0.3rem", width: "100%" }}>
-        {navLinks.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            style={{ color: "#fff", textDecoration: "none", fontSize: "0.75rem", fontWeight: 400, letterSpacing: 1.5, textTransform: "uppercase" }}
-          >
-            {link.label}
-          </a>
-        ))}
+        {navLinks.map((link, idx) =>
+          link.submenu ? (
+            <div
+              key={link.label}
+              style={{ position: "relative", display: "inline-block" }}
+              onMouseEnter={() => setOpenSubmenuIndex(idx)}
+              onMouseLeave={() => setOpenSubmenuIndex(null)}
+            >
+              <a
+                href={link.href}
+                style={{ color: "#fff", textDecoration: "none", fontSize: "0.75rem", fontWeight: 400, letterSpacing: 1.5, textTransform: "uppercase" }}
+              >
+                {link.label}
+              </a>
+              {openSubmenuIndex === idx && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "100%",
+                    left: 0,
+                    background: "rgba(0,0,0,0.85)",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+                    borderRadius: 4,
+                    minWidth: 180,
+                    zIndex: 100,
+                    padding: "0.5rem 0",
+                  }}
+                >
+                  {link.submenu.map((sublink) => (
+                    <a
+                      key={sublink.label}
+                      href={sublink.href}
+                      style={{
+                        display: "block",
+                        color: "#fff",
+                        textDecoration: "none",
+                        fontSize: "0.75rem",
+                        fontWeight: 400,
+                        letterSpacing: 1.5,
+                        textTransform: "uppercase",
+                        padding: "0.5rem 1.5rem",
+                        whiteSpace: "nowrap",
+                        transition: "background 0.2s",
+                      }}
+                      onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
+                      onMouseLeave={e => (e.currentTarget.style.background = "none")}
+                    >
+                      {sublink.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <a
+              key={link.label}
+              href={link.href}
+              style={{ color: "#fff", textDecoration: "none", fontSize: "0.75rem", fontWeight: 400, letterSpacing: 1.5, textTransform: "uppercase" }}
+            >
+              {link.label}
+            </a>
+          )
+        )}
       </div>
     </nav>
   );
