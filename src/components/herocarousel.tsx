@@ -5,17 +5,27 @@ import Image from "next/image";
 const slides = [
   {
     image: "/Herocarousel/Royal Nest Hill View Fountain Area.jpg",
-    title: "Amstoria | Sector 102, Gurugram",
-    link: "#"
-  },
-  {
-    image: "/Herocarousel/Royal Nest Hill View Penthouse Terrace.jpg",
-    title: "Another Property | Location",
+    title: "Royal Nest Hill View | Jammu",
     link: "#"
   },
   {
     image: "/Herocarousel/Royal Nest Hill View Pool to Landscape Area.jpg",
-    title: "Sample Project | City",
+    title: "Royal Nest Hill View | Jammu",
+    link: "#"
+  },
+  {
+    image: "/Herocarousel/Royal Nest Sapphire, Jammu.png",
+    title: "Royal Nest Sapphire | Jammu",
+    link: "#"
+  },
+  {
+    image: "/Herocarousel/Royal Nest Hill View Pool to Landscape Area.jpg",
+    title: "Royal Nest Forest View | Dharamshala",
+    link: "#"
+  },
+  {
+    image: "/Herocarousel/Royal Nest, GNW.jpg",
+    title: "Royal Nest | Greater Noida",
     link: "#"
   }
 ];
@@ -83,6 +93,7 @@ export default function HeroCarousel() {
           alignItems: "center",
           justifyContent: "center",
         }}
+        className="herocarousel-container"
       >
         {slides.map((slide, idx) => (
           <Image
@@ -187,6 +198,7 @@ export default function HeroCarousel() {
               opacity: 0,
               animation: "fadeInScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards",
             }}
+            className="herocarousel-title"
           >
             {slides[current].title}
           </div>
@@ -224,11 +236,54 @@ export default function HeroCarousel() {
                   ? "0 4px 12px rgba(255,255,255,0.3)" 
                   : "0 2px 6px rgba(255,255,255,0.2)",
               }}
-              className={idx === current ? "pulse" : ""}
+              className={(idx === current ? "pulse " : "") + "herocarousel-dot"}
             />
           ))}
         </div>
       </div>
+      <style jsx global>{`
+        @media (max-width: 600px) {
+          .zoom-in-out {
+            /* Keep animation, but scale less on mobile */
+            animation: zoomInOutMobile 6s ease-in-out infinite;
+          }
+          .pulse {
+            animation: pulseMobile 3s ease-in-out infinite;
+          }
+          .float {
+            width: 40px !important;
+            height: 40px !important;
+            margin-left: 12px !important;
+            margin-right: 12px !important;
+          }
+          .arrow-anim-up, .arrow-anim-down {
+            font-size: 20px !important;
+          }
+          /* Overlay title */
+          .herocarousel-title {
+            font-size: 18px !important;
+            margin-right: 12px !important;
+          }
+          /* Dots */
+          .herocarousel-dot {
+            width: 10px !important;
+            height: 10px !important;
+            min-width: 10px !important;
+            min-height: 10px !important;
+          }
+          .herocarousel-container {
+            height: 70vh !important;
+          }
+        }
+        @keyframes zoomInOutMobile {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.04); }
+        }
+        @keyframes pulseMobile {
+          0%, 100% { box-shadow: 0 2px 6px rgba(255,255,255,0.2); }
+          50% { box-shadow: 0 4px 12px rgba(255,255,255,0.3); }
+        }
+      `}</style>
     </>
   );
 }
