@@ -36,7 +36,7 @@ const navLinks = [
       {
         label: "Hotel Xenious",
         href: "#",
-        image: "/Verticals/commercial.jpg",
+        image: "/Verticals/residential.jpg",
         description: "Modern comforts and exceptional service for every guest",
       }
     ],
