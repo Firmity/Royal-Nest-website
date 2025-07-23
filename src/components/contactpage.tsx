@@ -105,7 +105,7 @@ export default function ContactPage() {
           transition={{ duration: 0.8 }}
         >
           <motion.div 
-            className="relative w-full aspect-[4/3] sm:aspect-auto rounded-xl sm:rounded-2xl xl:rounded-3xl overflow-hidden shadow-lg sm:shadow-2xl min-h-[180px] sm:min-h-0 mb-4 sm:mb-0"
+            className="relative w-full aspect-[4/3] sm:aspect-[4/3] rounded-xl sm:rounded-2xl xl:rounded-3xl overflow-hidden shadow-lg sm:shadow-2xl min-h-[180px] mb-4 h-full"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}

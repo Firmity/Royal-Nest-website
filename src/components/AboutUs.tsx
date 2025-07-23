@@ -77,14 +77,14 @@ const AboutUs: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }}
             variants={scaleIn}
           >
-            <div className="relative rounded-2xl overflow-hidden">
-              <Image
-                src="/Royal Nest Hill View  TOWER C NIGHT.jpg"
-                alt="Fountain area with modern architecture"
-                width={1200}
-                height={400}
-              />
-            </div>
+            <div className="relative rounded-2xl overflow-hidden aspect-[10/9]">
+  <Image
+    src="/Royal Nest Hill View  TOWER C NIGHT.jpg"
+    alt="Fountain area with modern architecture"
+    fill
+    className="object-cover"
+  />
+</div>
           </motion.div>
 
           {/* Right Side - Infinite Numbers and Bottom Image */}
@@ -98,10 +98,9 @@ const AboutUs: React.FC = () => {
             >
               <InfiniteNumbers
                 numbers={[
-                  { value: "00+", label: "ACRES IN NCR" },
-                  { value: "50", label: "GLOBALLY INSPIRED PROJECTS" },
-                  { value: "2", label: "MILLION SQ FT" },
-                  { value: "24,500+", label: "UNITS DELIVERED" }
+                  { value: "30+", label: "PROJECTS COMPLETED" },
+                  { value: "25", label: "YEAR OF EXPERINECE" },
+                  { value: "7", label: "MILLION SQ FT" }
                 ]}
                 speed="fast"
               />

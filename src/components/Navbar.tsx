@@ -12,19 +12,13 @@ const navLinks = [
       {
         label: "RESIDENTIAL",
         href: "/HillViewPage",
-        image: "/Verticals/residential.jpg",
+        image: "/Herocarousel/Royal Nest Hill View Parking Area Evening.jpg",
         description: "Eco-friendly buildings with green solutions",
-      },
-      {
-        label: "COMMERCIAL",
-        href: "#",
-        image: "/Verticals/commercial.jpg",
-        description: "Vibrant commercial spaces for business",
       },
       {
         label: "Construction Materials",
         href: "#",
-        image: "/Verticals/construction.jpg",
+        image: "/Verticals/rmc.jpg",
         description: "Quality materials for robust construction",
       },
     ],
@@ -37,16 +31,16 @@ const navLinks = [
         label: "Radisson Amritsar",
         href: "#",
         image: "/Verticals/residential.jpg",
-        description: "Eco-friendly buildings with green solutions",
+        description: "Premium hospitality experience with world-class amenities",
       },
       {
-        label: "Royal Oasis Dharamshala",
+        label: "Hotel Xenious",
         href: "#",
         image: "/Verticals/commercial.jpg",
-        description: "Vibrant commercial spaces for business",
+        description: "Modern comforts and exceptional service for every guest",
       }
     ],
-  },
+  },  
   {
     label: "SERVICES",
     href: "#",
@@ -60,13 +54,13 @@ const navLinks = [
       {
         label: "Health & Fitness",
         href: "#",
-        image: "/Verticals/health.jpg",
+        image: "/Verticals/gym.jpg",
         description: "Comprehensive health and fitness solutions",
       },
       {
         label: "Agriculture & Food Processing",
         href: "#",
-        image: "/Verticals/food.jpg",
+        image: "/Verticals/Cold-link.jpg",
         description: "Sustainable agriculture and food processing",
       },
     ],
@@ -132,7 +126,7 @@ export default function Navbar() {
         </div>
         {/* Logo */}
         <Link href="/">
-          <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", height: "60px", width: "80px", minWidth: 120 }}>
+          <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", height: "60px", width: "80px", minWidth: 200, shadow: 60 }}>
             <Image
               src="/Royalnest.png"
               alt="Royal Nest Logo"
@@ -161,7 +155,7 @@ export default function Navbar() {
         </Link>
       </div>
       {/* Links Row: Centered below logo */}
-      <div className="navbar-links-row" style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1.2rem", marginTop: "0.5rem", marginBottom: "0.3rem", width: "100%" }}>
+      <div className="navbar-links-row" style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1.2rem", marginTop: "0.5rem", marginBottom: "0.6rem", width: "100%" }}>
         {navLinks.map((link, idx) =>
           link.submenu ? (
             <div
@@ -172,7 +166,7 @@ export default function Navbar() {
             >
               <Link
                 href={link.href}
-                style={{ color: "#fff", textDecoration: "none", fontSize: "0.75rem", fontWeight: 400, letterSpacing: 1.5, textTransform: "uppercase" }}
+                style={{ color: "#fff", textDecoration: "none", fontSize: "0.75rem", fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase" }}
               >
                 {link.label}
               </Link>
@@ -183,13 +177,13 @@ export default function Navbar() {
                     top: "100%",
                     left: "50%",
                     transform: "translateX(-50%)",
-                    background: "rgba(0,0,0,0.92)",
+                    background: "rgba(0,0,0,0.60)",
                     boxShadow: "0 2px 16px rgba(0,0,0,0.25)",
                     borderRadius: 12,
                     minWidth: 600,
                     zIndex: 100,
                     padding: "2rem 2.5rem 2rem 2.5rem",
-                    marginTop: 12,
+                    marginTop: 8,
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -210,14 +204,12 @@ export default function Navbar() {
                         style={{
                           display: "flex",
                           alignItems: "flex-start",
-                          background: "rgba(30,30,30,0.98)",
                           borderRadius: 10,
                           overflow: "hidden",
                           textDecoration: "none",
                           color: "#fff",
                           minWidth: 260,
                           maxWidth: 320,
-                          boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
                           transition: "transform 0.2s, box-shadow 0.2s",
                           cursor: "pointer",
                         }}
