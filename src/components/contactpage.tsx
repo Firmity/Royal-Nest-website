@@ -95,17 +95,17 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <div className="flex flex-row min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white px-4 sm:px-0">
+      <div className="flex flex-col sm:flex-row min-h-screen">
         {/* Left Side - Family Photo */}
         <motion.div 
-          className="w-1/2 relative overflow-hidden p-4 sm:p-6 lg:p-8 xl:p-12"
+          className="w-full sm:w-1/2 relative overflow-hidden p-2 sm:p-4 sm:pt-6 lg:p-8 xl:p-12 h-auto"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
           <motion.div 
-            className="relative h-full w-full rounded-2xl xl:rounded-3xl overflow-hidden shadow-2xl"
+            className="relative w-full aspect-[4/3] sm:aspect-auto rounded-xl sm:rounded-2xl xl:rounded-3xl overflow-hidden shadow-lg sm:shadow-2xl min-h-[180px] sm:min-h-0 mb-4 sm:mb-0"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -116,22 +116,21 @@ export default function ContactPage() {
               src="/family.jpg" 
               alt="Family" 
               fill
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-contain sm:object-cover bg-white"
+              sizes="(max-width: 640px) 100vw, 50vw"
             />
-            
             {/* Contact Info Overlay */}
             <motion.div 
-              className="absolute bottom-4 left-4 right-4 bg-black/20 backdrop-blur-sm rounded-lg p-3 text-white text-xs"
+              className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 bg-black/20 backdrop-blur-sm rounded-lg p-2 sm:p-3 text-white text-xs"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 1.2 }}
             >
               The image is for visual representation only.
             </motion.div>
-
             {/* Border glow effect */}
             <motion.div 
-              className="absolute inset-0 rounded-2xl xl:rounded-3xl border-4 border-white/20"
+              className="absolute inset-0 rounded-2xl xl:rounded-3xl border-2 sm:border-4 border-white/20"
               animate={{ 
                 boxShadow: [
                   "0 0 20px rgba(34, 197, 94, 0.3)",
@@ -146,7 +145,7 @@ export default function ContactPage() {
 
         {/* Right Side - Contact Form */}
         <motion.div 
-          className="w-1/2 flex items-center justify-center p-4 sm:p-6 lg:p-8 xl:p-12 overflow-y-auto"
+          className="w-full sm:w-1/2 flex items-center justify-center px-2 py-4 sm:p-4 sm:pt-6 lg:p-8 xl:p-12 overflow-y-auto"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}

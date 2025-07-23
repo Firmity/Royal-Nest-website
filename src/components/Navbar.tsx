@@ -9,22 +9,66 @@ const navLinks = [
     label: "REAL ESTATE",
     href: "#",
     submenu: [
-      { label: "RESIDENTIAL", href: "#" },
-      { label: "COMMERCIAL", href: "#" },
-      { label: "Construction Materials", href: "#" },
+      {
+        label: "RESIDENTIAL",
+        href: "/HillViewPage",
+        image: "/Verticals/residential.jpg",
+        description: "Eco-friendly buildings with green solutions",
+      },
+      {
+        label: "COMMERCIAL",
+        href: "#",
+        image: "/Verticals/commercial.jpg",
+        description: "Vibrant commercial spaces for business",
+      },
+      {
+        label: "Construction Materials",
+        href: "#",
+        image: "/Verticals/construction.jpg",
+        description: "Quality materials for robust construction",
+      },
     ],
   },
   {
     label: "HOSPITALITY",
     href: "#",
+    submenu: [
+      {
+        label: "Radisson Amritsar",
+        href: "#",
+        image: "/Verticals/residential.jpg",
+        description: "Eco-friendly buildings with green solutions",
+      },
+      {
+        label: "Royal Oasis Dharamshala",
+        href: "#",
+        image: "/Verticals/commercial.jpg",
+        description: "Vibrant commercial spaces for business",
+      }
+    ],
   },
   {
     label: "SERVICES",
     href: "#",
     submenu: [
-      { label: "Integrated Facility Management", href: "#" },
-      { label: "Health & Fitness", href: "#" },
-      { label: "Agriculture & Food Processing", href: "#" },
+      {
+        label: "Integrated Facility Management",
+        href: "#",
+        image: "/Herocarousel/Royal Nest Hill View Fountain Area.jpg",
+        description: "Tech-enabled facility management services",
+      },
+      {
+        label: "Health & Fitness",
+        href: "#",
+        image: "/Verticals/health.jpg",
+        description: "Comprehensive health and fitness solutions",
+      },
+      {
+        label: "Agriculture & Food Processing",
+        href: "#",
+        image: "/Verticals/food.jpg",
+        description: "Sustainable agriculture and food processing",
+      },
     ],
   },
 ];
@@ -33,7 +77,6 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  // Remove old submenuOpen state, use an index for multiple submenus
   const [openSubmenuIndex, setOpenSubmenuIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -82,39 +125,43 @@ export default function Navbar() {
       }}
     >
       {/* Top Row: Menu Icon, Logo, Contact Us */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginTop: "1rem" }}>
+      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", width: "100%", marginTop: "1rem", minHeight: "60px" }}>
         {/* Menu Icon */}
-        <div style={{ display: "flex", alignItems: "center", height: "40px" }}>
+        <div style={{ position: "absolute", top: "25%", left: "5%", display: "flex", alignItems: "center" }}>
           <Hamburger size={34} color="white" />
         </div>
         {/* Logo */}
         <Link href="/">
-        <div style={{ position: "relative", height: "60px", width: "80px", minWidth: 400 }}>
-          <Image
-            src="/Royalnest.png"
-            alt="Royal Nest Logo"
-            fill
-            style={{ objectFit: "contain" }}
-          />
-        </div>
+          <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", height: "60px", width: "80px", minWidth: 120 }}>
+            <Image
+              src="/Royalnest.png"
+              alt="Royal Nest Logo"
+              fill
+              style={{ objectFit: "contain" }}
+            />
+          </div>
         </Link>
         {/* Contact Us */}
-        <a
-          href="#"
+        <Link
+          href="/Contact"
+          className="navbar-contact-link"
           style={{
+            position: "absolute",
+            right: "18px",
+            top: "18px",
             color: "#fff",
             textDecoration: "none",
             fontWeight: 400,
             fontSize: "0.8rem",
             letterSpacing: 1,
-            marginTop: "0.7rem",
+            marginTop: 0,
           }}
         >
           CONTACT US
-        </a>
+        </Link>
       </div>
       {/* Links Row: Centered below logo */}
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1.2rem", marginTop: "0.5rem", marginBottom: "0.3rem", width: "100%" }}>
+      <div className="navbar-links-row" style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1.2rem", marginTop: "0.5rem", marginBottom: "0.3rem", width: "100%" }}>
         {navLinks.map((link, idx) =>
           link.submenu ? (
             <div
@@ -123,59 +170,92 @@ export default function Navbar() {
               onMouseEnter={() => setOpenSubmenuIndex(idx)}
               onMouseLeave={() => setOpenSubmenuIndex(null)}
             >
-              <a
+              <Link
                 href={link.href}
                 style={{ color: "#fff", textDecoration: "none", fontSize: "0.75rem", fontWeight: 400, letterSpacing: 1.5, textTransform: "uppercase" }}
               >
                 {link.label}
-              </a>
+              </Link>
               {openSubmenuIndex === idx && (
                 <div
                   style={{
                     position: "absolute",
                     top: "100%",
-                    left: 0,
-                    background: "rgba(0,0,0,0.85)",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-                    borderRadius: 4,
-                    minWidth: 180,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    background: "rgba(0,0,0,0.92)",
+                    boxShadow: "0 2px 16px rgba(0,0,0,0.25)",
+                    borderRadius: 12,
+                    minWidth: 600,
                     zIndex: 100,
-                    padding: "0.5rem 0",
+                    padding: "2rem 2.5rem 2rem 2.5rem",
+                    marginTop: 12,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                   }}
                 >
-                  {link.submenu.map((sublink) => (
-                    <a
-                      key={sublink.label}
-                      href={sublink.href}
-                      style={{
-                        display: "block",
-                        color: "#fff",
-                        textDecoration: "none",
-                        fontSize: "0.75rem",
-                        fontWeight: 400,
-                        letterSpacing: 1.5,
-                        textTransform: "uppercase",
-                        padding: "0.5rem 1.5rem",
-                        whiteSpace: "nowrap",
-                        transition: "background 0.2s",
-                      }}
-                      onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
-                      onMouseLeave={e => (e.currentTarget.style.background = "none")}
-                    >
-                      {sublink.label}
-                    </a>
-                  ))}
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(2, 1fr)",
+                      gap: "2rem 2.5rem",
+                      width: "100%",
+                    }}
+                  >
+                    {link.submenu.map((sublink) => (
+                      <Link
+                        key={sublink.label}
+                        href={sublink.href}
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          background: "rgba(30,30,30,0.98)",
+                          borderRadius: 10,
+                          overflow: "hidden",
+                          textDecoration: "none",
+                          color: "#fff",
+                          minWidth: 260,
+                          maxWidth: 320,
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+                          transition: "transform 0.2s, box-shadow 0.2s",
+                          cursor: "pointer",
+                        }}
+                        onMouseEnter={e => {
+                          e.currentTarget.style.transform = "scale(1.03)";
+                          e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.25)";
+                        }}
+                        onMouseLeave={e => {
+                          e.currentTarget.style.transform = "none";
+                          e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+                        }}
+                      >
+                        <div style={{ width: 100, height: 100, position: "relative", borderRadius: 8, overflow: "hidden", margin: 16 }}>
+                          <Image
+                            src={sublink.image}
+                            alt={sublink.label}
+                            fill
+                            style={{ objectFit: "cover" }}
+                          />
+                        </div>
+                        <div style={{ padding: "1rem 0.5rem 1rem 0", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                          <div style={{ fontWeight: 600, fontSize: "1.1rem", marginBottom: 6 }}>{sublink.label}</div>
+                          <div style={{ fontSize: "0.95rem", color: "#ccc", lineHeight: 1.4 }}>{sublink.description}</div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
           ) : (
-            <a
+            <Link
               key={link.label}
               href={link.href}
               style={{ color: "#fff", textDecoration: "none", fontSize: "0.75rem", fontWeight: 400, letterSpacing: 1.5, textTransform: "uppercase" }}
             >
               {link.label}
-            </a>
+            </Link>
           )
         )}
       </div>

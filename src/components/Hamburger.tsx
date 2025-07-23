@@ -33,7 +33,7 @@ export default function Hamburger({ size = 34, color = "white" }) {
   return (
     <>
       {/* Hamburger Icon */}
-      <div style={{ cursor: "pointer", display: open ? "none" : "block" }} onClick={() => setOpen(true)}>
+      <div className="hamburger-icon-wrapper" style={{ cursor: "pointer", display: open ? "none" : "block" }} onClick={() => setOpen(true)}>
         <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect y="12" width="48" height="2" rx="1" fill={color} />
           <rect y="25" width="48" height="2" rx="1" fill={color} />
@@ -105,6 +105,15 @@ export default function Hamburger({ size = 34, color = "white" }) {
         @keyframes slideIn {
           from { transform: translateX(-100%); }
           to { transform: translateX(0); }
+        }
+        .hamburger-icon-wrapper {
+          transition: transform 0.2s;
+        }
+        @media (max-width: 600px) {
+          .hamburger-icon-wrapper svg {
+            width: 26px !important;
+            height: 26px !important;
+          }
         }
       `}</style>
     </>

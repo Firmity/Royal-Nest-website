@@ -28,11 +28,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white px-4">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Three Column Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-18 mb-8 pl-18">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-18 mb-8 md:pl-18">
           {/* Left Column - Contact Information */}
           <div className="space-y-6">
             <div>
@@ -105,7 +105,7 @@ const Footer = () => {
           </div>
 
           {/* Middle Column - Projects and About */}
-          <div className="space-y-6">
+          <div className="space-y-6 mt-8 md:mt-0">
             <div>
               <h3 className="font-semibold text-lg mb-4">Projects</h3>
               <div className="space-y-2 text-sm text-gray-300">
@@ -125,14 +125,15 @@ const Footer = () => {
             <div>
               <h3 className="font-semibold text-lg mb-4">Media</h3>
             </div>
-
+            <Link href="/Contact">
             <div>
               <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
             </div>
+            </Link>
           </div>
 
           {/* Right Column - Links and Information */}
-          <div className="space-y-6">
+          <div className="space-y-6 mt-8 md:mt-0">
             <div>
               <h3 className="font-semibold text-lg mb-4">Blogs</h3>
               <div className="space-y-2 text-sm text-gray-300">
@@ -162,16 +163,16 @@ const Footer = () => {
       </div>
 
       {/* Bottom Section */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-gray-800 px-4">
         <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-0 space-x-0">
             {/* Copyright */}
-            <div className="text-sm text-white">
+            <div className="text-sm text-white text-center md:text-left">
               Copyright © 2025 Royal Nest Group, All rights reserved.
             </div>
 
             {/* Policy Links */}
-            <div className="text-sm text-white flex flex-wrap justify-center space-x-4">
+            <div className="text-sm text-white flex flex-col md:flex-row items-center md:justify-center space-y-2 md:space-y-0 md:space-x-4">
               <span>EOI Submission & Refund Policy</span>
               <span className="hidden md:inline">|</span>
               <span>Privacy Policy</span>
@@ -182,7 +183,7 @@ const Footer = () => {
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center justify-center space-x-4">
               <div className="flex space-x-3">
                 <a href="#" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
                   <Facebook className="w-4 h-4" />

@@ -60,16 +60,32 @@ const Section = ({ children, className = "" }: { children: React.ReactNode; clas
     {children}
   </motion.section>
 );
-const Card = ({ icon, title, desc }: { icon: string; title: string; desc: string }) => (
+const Card = ({ icon, title, desc, expanded, onClick }: { icon: string; title: string; desc: string; expanded?: boolean; onClick?: () => void }) => (
   <motion.div
-    className="flex items-start gap-4 bg-blue-50 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow border border-blue-100"
+    className={`flex flex-col items-start gap-4 bg-white/80 rounded-2xl shadow-md p-8 border border-blue-100 cursor-pointer transition-shadow relative backdrop-blur-md ${expanded ? 'z-10 shadow-2xl scale-105 border-4 border-green-400 bg-gradient-to-br from-green-50 via-white to-blue-50' : 'hover:shadow-lg'}`}
     whileHover={{ scale: 1.04 }}
+    onClick={onClick}
+    layout
+    transition={{ type: "spring", stiffness: 400, damping: 30 }}
   >
-    <span className="text-blue-600 text-3xl"><i className={`fa-solid ${icon}`}></i></span>
+    <span className="text-5xl md:text-6xl mb-2" style={{ color: expanded ? '#22c55e' : '#2563eb', textShadow: expanded ? '0 0 12px #bbf7d0' : 'none' }}><i className={`fa-solid ${icon}`}></i></span>
     <div>
-      <h3 className="font-semibold text-lg text-black">{title}</h3>
-      <p className="text-black text-sm">{desc}</p>
+      <h3 className="font-semibold text-xl text-black mb-1">{title}</h3>
+      <motion.p
+        className={`text-black text-base transition-all duration-300 ${expanded ? 'block' : 'line-clamp-2'}`}
+        animate={{ opacity: expanded ? 1 : 0.8 }}
+      >
+        {desc}
+      </motion.p>
+      {expanded && (
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-3 text-green-700 text-xs">
+          More details coming soon!
+        </motion.div>
+      )}
     </div>
+    {expanded && (
+      <motion.span layoutId="activeCard" className="absolute inset-0 rounded-2xl border-4 border-green-400 pointer-events-none shadow-lg" />
+    )}
   </motion.div>
 );
 const Badge = ({ text }: { text: string }) => (
@@ -138,13 +154,15 @@ const AnimatedNumber = ({ to }: { to: number }) => {
 
 
 export default function AboutPage() {
+  // Add state for expanded business area
+  const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 relative overflow-x-hidden">
       <Navbar />
       {/* Hero Section with animated overlay */}
       <section className="relative flex items-center justify-center min-h-[80vh] w-full overflow-hidden">
         <Image
-          src="/Aboutus/about.webp"
+          src="/Aboutus/about.jpg"
           alt="Hero"
           fill
           className="absolute inset-0 w-full h-full object-cover z-0 scale-105"
@@ -199,59 +217,180 @@ export default function AboutPage() {
       </Section>
 
       {/* Green Building Commitment Section */}
-      <Section className="bg-blue-50 border-b border-blue-100 relative">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold mb-10 text-black text-center tracking-tight drop-shadow-sm">Our Green Building Commitment</h2>
-          <p className="text-lg text-black text-center">
-            Since 2010, Royal Nest Group has pledged to construct only green building norm-compliant structures, integrating sustainable practices into every aspect of development. Our projects emphasize natural ventilation, energy efficiency, and the well-being of residents, in alignment with Indian Green Building Council (IGBC) standards.
-          </p>
-        </div>
-      </Section>
-
-      {/* Core Business Areas Section */}
-      <Section className="bg-white border-b border-blue-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold mb-10 text-black text-center tracking-tight drop-shadow-sm">Core Business Areas</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {businessAreas.map((area, i) => <Card key={i} {...area} />)}
+      <Section className="bg-gradient-to-r from-blue-50 via-white to-green-50 border-b border-blue-100 py-0">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row min-h-[420px]">
+          {/* Left inspirational heading */}
+          <div className="flex-1 flex items-center justify-center bg-gradient-to-b from-green-50 to-white rounded-l-2xl p-8">
+            <motion.h2
+              className="text-4xl md:text-5xl font-extrabold text-green-600 leading-tight drop-shadow-sm"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              Where nature inspires,<br />communities thrive, and the future unfolds with endless potential.
+            </motion.h2>
+          </div>
+          {/* Right cards grid */}
+          <div className="flex-1 grid grid-cols-1 gap-6 p-6 md:grid-cols-2 bg-white rounded-r-2xl">
+            {/* Card 1: Solar panels video */}
+            <motion.div
+              className="rounded-xl shadow bg-white overflow-hidden flex flex-col"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.04 }}
+              transition={{ duration: 0.6 }}
+            >
+              <video
+                src="/Aboutus/solar.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="object-cover w-full h-62 rounded-xl"
+                style={{ background: '#e0f2fe' }}
+              />
+            </motion.div>
+            {/* Card 2: Thriving communities */}
+            <motion.div
+              className="rounded-xl shadow bg-white p-5 flex flex-col justify-center"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.04 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+            >
+              <span className="font-bold text-xl text-black mb-2">Thriving communities</span>
+              <span className="text-black text-base">We don’t just build homes, we nurture communities. Thoughtfully crafted spaces create ecosystems where connections flourish and every resident finds a sense of belonging.</span>
+            </motion.div>
+            {/* Card 3: World-class design expertise */}
+            <motion.div
+              className="rounded-xl shadow bg-blue-50 p-5 flex flex-col justify-center"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.04 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <i className="fa-solid fa-drafting-compass text-blue-600 text-2xl"></i>
+                <span className="font-bold text-lg text-black">World-class design expertise</span>
+              </div>
+              <span className="text-black text-base">Our international design partners inspire us to create spaces that balance global aesthetics with timeless functionality, setting benchmarks of luxury and innovation.</span>
+            </motion.div>
+            {/* Card 4: Sustainability at the core */}
+            <motion.div
+              className="rounded-xl shadow bg-green-100 p-5 flex flex-col justify-center relative"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.04 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <i className="fa-solid fa-seedling text-green-700 text-2xl"></i>
+                <span className="font-bold text-lg text-green-900">Sustainability at the core</span>
+              </div>
+              <span className="text-green-900 text-base">Since 2010, Royal Nest Group has committed to green, IGBC-compliant buildings, focusing on natural ventilation, energy efficiency, and resident well-being.</span>
+            </motion.div>
           </div>
         </div>
       </Section>
 
-      {/* Our Vision & Aim Section */}
-      <Section className="bg-blue-50 border-b border-blue-100 flex flex-col md:flex-row items-center justify-center gap-10">
-        <div className="w-full md:w-1/2 flex justify-center">
+      {/* Core Business Areas Section */}
+      <Section className="relative bg-gradient-to-br from-green-50 via-white to-blue-50 border-b border-blue-100 overflow-hidden">
+        {/* Eco-themed SVG background */}
+        <svg className="absolute left-0 top-0 w-full h-full pointer-events-none opacity-20 z-0" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="200" cy="350" rx="180" ry="60" fill="#bbf7d0" />
+          <ellipse cx="600" cy="370" rx="160" ry="50" fill="#dbeafe" />
+          <ellipse cx="400" cy="390" rx="300" ry="40" fill="#f0fdf4" />
+          <rect x="120" y="320" width="60" height="40" rx="8" fill="#a7f3d0" />
+          <rect x="620" y="340" width="40" height="30" rx="6" fill="#bae6fd" />
+          <rect x="350" y="330" width="100" height="50" rx="12" fill="#fef9c3" />
+        </svg>
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="flex flex-col items-center">
+            <h2 className="text-3xl font-extrabold mb-2 text-black text-center tracking-tight drop-shadow-sm flex items-center gap-2">
+              <span>Core Business Areas</span>
+              <span className="text-green-500 text-2xl"><i className="fa-solid fa-leaf"></i></span>
+            </h2>
+            <div className="w-24 h-2 bg-gradient-to-r from-green-400 via-blue-300 to-green-200 rounded-full mb-8" />
+          </div>
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="rounded-2xl overflow-hidden shadow-lg w-full max-w-md"
+            className="grid grid-cols-1 md:grid-cols-2 gap-10"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.12 } },
+            }}
           >
-            <Image
-              src="/Aboutus/Vision.jpg"
-              alt="Our Vision"
-              width={600}
-              height={400}
-              className="object-cover w-full h-72 md:h-96 hover:scale-105 transition-transform duration-500"
-            />
-          </motion.div>
-        </div>
-        <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full"
-          >
-            <h2 className="text-3xl font-extrabold mb-6 text-black text-center md:text-left tracking-tight drop-shadow-sm">Our Vision</h2>
-            <p className="text-lg text-black mb-8 text-center md:text-left">
-              To be India’s most respected and environmentally committed real estate group, known for delivering green-certified, quality-driven, and future-ready buildings that enhance lives, communities, and the planet.
-            </p>
-            <h2 className="text-2xl font-bold mb-4 text-black text-center md:text-left tracking-tight">Our Aim</h2>
-            <p className="text-lg text-black text-center md:text-left">Building sustainable luxury within reach.</p>
+            {businessAreas.map((area, i) => (
+              <Card
+                key={i}
+                {...area}
+                expanded={expandedIdx === i}
+                onClick={() => setExpandedIdx(expandedIdx === i ? null : i)}
+              />
+            ))}
           </motion.div>
         </div>
       </Section>
+
+      {/* Our Vision & Aim Section */}
+<Section className="bg-blue-50 border-b border-blue-100 py-16">
+  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+    
+    {/* Image Block */}
+    <motion.div
+      initial={{ opacity: 0, x: -60 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      className="rounded-2xl overflow-hidden shadow-xl"
+    >
+      <Image
+        src="/Aboutus/image.avif"
+        alt="Our Vision"
+        width={600}
+        height={400}
+        className="object-cover w-full h-72 md:h-96 hover:scale-105 transition-transform duration-700"
+      />
+    </motion.div>
+
+    {/* Vision + Aim Content Block */}
+    <motion.div
+      initial={{ opacity: 0, x: 60 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      className="flex flex-col gap-10 relative"
+    >
+      {/* Vision Card */}
+      <motion.div
+        className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all border-l-4 border-blue-400"
+        whileHover={{ scale: 1.03 }}
+      >
+        <div className="flex items-center gap-3 mb-3">
+          <i className="fa-solid fa-eye text-2xl text-blue-500 animate-pulse" />
+          <h2 className="text-2xl font-extrabold text-black">Our Vision</h2>
+        </div>
+        <p className="text-gray-700 text-md leading-relaxed">
+          To be India’s most respected and environmentally committed real estate group, known for delivering green-certified, quality-driven, and future-ready buildings that enhance lives, communities, and the planet.
+        </p>
+      </motion.div>
+
+      {/* Aim Card */}
+      <motion.div
+        className="bg-gradient-to-br from-green-50 via-white to-blue-50 rounded-xl shadow-md p-6 hover:shadow-lg transition-all border-l-4 border-green-400"
+        whileHover={{ scale: 1.03 }}
+      >
+        <div className="flex items-center gap-3 mb-3">
+          <i className="fa-solid fa-bullseye text-2xl text-green-600 animate-bounce" />
+          <h2 className="text-2xl font-extrabold text-black">Our Aim</h2>
+        </div>
+        <p className="text-gray-700 text-md leading-relaxed">
+          Building sustainable luxury within reach.
+        </p>
+      </motion.div>
+    </motion.div>
+  </div>
+</Section>
 
       {/* Key Milestones Section (Horizontal Scroll Cards) */}
       <Section className="bg-white border-b border-blue-100">
@@ -279,59 +418,156 @@ export default function AboutPage() {
       </Section>
 
       {/* Upcoming Projects Section */}
-      <Section className="bg-white border-b border-blue-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold mb-10 text-black text-center tracking-tight drop-shadow-sm">Upcoming Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, idx) => (
-              <motion.div
-                key={idx}
-                className="group bg-blue-50 rounded-xl shadow-md p-6 flex flex-col items-center justify-center hover:shadow-xl transition-shadow duration-300 cursor-pointer relative overflow-hidden border border-blue-100"
-                whileHover={{ scale: 1.04 }}
-              >
-                <span className="text-4xl mb-3 text-blue-600"><i className="fa-solid fa-building-flag"></i></span>
-                <h3 className="font-bold text-lg text-black mb-1">{project.name}</h3>
-                <p className="text-black text-sm mb-2">{project.location}</p>
-                {project.soon && (
-                  <span className="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded-full font-semibold animate-pulse">Coming Soon!</span>
-                )}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-700 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </Section>
+      <Section className="bg-white border-b border-blue-100 py-16">
+  <div className="max-w-4xl mx-auto">
+    <motion.h2
+      className="text-3xl font-extrabold mb-10 text-black text-center tracking-tight drop-shadow-sm"
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      Upcoming Projects
+    </motion.h2>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {projects.map((project, idx) => (
+        <motion.div
+          key={idx}
+          className="group relative bg-blue-50 rounded-xl shadow-lg p-6 flex flex-col items-center justify-center border border-blue-100 overflow-hidden cursor-pointer"
+          whileHover={{ y: -5 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: idx * 0.1 }}
+          viewport={{ once: true }}
+        >
+          {/* Floating Animated Border on Hover */}
+          <div className="absolute inset-0 z-0 bg-gradient-to-r from-blue-400 via-blue-600 to-blue-700 opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500" />
+
+          {/* Icon */}
+          <motion.span
+            className="text-4xl mb-3 text-blue-600 z-10"
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <i className="fa-solid fa-building-flag"></i>
+          </motion.span>
+
+          {/* Text */}
+          <h3 className="font-bold text-lg text-black mb-1 z-10">{project.name}</h3>
+          <p className="text-black text-sm mb-2 z-10">{project.location}</p>
+
+          {/* Coming Soon Tag */}
+          {project.soon && (
+            <span className="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded-full font-semibold animate-pulse z-10">
+              Coming Soon!
+            </span>
+          )}
+
+          {/* Bottom Hover Bar */}
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-700 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 z-10" />
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</Section>
 
       {/* Trusted By Section */}
-      <Section className="bg-blue-50 border-b border-blue-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold mb-10 text-black text-center tracking-tight drop-shadow-sm">Trusted by India’s Leading Institutions</h2>
-          <div className="flex flex-wrap justify-center gap-6">
-            {trustedBy.map((name, idx) => <Badge key={idx} text={name} />)}
-          </div>
-          <p className="text-md text-black text-center mt-8">...and many more.</p>
-        </div>
-      </Section>
+      {/* Trusted by Section */}
+<Section className="bg-blue-50 border-b border-blue-100 py-16">
+  <div className="max-w-5xl mx-auto px-4 text-center">
+    <h2 className="text-3xl font-extrabold mb-6 text-black tracking-tight drop-shadow-sm">
+      Trusted by India’s Leading Institutions
+    </h2>
+    <p className="text-md text-gray-700 mb-8">
+      Proud to be the choice of industry pioneers and changemakers.
+    </p>
+    <motion.div
+      className="flex flex-wrap justify-center gap-4"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{ staggerChildren: 0.1 }}
+    >
+      {trustedBy.map((name, idx) => (
+        <motion.div
+          key={idx}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 },
+          }}
+        >
+          <Badge text={name} />
+        </motion.div>
+      ))}
+    </motion.div>
+    <p className="text-md text-black text-center mt-10 italic opacity-70">
+      ...and many more.
+    </p>
+  </div>
+</Section>
 
-      {/* Certified Excellence Section */}
-      <Section className="bg-white border-b border-blue-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold mb-10 text-black text-center tracking-tight drop-shadow-sm">Certified Excellence</h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            {certifications.map((cert, idx) => <CertCard key={idx} {...cert} />)}
-          </div>
-        </div>
-      </Section>
+{/* Certified Excellence Section */}
+<Section className="bg-white border-b border-blue-100 py-16">
+  <div className="max-w-5xl mx-auto px-4 text-center">
+    <h2 className="text-3xl font-extrabold mb-6 text-black tracking-tight drop-shadow-sm">
+      Certified Excellence
+    </h2>
+    <p className="text-md text-gray-700 mb-8">
+      Recognized and certified by the most respected institutions in the industry.
+    </p>
+    <motion.div
+      className="flex flex-wrap justify-center gap-8"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{ staggerChildren: 0.15 }}
+    >
+      {certifications.map((cert, idx) => (
+        <motion.div
+          key={idx}
+          variants={{
+            hidden: { opacity: 0, scale: 0.9 },
+            visible: { opacity: 1, scale: 1 },
+          }}
+        >
+          <CertCard {...cert} />
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</Section>
 
-      {/* Strategic Partnerships Section */}
-      <Section className="bg-blue-50 border-b border-blue-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold mb-10 text-black text-center tracking-tight drop-shadow-sm">Strategic Partnerships</h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            {partners.map((partner, idx) => <PartnerCard key={idx} {...partner} />)}
-          </div>
-        </div>
-      </Section>
+{/* Strategic Partnerships Section */}
+<Section className="bg-blue-50 border-b border-blue-100 py-16">
+  <div className="max-w-5xl mx-auto px-4 text-center">
+    <h2 className="text-3xl font-extrabold mb-6 text-black tracking-tight drop-shadow-sm">
+      Strategic Partnerships
+    </h2>
+    <p className="text-md text-gray-700 mb-8">
+      Collaborating with top partners to drive innovation and excellence.
+    </p>
+    <motion.div
+      className="flex flex-wrap justify-center gap-8"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{ staggerChildren: 0.12 }}
+    >
+      {partners.map((partner, idx) => (
+        <motion.div
+          key={idx}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0 },
+          }}
+        >
+          <PartnerCard {...partner} />
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</Section>
       <ContactPage />
     </div>
   );

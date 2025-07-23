@@ -33,7 +33,7 @@ const AboutUs: React.FC = () => {
   };
 
   return (
-    <section className="relative bg-white py-16 px-8">
+    <section className="relative bg-white py-10 px-8">
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Side - Headline */}
@@ -49,7 +49,7 @@ const AboutUs: React.FC = () => {
           {/* Right Side - Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <p className="text-base text-black leading-relaxed">
+              <p className="text-lg text-black leading-relaxed">
                 Royal Nest Group, the flagship of Omkar Nest (P) Ltd., has delivered 7+ million sq. ft. over 25+ years across Delhi NCR, J&K, and beyond. Founded on values of quality, sustainability, and trust, we’ve built 24,500+ homes and vibrant communities.<br /> <br />
                 More than buildings — we create homes.
               </p>
@@ -79,11 +79,10 @@ const AboutUs: React.FC = () => {
           >
             <div className="relative rounded-2xl overflow-hidden">
               <Image
-                src="/Herocarousel/Royal Nest Hill View Fountain Area.jpg"
+                src="/Royal Nest Hill View  TOWER C NIGHT.jpg"
                 alt="Fountain area with modern architecture"
                 width={1200}
-                height={1400}
-                className="object-cover"
+                height={400}
               />
             </div>
           </motion.div>
