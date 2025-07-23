@@ -399,7 +399,13 @@ export default function AboutPage() {
                     className="w-[300px] shrink-0 bg-blue-50 rounded-xl shadow-md p-6 border border-blue-100 flex flex-col gap-2 hover:shadow-lg transition-shadow"
 
                   >
-                    <img src={item.img} alt={item.title} className="w-full h-32 object-cover rounded mb-2" />
+                    <Image
+  src={item.img}
+  alt={item.title}
+  width={400} // You can adjust width and height as needed
+  height={128}
+  className="w-full h-32 object-cover rounded mb-2"
+/>
                     <span className="text-xs text-white font-bold bg-blue-500 px-2 py-1 rounded uppercase self-start">{item.title}</span>
                     <h3 className="text-xl text-black font-bold mt-2">{item.year}</h3>
                     <p className="text-black mt-2 h-20 overflow-y-auto pr-1">{item.description}</p>
