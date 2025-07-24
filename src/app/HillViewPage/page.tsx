@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import ContactPage from "@/components/contactpage";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { FaLeaf, FaSun, FaWind, FaShieldAlt, FaSwimmingPool, FaBolt } from "react-icons/fa";
+import { FaLeaf, FaSun, FaWind, FaShieldAlt, FaSwimmingPool } from "react-icons/fa";
 
 const projectImages = [
     {
@@ -35,12 +35,12 @@ const keyFeatures = [
 ];
 
 const featureIcons = [
-  <FaLeaf className="text-green-600 w-6 h-6" />,
-  <FaSun className="text-yellow-500 w-6 h-6" />,
-  <FaWind className="text-blue-400 w-6 h-6" />,
-  <FaLeaf className="text-green-400 w-6 h-6" />,
-  <FaSwimmingPool className="text-cyan-600 w-6 h-6" />,
-  <FaShieldAlt className="text-gray-700 w-6 h-6" />,
+  <FaLeaf key="icon-0" className="text-green-600 w-6 h-6" />,
+  <FaSun key="icon-1" className="text-yellow-500 w-6 h-6" />,
+  <FaWind key="icon-2" className="text-blue-400 w-6 h-6" />,
+  <FaLeaf key="icon-3" className="text-green-400 w-6 h-6" />,
+  <FaSwimmingPool key="icon-4" className="text-cyan-600 w-6 h-6" />,
+  <FaShieldAlt key="icon-5" className="text-gray-700 w-6 h-6" />,
 ];
 
 export default function HillViewPage() {

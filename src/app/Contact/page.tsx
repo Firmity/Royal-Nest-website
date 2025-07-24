@@ -28,7 +28,7 @@ const markers = [
         address: "Village Deeli (Kunjwani), Kunjwani Bypass, Jammu, Jammu Kashmir",
         representative: "",
         phone: "",
-        email: "",
+        email: " ",
         mapQuery: "Royal+Nest+Sapphire",
     },
     {

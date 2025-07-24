@@ -1,4 +1,5 @@
 {
+    "$schema": "https://openapi.vercel.sh/vercel.json",
     "redirects": [
       {
         "source": "/(.*)",
@@ -8,7 +9,7 @@
             "value": "royalnestgroup.in"
           }
         ],
-        "destination": "https://royalnestgroup.com/:1",
+        "destination": "https://royalnestgroup.com/$1",
         "permanent": true
       },
       {
@@ -19,8 +20,14 @@
             "value": "www.royalnestgroup.in"
           }
         ],
-        "destination": "https://royalnestgroup.com/:1",
+        "destination": "https://royalnestgroup.com/$1",
         "permanent": true
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/feedback/:id",
+        "destination": "/api/feedback/:id"
       }
     ]
   }
