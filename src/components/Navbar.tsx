@@ -126,7 +126,7 @@ export default function Navbar() {
         </div>
         {/* Logo */}
         <Link href="/">
-          <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", height: "60px", width: "80px", minWidth: 200, shadow: 60 }}>
+          <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", height: "60px", width: "80px", minWidth: 200}}>
             <Image
               src="/Royalnest.png"
               alt="Royal Nest Logo"
