@@ -8,27 +8,35 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 const markers = [
     {
-        name: "Jammu",
-        address: "Sainik Colony Extension, Chowadi Road, Jammu, Jammu  Kashmir-180011",
+        name: "Head Office",
+        address: "Business Park, Ground Floor, H-64, Sec-63, Noida, Distt: Gautam Buddh Nagar, Uttar Pradesh-201301",
         representative: "",
-        phone: "",
+        phone: "0120 4245551",
+        email: "",
+        mapQuery: "Ufirm+Business+Park",
+    },
+    {
+        name: "Jammu (Hill View Office)",
+        address: "Sector-D, Sainik Colony Extension, Chowadi Road, Jammu, Jammu & Kashmir-180011",
+        representative: "",
+        phone: "+91 9596796757; +91 9541900771; +91 9541900772; +91 9541900773",
         email: "",
         mapQuery: "Royal+Nest+Hill+View",
     },
     {
-        name: "Dharamshala",
-        address: "Mohal Chakban Gharoh, Tehsil: Dharamshala, District:- Kangra, Himachal Pradesh",
+        name: "Dharamshala (Forest View Office)",
+        address: "Khata-14, Cabin No.-1, Khatoni-7, Mohal Chakban Gharoh, Tehsil: Dharamshala, District:- Kangra, Himachal Pradesh-176216",
         representative: "",
-        phone: "",
-        email: "",
+        phone: "+91 9818655411; +91 9833885190",
+        email: "sales@royalnestdharamshala.com / crm@royalnestdharamshala.com",
         mapQuery: "Royal+Nest+Forest+View",
     },
     {
-        name: "Jammu",
-        address: "Village Deeli (Kunjwani), Kunjwani Bypass, Jammu, Jammu Kashmir",
+        name: "Jammu (Sapphire Office)",
+        address: "Village Deeli (Kunjwani), Kunjwani Bypass, (Near Anutham Hotel and Audi Showroom) Jammu, Jammu & Kashmir-180010",
         representative: "",
-        phone: "",
-        email: " ",
+        phone: "+91 9596796757",
+        email: "",
         mapQuery: "Royal+Nest+Sapphire",
     },
     {
@@ -202,9 +210,15 @@ export default function Contact() {
                             >
                                 <h3 className="font-semibold text-base lg:text-lg text-black">{location.name}</h3>
                                 <p className="text-sm text-gray-700 mb-1">{location.address}</p>
-                                <p className="text-sm text-black"><strong>Representative:</strong> {location.representative}</p>
-                                <p className="text-sm text-black"><strong>Phone:</strong> {location.phone}</p>
-                                <p className="text-sm text-black"><strong>Email:</strong> {location.email}</p>
+                                {location.representative && (
+                                    <p className="text-sm text-black"><strong>Representative:</strong> {location.representative}</p>
+                                )}
+                                {location.phone && (
+                                    <p className="text-sm text-black"><strong>Phone:</strong> {location.phone}</p>
+                                )}
+                                {location.email && (
+                                    <p className="text-sm text-black"><strong>Email:</strong> {location.email}</p>
+                                )}
                             </li>
                         ))}
                     </ul>

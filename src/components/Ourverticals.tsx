@@ -41,45 +41,65 @@ const VerticalCard: React.FC<VerticalCardProps> = ({ title, imageSrc, imageAlt, 
 const OurVerticals: React.FC = () => {
   const verticals = [
     {
-      title: "Residential Real Estate Development",
-      imageSrc: "/Herocarousel/Royal Nest Hill View Parking Area Evening.jpg",
-      imageAlt: "Luxury Residences - Fountain Area",
-      link: "/residences"
-    },
-    {
-      title: "Hospitality",
-      imageSrc: "/Verticals/hospitality.jpg",
-      imageAlt: "Hospitality & Hotels - Pool and Landscape",
-      link: "/hospitality"
-    },
-    {
       title: "Integrated Facility Management",
+      description: "Tech-enabled facility management services",
       imageSrc: "/Verticals/facility management cleaning.webp",
       imageAlt: "Integrated Facility Management",
       link: "/infrastructure"
     },
     {
-      title: "Construction Materials",
-      imageSrc: "/Verticals/rmc.jpg",
-      imageAlt: "Construction Materials",
-      link: "/infrastructure"
-    },
-    {
       title: "Health & Fitness",
+      description: "Comprehensive health and fitness solutions",
       imageSrc: "/Verticals/gym.jpg",
       imageAlt: "Health & Fitness",
       link: "/infrastructure"
     },
     {
       title: "Agriculture & Food Processing",
+      description: "Sustainable agriculture and food processing",
       imageSrc: "/Verticals/Cold-link.jpg",
       imageAlt: "Agriculture & Food Processing",
       link: "/infrastructure"
-    }
+    },
+    {
+      title: "Residential Real Estate Development",
+      description: "Eco-friendly buildings with green solutions",
+      imageSrc: "/Herocarousel/Royal Nest Hill View Parking Area Evening.jpg",
+      imageAlt: "Luxury Residences - Fountain Area",
+      link: "/residences"
+    },
+    {
+      title: "Hospitality",
+      description: "Premium hospitality experience with world-class amenities",
+      imageSrc: "/Verticals/hospitality.jpg",
+      imageAlt: "Hospitality & Hotels - Pool and Landscape",
+      link: "/hospitality"
+    },
+    {
+      title: "Construction Materials",
+      description: "Quality materials for robust construction",
+      imageSrc: "/Verticals/rmc.jpg",
+      imageAlt: "Construction Materials",
+      link: "/infrastructure"
+    },
+    {
+      title: "Horticulture",
+      description: "Green landscaping and horticulture services",
+      imageSrc: "/Verticals/Horticulture.png",
+      imageAlt: "Horticulture",
+      link: "/infrastructure"
+    },
+    {
+      title: "Food & Catering",
+      description: "Quality food and catering solutions",
+      imageSrc: "/Verticals/food.jpg",
+      imageAlt: "Food & Catering",
+      link: "/infrastructure"
+    },
   ];
 
   return (
-    <section className="min-h-[70vh] sm:min-h-screen bg-white">
+    <section className="min-h-[70vh] sm:min-h-screen bg-white bg-opacity-80 flex items-center justify-center relative">
       <div className="container mx-auto px-2 sm:px-4 py-6 sm:py-6">
         <div className="text-center mb-10 sm:mb-16">
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-gray-800 mb-4 sm:mb-6">
@@ -89,32 +109,26 @@ const OurVerticals: React.FC = () => {
             Discover our diverse portfolio of excellence across multiple sectors
           </p>
         </div>
-        <Swiper
-          modules={[Autoplay]}
-          spaceBetween={16}
-          slidesPerView={1}
-          loop={true}
-          autoplay={{ delay: 2500, disableOnInteraction: false }}
-          className="w-full"
-          breakpoints={{
-            0: { slidesPerView: 1, spaceBetween: 12 },
-            640: { slidesPerView: 1, spaceBetween: 16 },
-            768: { slidesPerView: 2, spaceBetween: 24 },
-            1024: { slidesPerView: 3, spaceBetween: 32 },
-          }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {verticals.map((vertical, index) => (
-            <SwiperSlide key={index} className="flex h-96 w-64 mx-auto sm:h-80 sm:w-full md:h-96 lg:h-[500px] shadow-lg">
-              <VerticalCard
-                title={vertical.title}
-                imageSrc={vertical.imageSrc}
-                imageAlt={vertical.imageAlt}
-                link={vertical.link}
-                index={index}
-              />
-            </SwiperSlide>
+            <Link href={vertical.link} key={index} className="group block rounded-xl overflow-hidden shadow-lg bg-black bg-opacity-60 hover:bg-opacity-80 transition-all duration-300 relative h-72 flex flex-col justify-end">
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src={vertical.imageSrc}
+                  alt={vertical.imageAlt}
+                  fill
+                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  priority={false}
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300" />
+              </div>
+              <div className="relative z-10 p-5 flex flex-col justify-end h-full">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 drop-shadow-lg">{vertical.title}</h2>
+                <p className="text-base text-gray-200 font-medium drop-shadow-md">{vertical.description}</p>
+              </div>
+            </Link>
           ))}
-        </Swiper>
+        </div>
       </div>
     </section>
   );

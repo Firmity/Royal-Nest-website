@@ -179,8 +179,8 @@ export default function Navbar() {
                     transform: "translateX(-50%)",
                     background: "rgba(0,0,0,0.60)",
                     boxShadow: "0 2px 16px rgba(0,0,0,0.25)",
-                    borderRadius: 12,
-                    minWidth: 600,
+                    borderRadius: 16,
+                    minWidth: 700,
                     zIndex: 100,
                     padding: "2rem 2.5rem 2rem 2.5rem",
                     marginTop: 8,
@@ -191,12 +191,12 @@ export default function Navbar() {
                 >
                   <div
                     style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      gap: "2.5rem",
+                      display: "grid",
+                      gridTemplateColumns: "repeat(2, 1fr)",
+                      gap: "2.2rem 3.5rem",
                       width: "100%",
                       justifyContent: "center",
-                      alignItems: "flex-start",
+                      alignItems: "center",
                     }}
                   >
                     {link.submenu.map((sublink) => (
@@ -205,30 +205,30 @@ export default function Navbar() {
                         href={sublink.href}
                         style={{
                           display: "flex",
-                          flexDirection: "column",
+                          flexDirection: "row",
                           alignItems: "center",
-                          borderRadius: 10,
+                          borderRadius: 14,
                           overflow: "hidden",
                           textDecoration: "none",
                           color: "#fff",
-                          minWidth: 180,
-                          maxWidth: 220,
+                          minWidth: 320,
+                          maxWidth: 400,
                           transition: "transform 0.2s, box-shadow 0.2s",
                           cursor: "pointer",
-                          boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-                          background: "rgba(0,0,0,0.25)",
-                          padding: "1rem 0.5rem",
+                          padding: "0.7rem 1.2rem 0.7rem 0.7rem",
+                          gap: "1.2rem",
+                          margin: 0,
                         }}
                         onMouseEnter={e => {
-                          e.currentTarget.style.transform = "scale(1.05)";
-                          e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.25)";
+                          e.currentTarget.style.transform = "scale(1.04)";
+                          e.currentTarget.style.boxShadow = "0 4px 18px rgba(0,0,0,0.28)";
                         }}
                         onMouseLeave={e => {
                           e.currentTarget.style.transform = "none";
-                          e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+                          e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.18)";
                         }}
                       >
-                        <div style={{ width: 100, height: 100, position: "relative", borderRadius: 8, overflow: "hidden", marginBottom: 16 }}>
+                        <div style={{ width: 90, height: 90, position: "relative", borderRadius: 10, overflow: "hidden", flexShrink: 0 }}>
                           <Image
                             src={sublink.image}
                             alt={sublink.label}
@@ -236,8 +236,10 @@ export default function Navbar() {
                             style={{ objectFit: "cover" }}
                           />
                         </div>
-                        <div style={{ fontWeight: 600, fontSize: "1.1rem", marginBottom: 6, textAlign: "center" }}>{sublink.label}</div>
-                        <div style={{ fontSize: "0.95rem", color: "#ccc", lineHeight: 1.4, textAlign: "center" }}>{sublink.description}</div>
+                        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", minWidth: 0 }}>
+                          <div style={{ fontWeight: 600, fontSize: "1.25rem", marginBottom: 4, textAlign: "left", lineHeight: 1.2, wordBreak: "break-word" }}>{sublink.label}</div>
+                          <div style={{ fontSize: "1rem", color: "#e0e0e0", lineHeight: 1.4, textAlign: "left", wordBreak: "break-word" }}>{sublink.description}</div>
+                        </div>
                       </Link>
                     ))}
                   </div>

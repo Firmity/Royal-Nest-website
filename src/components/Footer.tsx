@@ -45,12 +45,10 @@ const Footer = () => {
               </button>
               {expandedSections.officeAddress && (
                 <div className="space-y-2 text-sm text-gray-300">
-                  <p>Royal Nest Group</p>
-                  <p>(CIN: U45201HR2003PLC082732)</p>
-                  <p>Royal Nest</p>
-                  <p>Noida,</p>
+                  <p>Business Park, Ground Floor, H-64, Sec-63,</p>
+                  <p>Noida, Distt: Gautam Buddh Nagar,</p>
                   <p>Uttar Pradesh-201301</p>
-                  <p>Contact No. +91 120 4492650</p>
+                  <p>Contact No. 0120 4245551</p>
                 </div>
               )}
             </div>
@@ -65,8 +63,8 @@ const Footer = () => {
               </button>
               {expandedSections.registeredOffice && (
                 <div className="space-y-2 text-sm text-gray-300">
-                  <p>Royal Nest Group</p>
-                  <p>Registered Office Address</p>
+                  <p>Plot No.-GH-8B, Tech. Zone-IV, Greater Noida West,</p>
+                  <p>Distt: Gautam Buddh Nagar, Uttar Pradesh-201306</p>
                 </div>
               )}
             </div>
@@ -81,8 +79,11 @@ const Footer = () => {
               </button>
               {expandedSections.salesQueries && (
                 <div className="space-y-2 text-sm text-gray-300">
-                  <p>Sales Department</p>
-                  <p>Contact: +91 120 4492650</p>
+                  <p>Dharamshala (Forest View Office)</p>
+                  <p>Khata-14, Cabin No.-1, Khatoni-7, Mohal Chakban Gharoh,</p>
+                  <p>Tehsil: Dharamshala, District:- Kangra, Himachal Pradesh-176216</p>
+                  <p>Contact: +91 9818655411; +91 9833885190</p>
+                  <p>Email: sales@royalnestdharamshala.com / crm@royalnestdharamshala.com</p>
                 </div>
               )}
             </div>
@@ -98,6 +99,7 @@ const Footer = () => {
               {expandedSections.customerCare && (
                 <div className="space-y-2 text-sm text-gray-300">
                   <p>Customer Support</p>
+                  <p>Phone: +91 9596796757</p>
                   <p>Email: support@royalnest.com</p>
                 </div>
               )}
@@ -109,8 +111,10 @@ const Footer = () => {
             <div>
               <h3 className="font-semibold text-lg mb-4">Projects</h3>
               <div className="space-y-2 text-sm text-gray-300">
-                <p>Royal Nest Saffron, Katra</p>
-                <p>Royal Nest Green, GK</p>
+                <p>Royal Nest Hill View | Jammu</p>
+                <p>Royal Nest Forest View | Dharamshala</p>
+                <p>Royal Nest Sapphire | Jammu</p>
+                <p>Royal Nest | Greater Noida</p>
               </div>
             </div>
 

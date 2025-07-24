@@ -44,8 +44,8 @@ const trustedBy = [
   { name: "Fortis Hospital", logo: "/logo/fortis-hospital.webp" },
 ];
 const certifications = [
-  { icon: "fa-certificate", title: "ISO Certified", desc: "International Standards" },
-  { icon: "fa-leaf", title: "IGBC Certified", desc: "Green Building Council" },
+  { img: "/logo/RN ISO Certificate.png", title: "ISO Certified", desc: "International Standards" },
+  { img: "/logo/royal nest green building.png", title: "IGBC Certified", desc: "Green Building Council" },
 ];
 const partners = [
   { name: "Radisson Group", logo: "/logo/radisson.png" },
@@ -97,12 +97,12 @@ const Badge = ({ text }: { text: string }) => (
     {text}
   </motion.div>
 );
-const CertCard = ({ icon, title, desc }: { icon: string; title: string; desc: string }) => (
+const CertCard = ({ img, title, desc }: { img: string; title: string; desc: string }) => (
   <motion.div
     className="flex flex-col items-center bg-blue-50 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow border border-blue-100"
     whileHover={{ scale: 1.04 }}
   >
-    <span className="text-4xl text-blue-600 mb-2"><i className={`fa-solid ${icon}`}></i></span>
+    <Image src={img} alt={title} width={60} height={60} className="mb-2 object-contain" />
     <span className="font-bold text-black">{title}</span>
     <span className="text-xs text-black group-hover:text-blue-700 transition-colors">{desc}</span>
   </motion.div>
