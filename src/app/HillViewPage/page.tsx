@@ -92,7 +92,6 @@ export default function HillViewPage() {
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg text-gray-800">
                     {keyFeatures.map((feature, idx) => (
                         <motion.li
-                            key={idx}
                             className="flex items-start gap-3 bg-white/80 rounded-xl shadow-md p-4 hover:scale-[1.03] hover:shadow-lg transition-transform duration-200"
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
