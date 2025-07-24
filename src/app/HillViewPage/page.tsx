@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import ContactPage from "@/components/contactpage";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { FaLeaf, FaSun, FaWind, FaShieldAlt, FaSwimmingPool, FaBolt } from "react-icons/fa";
+import { FaLeaf, FaSun, FaWind, FaShieldAlt, FaSwimmingPool } from "react-icons/fa";
 
 const projectImages = [
     {
