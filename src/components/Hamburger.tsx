@@ -9,7 +9,7 @@ const menuLinks = [
   { label: "Upcoming Projects", href:"#" },
   { label: "Delivered Projects", href:"#" },
   { label: "About Us", href:"/Aboutus" },
-  { label: "Careers", href:"#" },
+  { label: "Careers", href:"/Contact" },
   { label: "Media", href:"#" },
 ];
 const socialIcons = [

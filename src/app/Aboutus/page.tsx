@@ -20,13 +20,12 @@ const milestones = [
   { year: "2025", title: "Royal Nest Hill View", description: "Royal Nest Hill View – Jammu & Kashmir’s tallest and most premium green residential tower, featuring a glass façade, French windows, and energy-efficient homes with ample natural light and ventilation.", img: "/Herocarousel/Royal Nest Hill View Penthouse Terrace.jpg" },
 ];
 const businessAreas = [
-  { icon: "fa-building", title: "Residential Real Estate Development", desc: "Premium homes and communities across India." },
-  { icon: "fa-city", title: "Commercial & Mixed-Use Developments", desc: "Modern commercial and mixed-use spaces." },
-  { icon: "fa-hotel", title: "Hospitality", desc: "In partnership with Radisson Hotel & Boutique Hotel." },
-  { icon: "fa-tools", title: "Integrated Facility Management", desc: "Via Ufirm.in, managing 12+ million sq. ft. across India." },
-  { icon: "fa-cubes", title: "Construction Materials", desc: "Via Atal Concrete, Kapsha Royal Nest Construction Co." },
-  { icon: "fa-dumbbell", title: "Health & Fitness", desc: "In collaboration with Gold’s Gym and Cult-Fit." },
-  { icon: "fa-seedling", title: "Agriculture & Food Processing", desc: "In partnership with Adani Group, 5,000 MT CA stores." },
+  { icon: "fa fa-building", title: "Residential Real Estate Development", desc: "Premium homes and communities across India." },
+  { icon: "fa fa-hotel", title: "Hospitality", desc: "In partnership with Radisson Hotel & Boutique Hotel." },
+  { icon: "fa fa-tools", title: "Integrated Facility Management", desc: "Via Ufirm.in, managing 12+ million sq. ft. across India." },
+  { icon: "fa fa-cubes", title: "Construction Materials", desc: "Via Atal Concrete, Kapsha Royal Nest Construction Co." },
+  { icon: "fa fa-dumbbell", title: "Health & Fitness", desc: "In collaboration with Gold’s Gym and Cult-Fit." },
+  { icon: "fa fa-seedling", title: "Agriculture & Food Processing", desc: "In partnership with Adani Group, 5,000 MT CA stores." },
 ];
 const projects = [
   { name: "Royal Nest Saffron", location: "Katra (Jammu)", soon: false },
@@ -77,11 +76,6 @@ const Card = ({ icon, title, desc, expanded, onClick }: { icon: string; title: s
       >
         {desc}
       </motion.p>
-      {expanded && (
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-3 text-green-700 text-xs">
-          More details coming soon!
-        </motion.div>
-      )}
     </div>
     {expanded && (
       <motion.span layoutId="activeCard" className="absolute inset-0 rounded-2xl border-4 border-green-400 pointer-events-none shadow-lg" />
@@ -162,7 +156,7 @@ export default function AboutPage() {
       {/* Hero Section with animated overlay */}
       <section className="relative flex items-center justify-center min-h-[80vh] w-full overflow-hidden">
         <Image
-          src="/Aboutus/about.jpg"
+          src="/Herocarousel/Royal Nest Hill View Fountain Area.jpg"
           alt="Hero"
           fill
           className="absolute inset-0 w-full h-full object-cover z-0 scale-105"
@@ -203,7 +197,7 @@ export default function AboutPage() {
             {[
               { num: 100, label: "Projects", suffix: "+" },
               { num: 25, label: "Years of experience", suffix: "+" },
-              { num: 7, label: "million sq. m. delivered", suffix: "+" },
+              { num: 7, label: "Mn sq. Ft. delivered", suffix: "+" },
             ].map((stat, i) => (
               <motion.div key={i} className="flex flex-col items-center" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: i * 0.2 }}>
                 <span className="text-6xl font-light text-black">
@@ -405,7 +399,13 @@ export default function AboutPage() {
                     className="w-[300px] shrink-0 bg-blue-50 rounded-xl shadow-md p-6 border border-blue-100 flex flex-col gap-2 hover:shadow-lg transition-shadow"
 
                   >
-                    <img src={item.img} alt={item.title} className="w-full h-32 object-cover rounded mb-2" />
+                    <Image
+  src={item.img}
+  alt={item.title}
+  width={400} // You can adjust width and height as needed
+  height={128}
+  className="w-full h-32 object-cover rounded mb-2"
+/>
                     <span className="text-xs text-white font-bold bg-blue-500 px-2 py-1 rounded uppercase self-start">{item.title}</span>
                     <h3 className="text-xl text-black font-bold mt-2">{item.year}</h3>
                     <p className="text-black mt-2 h-20 overflow-y-auto pr-1">{item.description}</p>

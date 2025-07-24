@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const slides = [
   {
-    image: "/Herocarousel/Royal Nest Hill View Fountain Area.jpg",
+    image: "/Herocarousel/Royal Nest Hill View  Swimming pool.jpg",
     title: "Royal Nest Hill View | Jammu",
     link: "#"
   },

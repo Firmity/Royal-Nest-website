@@ -42,15 +42,9 @@ const OurVerticals: React.FC = () => {
   const verticals = [
     {
       title: "Residential Real Estate Development",
-      imageSrc: "/Verticals/residential.jpg",
+      imageSrc: "/Herocarousel/Royal Nest Hill View Parking Area Evening.jpg",
       imageAlt: "Luxury Residences - Fountain Area",
       link: "/residences"
-    },
-    {
-      title: "Commercial & Mixed-Use Developments",
-      imageSrc: "/Verticals/commercial.jpg",
-      imageAlt: "Commercial Spaces - Penthouse Terrace",
-      link: "/commercial"
     },
     {
       title: "Hospitality",
@@ -60,7 +54,7 @@ const OurVerticals: React.FC = () => {
     },
     {
       title: "Integrated Facility Management",
-      imageSrc: "/verticals.jpg",
+      imageSrc: "/Verticals/facility management cleaning.webp",
       imageAlt: "Integrated Facility Management",
       link: "/infrastructure"
     },
@@ -110,7 +104,7 @@ const OurVerticals: React.FC = () => {
           }}
         >
           {verticals.map((vertical, index) => (
-            <SwiperSlide key={index} className="flex h-96 w-64 mx-auto sm:h-80 sm:w-full md:h-96 lg:h-[500px]">
+            <SwiperSlide key={index} className="flex h-96 w-64 mx-auto sm:h-80 sm:w-full md:h-96 lg:h-[500px] shadow-lg">
               <VerticalCard
                 title={vertical.title}
                 imageSrc={vertical.imageSrc}
