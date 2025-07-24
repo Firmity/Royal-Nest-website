@@ -77,14 +77,14 @@ const AboutUs: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }}
             variants={scaleIn}
           >
-            <div className="relative rounded-2xl overflow-hidden aspect-[10/9]">
-  <Image
-    src="/Royal Nest Hill View  TOWER C NIGHT.jpg"
-    alt="Fountain area with modern architecture"
-    fill
-    className="object-cover"
-  />
-</div>
+            <div className="relative rounded-2xl overflow-hidden aspect-[34/33]">
+              <Image
+                src="/Royal Nest Hill View  TOWER C NIGHT.jpg"
+                alt="Fountain area with modern architecture"
+                fill
+                className="object-cover"
+              />
+            </div>
           </motion.div>
 
           {/* Right Side - Infinite Numbers and Bottom Image */}
@@ -115,7 +115,7 @@ const AboutUs: React.FC = () => {
             >
               <div className="relative rounded-2xl overflow-hidden">
                 <Image
-                  src="/Herocarousel/Royal Nest Hill View Fountain Area.jpg"
+                  src="/Herocarousel/front ground_level_rn_forestview.jpg"
                   alt="Luxury residential complex with modern design"
                   width={1200}
                   height={600}

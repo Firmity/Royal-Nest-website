@@ -4,23 +4,23 @@ import Image from "next/image";
 
 const slides = [
   {
-    image: "/Herocarousel/Royal Nest Hill View  Swimming pool.jpg",
-    title: "Royal Nest Hill View | Jammu",
-    link: "#"
-  },
-  {
     image: "/Herocarousel/Royal Nest Hill View Pool to Landscape Area.jpg",
     title: "Royal Nest Hill View | Jammu",
+    link: "/HillViewPage"
+  },
+  {
+    image: "/Herocarousel/Royal Nest Hill View  Swimming pool.jpg",
+    title: "Royal Nest Hill View | Jammu",
+    link: "/HillViewPage"
+  },
+  {
+    image: "/Herocarousel/front top view_rn forestview.jpg",
+    title: "Royal Nest Forest View | Dharamshala",
     link: "#"
   },
   {
     image: "/Herocarousel/Royal Nest Sapphire, Jammu.png",
     title: "Royal Nest Sapphire | Jammu",
-    link: "#"
-  },
-  {
-    image: "/Herocarousel/Royal Nest Hill View Pool to Landscape Area.jpg",
-    title: "Royal Nest Forest View | Dharamshala",
     link: "#"
   },
   {

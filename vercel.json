@@ -1,0 +1,27 @@
+{
+    "redirects": [
+      {
+        "source": "/(.*)",
+        "has": [
+          {
+            "type": "host",
+            "value": "royalnestgroup.in"
+          }
+        ],
+        "destination": "https://royalnestgroup.com/:1",
+        "permanent": true
+      },
+      {
+        "source": "/(.*)",
+        "has": [
+          {
+            "type": "host",
+            "value": "www.royalnestgroup.in"
+          }
+        ],
+        "destination": "https://royalnestgroup.com/:1",
+        "permanent": true
+      }
+    ]
+  }
+  
