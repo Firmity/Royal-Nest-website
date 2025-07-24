@@ -34,17 +34,24 @@ const projects = [
   { name: "Delhi NCR", location: "", soon: true },
 ];
 const trustedBy = [
-  "IOCL", "GAIL", "Indian Army", "Ministry of Defence", "TCS", "IBM", "SBI", "Fortis Hospital"
+  { name: "IOCL", logo: "/logo/iocl.png" },
+  { name: "GAIL", logo: "/logo/GAIL.png" },
+  { name: "Indian Army", logo: "/logo/indian-army.png" },
+  { name: "Ministry of Defence", logo: "/logo/ministry-of-defence.png" },
+  { name: "TCS", logo: "/logo/tcs.png" },
+  { name: "IBM", logo: "/logo/ibm.png" },
+  { name: "SBI", logo: "/logo/sbi.png" },
+  { name: "Fortis Hospital", logo: "/logo/fortis-hospital.webp" },
 ];
 const certifications = [
   { icon: "fa-certificate", title: "ISO Certified", desc: "International Standards" },
   { icon: "fa-leaf", title: "IGBC Certified", desc: "Green Building Council" },
 ];
 const partners = [
-  { name: "Radisson Group", icon: "fa-hotel" },
-  { name: "Adani Group", icon: "fa-industry" },
-  { name: "Gold’s Gym", icon: "fa-dumbbell" },
-  { name: "Cult-Fit", icon: "fa-heart-pulse" },
+  { name: "Radisson Group", logo: "/logo/radisson.png" },
+  { name: "Adani Group", logo: "/logo/adani.png" },
+  { name: "Gold’s Gym", logo: "/logo/golds-gym.png" },
+  { name: "Cult-Fit", logo: "/logo/cult-fit.png" },
 ];
 
 // --- REUSABLE COMPONENTS ---
@@ -195,7 +202,7 @@ export default function AboutPage() {
           </p>
           <div className="w-full flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 mt-6">
             {[
-              { num: 100, label: "Projects", suffix: "+" },
+              { num: 30, label: "Projects", suffix: "+" },
               { num: 25, label: "Years of experience", suffix: "+" },
               { num: 7, label: "Mn sq. Ft. delivered", suffix: "+" },
             ].map((stat, i) => (
@@ -329,62 +336,62 @@ export default function AboutPage() {
       </Section>
 
       {/* Our Vision & Aim Section */}
-<Section className="bg-blue-50 border-b border-blue-100 py-16">
-  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
-    
-    {/* Image Block */}
-    <motion.div
-      initial={{ opacity: 0, x: -60 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-      className="rounded-2xl overflow-hidden shadow-xl"
-    >
-      <Image
-        src="/Aboutus/image.avif"
-        alt="Our Vision"
-        width={600}
-        height={400}
-        className="object-cover w-full h-72 md:h-96 hover:scale-105 transition-transform duration-700"
-      />
-    </motion.div>
+      <Section className="bg-blue-50 border-b border-blue-100 py-16">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
 
-    {/* Vision + Aim Content Block */}
-    <motion.div
-      initial={{ opacity: 0, x: 60 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-      className="flex flex-col gap-10 relative"
-    >
-      {/* Vision Card */}
-      <motion.div
-        className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all border-l-4 border-blue-400"
-        whileHover={{ scale: 1.03 }}
-      >
-        <div className="flex items-center gap-3 mb-3">
-          <i className="fa-solid fa-eye text-2xl text-blue-500 animate-pulse" />
-          <h2 className="text-2xl font-extrabold text-black">Our Vision</h2>
-        </div>
-        <p className="text-gray-700 text-md leading-relaxed">
-          To be India’s most respected and environmentally committed real estate group, known for delivering green-certified, quality-driven, and future-ready buildings that enhance lives, communities, and the planet.
-        </p>
-      </motion.div>
+          {/* Image Block */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="rounded-2xl overflow-hidden shadow-xl"
+          >
+            <Image
+              src="/Aboutus/image.avif"
+              alt="Our Vision"
+              width={600}
+              height={400}
+              className="object-cover w-full h-72 md:h-96 hover:scale-105 transition-transform duration-700"
+            />
+          </motion.div>
 
-      {/* Aim Card */}
-      <motion.div
-        className="bg-gradient-to-br from-green-50 via-white to-blue-50 rounded-xl shadow-md p-6 hover:shadow-lg transition-all border-l-4 border-green-400"
-        whileHover={{ scale: 1.03 }}
-      >
-        <div className="flex items-center gap-3 mb-3">
-          <i className="fa-solid fa-bullseye text-2xl text-green-600 animate-bounce" />
-          <h2 className="text-2xl font-extrabold text-black">Our Aim</h2>
+          {/* Vision + Aim Content Block */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col gap-10 relative"
+          >
+            {/* Vision Card */}
+            <motion.div
+              className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all border-l-4 border-blue-400"
+              whileHover={{ scale: 1.03 }}
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <i className="fa-solid fa-eye text-2xl text-blue-500 animate-pulse" />
+                <h2 className="text-2xl font-extrabold text-black">Our Vision</h2>
+              </div>
+              <p className="text-gray-700 text-md leading-relaxed">
+                To be India’s most respected and environmentally committed real estate group, known for delivering green-certified, quality-driven, and future-ready buildings that enhance lives, communities, and the planet.
+              </p>
+            </motion.div>
+
+            {/* Aim Card */}
+            <motion.div
+              className="bg-gradient-to-br from-green-50 via-white to-blue-50 rounded-xl shadow-md p-6 hover:shadow-lg transition-all border-l-4 border-green-400"
+              whileHover={{ scale: 1.03 }}
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <i className="fa-solid fa-bullseye text-2xl text-green-600 animate-bounce" />
+                <h2 className="text-2xl font-extrabold text-black">Our Aim</h2>
+              </div>
+              <p className="text-gray-700 text-md leading-relaxed">
+                Building sustainable luxury within reach.
+              </p>
+            </motion.div>
+          </motion.div>
         </div>
-        <p className="text-gray-700 text-md leading-relaxed">
-          Building sustainable luxury within reach.
-        </p>
-      </motion.div>
-    </motion.div>
-  </div>
-</Section>
+      </Section>
 
       {/* Key Milestones Section (Horizontal Scroll Cards) */}
       <Section className="bg-white border-b border-blue-100">
@@ -400,12 +407,12 @@ export default function AboutPage() {
 
                   >
                     <Image
-  src={item.img}
-  alt={item.title}
-  width={400} // You can adjust width and height as needed
-  height={128}
-  className="w-full h-32 object-cover rounded mb-2"
-/>
+                      src={item.img}
+                      alt={item.title}
+                      width={400} // You can adjust width and height as needed
+                      height={128}
+                      className="w-full h-32 object-cover rounded mb-2"
+                    />
                     <span className="text-xs text-white font-bold bg-blue-500 px-2 py-1 rounded uppercase self-start">{item.title}</span>
                     <h3 className="text-xl text-black font-bold mt-2">{item.year}</h3>
                     <p className="text-black mt-2 h-20 overflow-y-auto pr-1">{item.description}</p>
@@ -419,155 +426,162 @@ export default function AboutPage() {
 
       {/* Upcoming Projects Section */}
       <Section className="bg-white border-b border-blue-100 py-16">
-  <div className="max-w-4xl mx-auto">
-    <motion.h2
-      className="text-3xl font-extrabold mb-10 text-black text-center tracking-tight drop-shadow-sm"
-      initial={{ opacity: 0, y: -20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-    >
-      Upcoming Projects
-    </motion.h2>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {projects.map((project, idx) => (
-        <motion.div
-          key={idx}
-          className="group relative bg-blue-50 rounded-xl shadow-lg p-6 flex flex-col items-center justify-center border border-blue-100 overflow-hidden cursor-pointer"
-          whileHover={{ y: -5 }}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: idx * 0.1 }}
-          viewport={{ once: true }}
-        >
-          {/* Floating Animated Border on Hover */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-r from-blue-400 via-blue-600 to-blue-700 opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500" />
-
-          {/* Icon */}
-          <motion.span
-            className="text-4xl mb-3 text-blue-600 z-10"
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            className="text-3xl font-extrabold mb-10 text-black text-center tracking-tight drop-shadow-sm"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <i className="fa-solid fa-building-flag"></i>
-          </motion.span>
+            Upcoming Projects
+          </motion.h2>
 
-          {/* Text */}
-          <h3 className="font-bold text-lg text-black mb-1 z-10">{project.name}</h3>
-          <p className="text-black text-sm mb-2 z-10">{project.location}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {projects.map((project, idx) => (
+              <motion.div
+                key={idx}
+                className="group relative bg-blue-50 rounded-xl shadow-lg p-6 flex flex-col items-center justify-center border border-blue-100 overflow-hidden cursor-pointer"
+                whileHover={{ y: -5 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+              >
+                {/* Floating Animated Border on Hover */}
+                <div className="absolute inset-0 z-0 bg-gradient-to-r from-blue-400 via-blue-600 to-blue-700 opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500" />
 
-          {/* Coming Soon Tag */}
-          {project.soon && (
-            <span className="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded-full font-semibold animate-pulse z-10">
-              Coming Soon!
-            </span>
-          )}
+                {/* Icon */}
+                <motion.span
+                  className="text-4xl mb-3 text-blue-600 z-10"
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <i className="fa-solid fa-building-flag"></i>
+                </motion.span>
 
-          {/* Bottom Hover Bar */}
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-700 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 z-10" />
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</Section>
+                {/* Text */}
+                <h3 className="font-bold text-lg text-black mb-1 z-10">{project.name}</h3>
+                <p className="text-black text-sm mb-2 z-10">{project.location}</p>
 
-      {/* Trusted By Section */}
+                {/* Coming Soon Tag */}
+                {project.soon && (
+                  <span className="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded-full font-semibold animate-pulse z-10">
+                    Coming Soon!
+                  </span>
+                )}
+
+                {/* Bottom Hover Bar */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-700 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 z-10" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       {/* Trusted by Section */}
-<Section className="bg-blue-50 border-b border-blue-100 py-16">
-  <div className="max-w-5xl mx-auto px-4 text-center">
-    <h2 className="text-3xl font-extrabold mb-6 text-black tracking-tight drop-shadow-sm">
-      Trusted by India’s Leading Institutions
-    </h2>
-    <p className="text-md text-gray-700 mb-8">
-      Proud to be the choice of industry pioneers and changemakers.
-    </p>
-    <motion.div
-      className="flex flex-wrap justify-center gap-4"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      transition={{ staggerChildren: 0.1 }}
-    >
-      {trustedBy.map((name, idx) => (
-        <motion.div
-          key={idx}
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-        >
-          <Badge text={name} />
-        </motion.div>
-      ))}
-    </motion.div>
-    <p className="text-md text-black text-center mt-10 italic opacity-70">
-      ...and many more.
-    </p>
-  </div>
-</Section>
+      <Section className="bg-blue-50 border-b border-blue-100 py-16">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-extrabold mb-6 text-black tracking-tight drop-shadow-sm">
+            Trusted by India’s Leading Institutions
+          </h2>
+          <p className="text-md text-gray-700 mb-8">
+            Proud to be the choice of industry pioneers and changemakers.
+          </p>
+          <motion.div
+            className="flex flex-wrap justify-center gap-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ staggerChildren: 0.1 }}
+          >
+            {trustedBy.map((item, idx) => (
+              <motion.div
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+              >
+                <div className="flex flex-col items-center">
+                  <Image src={item.logo} alt={item.name} width={80} height={80} className="object-contain h-20 w-20" />
+                  {/* Optionally, show name below logo */}
+                  {/* <span className="mt-2 text-sm text-black">{item.name}</span> */}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+          <p className="text-md text-black text-center mt-10 italic opacity-70">
+            ...and many more.
+          </p>
+        </div>
+      </Section>
 
-{/* Certified Excellence Section */}
-<Section className="bg-white border-b border-blue-100 py-16">
-  <div className="max-w-5xl mx-auto px-4 text-center">
-    <h2 className="text-3xl font-extrabold mb-6 text-black tracking-tight drop-shadow-sm">
-      Certified Excellence
-    </h2>
-    <p className="text-md text-gray-700 mb-8">
-      Recognized and certified by the most respected institutions in the industry.
-    </p>
-    <motion.div
-      className="flex flex-wrap justify-center gap-8"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      transition={{ staggerChildren: 0.15 }}
-    >
-      {certifications.map((cert, idx) => (
-        <motion.div
-          key={idx}
-          variants={{
-            hidden: { opacity: 0, scale: 0.9 },
-            visible: { opacity: 1, scale: 1 },
-          }}
-        >
-          <CertCard {...cert} />
-        </motion.div>
-      ))}
-    </motion.div>
-  </div>
-</Section>
+      {/* Certified Excellence Section */}
+      <Section className="bg-white border-b border-blue-100 py-16">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-extrabold mb-6 text-black tracking-tight drop-shadow-sm">
+            Certified Excellence
+          </h2>
+          <p className="text-md text-gray-700 mb-8">
+            Recognized and certified by the most respected institutions in the industry.
+          </p>
+          <motion.div
+            className="flex flex-wrap justify-center gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ staggerChildren: 0.15 }}
+          >
+            {certifications.map((cert, idx) => (
+              <motion.div
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, scale: 0.9 },
+                  visible: { opacity: 1, scale: 1 },
+                }}
+              >
+                <CertCard {...cert} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </Section>
 
-{/* Strategic Partnerships Section */}
-<Section className="bg-blue-50 border-b border-blue-100 py-16">
-  <div className="max-w-5xl mx-auto px-4 text-center">
-    <h2 className="text-3xl font-extrabold mb-6 text-black tracking-tight drop-shadow-sm">
-      Strategic Partnerships
-    </h2>
-    <p className="text-md text-gray-700 mb-8">
-      Collaborating with top partners to drive innovation and excellence.
-    </p>
-    <motion.div
-      className="flex flex-wrap justify-center gap-8"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      transition={{ staggerChildren: 0.12 }}
-    >
-      {partners.map((partner, idx) => (
-        <motion.div
-          key={idx}
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { opacity: 1, y: 0 },
-          }}
-        >
-          <PartnerCard {...partner} />
-        </motion.div>
-      ))}
-    </motion.div>
-  </div>
-</Section>
+      {/* Strategic Partnerships Section */}
+      <Section className="bg-blue-50 border-b border-blue-100 py-16">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-extrabold mb-6 text-black tracking-tight drop-shadow-sm">
+            Strategic Partnerships
+          </h2>
+          <p className="text-md text-gray-700 mb-8">
+            Collaborating with top partners to drive innovation and excellence.
+          </p>
+          <motion.div
+            className="flex flex-wrap justify-center gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ staggerChildren: 0.12 }}
+          >
+            {partners.map((partner, idx) => (
+              <motion.div
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+              >
+                <div className="flex flex-col items-center">
+                  <Image src={partner.logo} alt={partner.name} width={80} height={80} className="object-contain h-20 w-20" />
+                  {/* Optionally, show name below logo */}
+                  {/* <span className="mt-2 text-sm text-black">{partner.name}</span> */}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </Section>
       <ContactPage />
     </div>
   );
