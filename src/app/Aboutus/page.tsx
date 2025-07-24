@@ -7,17 +7,17 @@ import Image from "next/image";
 
 // --- DATA ARRAYS ---
 const milestones = [
-  { year: "1999", title: "First Residential Complex", description: "Launch of first residential complex under Nest Apartments, sold out during the construction phase.", img: "/Herocarousel/Royal Nest Hill View Fountain Area.jpg" },
-  { year: "2000", title: "Formal Incorporation", description: "Formal incorporation of Omkar Nest (P) Ltd under the companies Act, 1956 with the registrar of the companies, NCT of Delhi and Haryana, established on 05-10-2000.", img: "/Herocarousel/Royal Nest Hill View Penthouse Terrace.jpg" },
-  { year: "2007", title: "Expansion to J&K", description: "Entered State of Jammu & Kashmir with landmark group housing projects.", img: "/Herocarousel/Royal Nest Hill View Pool to Landscape Area.jpg" },
-  { year: "2008", title: "NCR Projects Delivered", description: "Successfully delivered over 15 low-rise residential projects in Delhi NCR.", img: "/Herocarousel/Royal Nest Hill View Fountain Area.jpg" },
-  { year: "2010", title: "Green Building Launch", description: "Launched first gold-standard, IGBC-compliant group housing project with 1000+ apartments and commercial complex in Delhi NCR.", img: "/Herocarousel/Royal Nest Hill View Penthouse Terrace.jpg" },
-  { year: "2016", title: "Facility Management", description: "Entered professional estate service & facility management sector with Ufirm.in.", img: "/Herocarousel/Royal Nest Hill View Pool to Landscape Area.jpg" },
-  { year: "2018", title: "INR 100 Cr Turnover", description: "Crossed the INR 100 Cr turnover milestone.", img: "/Herocarousel/Royal Nest Hill View Fountain Area.jpg" },
-  { year: "2020", title: "Hospitality Expansion", description: "Expanded into hospitality with a Radisson Group partnership.", img: "/Herocarousel/Royal Nest Hill View Penthouse Terrace.jpg" },
-  { year: "2022", title: "Dharamshala Entry", description: "Entered Dharamshala, Himachal Pradesh with green building-holiday apartment and boutique hotels with RoyalNestDharamshala.com.", img: "/Herocarousel/Royal Nest Hill View Pool to Landscape Area.jpg" },
-  { year: "2023", title: "Health & Fitness", description: "Partnered with Gold’s Gym and Cult-Fit to enter the health & fitness industry.", img: "/Herocarousel/Royal Nest Hill View Fountain Area.jpg" },
-  { year: "2025", title: "Royal Nest Hill View", description: "Royal Nest Hill View – Jammu & Kashmir’s tallest and most premium green residential tower, featuring a glass façade, French windows, and energy-efficient homes with ample natural light and ventilation.", img: "/Herocarousel/Royal Nest Hill View Penthouse Terrace.jpg" },
+  { year: "1999", title: "First Residential Complex", description: "Launch of first residential complex under Nest Apartments, sold out during the construction phase." },
+  { year: "2000", title: "Formal Incorporation", description: "Formal incorporation of Omkar Nest (P) Ltd under the companies Act, 1956 with the registrar of the companies, NCT of Delhi and Haryana, established on 05-10-2000." },
+  { year: "2007", title: "Expansion to J&K", description: "Entered State of Jammu & Kashmir with landmark group housing projects." },
+  { year: "2008", title: "NCR Projects Delivered", description: "Successfully delivered over 15 low-rise residential projects in Delhi NCR."},
+  { year: "2010", title: "Green Building Launch", description: "Launched first gold-standard, IGBC-compliant group housing project with 1000+ apartments and commercial complex in Delhi NCR." },
+  { year: "2016", title: "Facility Management", description: "Entered professional estate service & facility management sector with Ufirm.in." },
+  { year: "2018", title: "INR 100 Cr Turnover", description: "Crossed the INR 100 Cr turnover milestone." },
+  { year: "2020", title: "Hospitality Expansion", description: "Expanded into hospitality with a Radisson Group partnership." },
+  { year: "2022", title: "Dharamshala Entry", description: "Entered Dharamshala, Himachal Pradesh with green building-holiday apartment and boutique hotels with RoyalNestDharamshala.com."},
+  { year: "2023", title: "Health & Fitness", description: "Partnered with Gold’s Gym and Cult-Fit to enter the health & fitness industry." },
+  { year: "2025", title: "Royal Nest Hill View", description: "Royal Nest Hill View – Jammu & Kashmir’s tallest and most premium green residential tower, featuring a glass façade, French windows, and energy-efficient homes with ample natural light and ventilation." },
 ];
 const businessAreas = [
   { icon: "fa fa-building", title: "Residential Real Estate Development", desc: "Premium homes and communities across India." },
@@ -89,14 +89,7 @@ const Card = ({ icon, title, desc, expanded, onClick }: { icon: string; title: s
     )}
   </motion.div>
 );
-const Badge = ({ text }: { text: string }) => (
-  <motion.div
-    className="rounded-full px-6 py-3 font-semibold shadow bg-blue-100 text-black text-lg border border-blue-200 hover:scale-105 hover:shadow-lg transition-all cursor-pointer"
-    whileHover={{ scale: 1.08 }}
-  >
-    {text}
-  </motion.div>
-);
+
 const CertCard = ({ img, title, desc }: { img: string; title: string; desc: string }) => (
   <motion.div
     className="flex flex-col items-center bg-blue-50 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow border border-blue-100"
@@ -105,15 +98,6 @@ const CertCard = ({ img, title, desc }: { img: string; title: string; desc: stri
     <Image src={img} alt={title} width={60} height={60} className="mb-2 object-contain" />
     <span className="font-bold text-black">{title}</span>
     <span className="text-xs text-black group-hover:text-blue-700 transition-colors">{desc}</span>
-  </motion.div>
-);
-const PartnerCard = ({ icon, name }: { icon: string; name: string }) => (
-  <motion.div
-    className="flex flex-col items-center bg-blue-100 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow border border-blue-200"
-    whileHover={{ scale: 1.04 }}
-  >
-    <span className="text-4xl mb-2 text-blue-700"><i className={`fa-solid ${icon}`}></i></span>
-    <span className="font-bold text-black">{name}</span>
   </motion.div>
 );
 
@@ -406,13 +390,13 @@ export default function AboutPage() {
                     className="w-[300px] shrink-0 bg-blue-50 rounded-xl shadow-md p-6 border border-blue-100 flex flex-col gap-2 hover:shadow-lg transition-shadow"
 
                   >
-                    <Image
+                    {/* <Image
                       src={item.img}
                       alt={item.title}
                       width={400} // You can adjust width and height as needed
                       height={128}
                       className="w-full h-32 object-cover rounded mb-2"
-                    />
+                    /> */}
                     <span className="text-xs text-white font-bold bg-blue-500 px-2 py-1 rounded uppercase self-start">{item.title}</span>
                     <h3 className="text-xl text-black font-bold mt-2">{item.year}</h3>
                     <p className="text-black mt-2 h-20 overflow-y-auto pr-1">{item.description}</p>

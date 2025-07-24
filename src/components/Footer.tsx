@@ -5,12 +5,11 @@ import { ChevronDown, Facebook, Linkedin, Youtube, Instagram } from 'lucide-reac
 import Link from 'next/link';
 
 const Footer = () => {
-  type SectionType = 'officeAddress' | 'registeredOffice' | 'salesQueries' | 'customerCare';
+  type SectionType = 'officeAddress' | 'registeredOffice' | 'customerCare';
   
   const [expandedSections, setExpandedSections] = useState<Record<SectionType, boolean>>({
     officeAddress: true,
     registeredOffice: false,
-    salesQueries: false,
     customerCare: false
   });
 
@@ -19,7 +18,6 @@ const Footer = () => {
       const newState: Record<SectionType, boolean> = {
         officeAddress: false,
         registeredOffice: false,
-        salesQueries: false,
         customerCare: false
       };
       newState[section] = !prev[section];
@@ -33,79 +31,6 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Three Column Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-18 mb-8 md:pl-18">
-          {/* Left Column - Contact Information */}
-          <div className="space-y-6">
-            <div>
-              <button 
-                onClick={() => toggleSection('officeAddress')}
-                className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
-              >
-                Office address
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.officeAddress ? 'rotate-180' : ''}`} />
-              </button>
-              {expandedSections.officeAddress && (
-                <div className="space-y-2 text-sm text-gray-300">
-                  <p>Business Park, Ground Floor, H-64, Sec-63,</p>
-                  <p>Noida, Distt: Gautam Buddh Nagar,</p>
-                  <p>Uttar Pradesh-201301</p>
-                  <p>Contact No. 0120 4245551</p>
-                </div>
-              )}
-            </div>
-
-            <div>
-              <button 
-                onClick={() => toggleSection('registeredOffice')}
-                className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
-              >
-                Registered office
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.registeredOffice ? 'rotate-180' : ''}`} />
-              </button>
-              {expandedSections.registeredOffice && (
-                <div className="space-y-2 text-sm text-gray-300">
-                  <p>Plot No.-GH-8B, Tech. Zone-IV, Greater Noida West,</p>
-                  <p>Distt: Gautam Buddh Nagar, Uttar Pradesh-201306</p>
-                </div>
-              )}
-            </div>
-
-            <div>
-              <button 
-                onClick={() => toggleSection('salesQueries')}
-                className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
-              >
-                For sales queries
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.salesQueries ? 'rotate-180' : ''}`} />
-              </button>
-              {expandedSections.salesQueries && (
-                <div className="space-y-2 text-sm text-gray-300">
-                  <p>Dharamshala (Forest View Office)</p>
-                  <p>Khata-14, Cabin No.-1, Khatoni-7, Mohal Chakban Gharoh,</p>
-                  <p>Tehsil: Dharamshala, District:- Kangra, Himachal Pradesh-176216</p>
-                  <p>Contact: +91 9818655411; +91 9833885190</p>
-                  <p>Email: sales@royalnestdharamshala.com / crm@royalnestdharamshala.com</p>
-                </div>
-              )}
-            </div>
-
-            <div>
-              <button 
-                onClick={() => toggleSection('customerCare')}
-                className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
-              >
-                Customer care
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.customerCare ? 'rotate-180' : ''}`} />
-              </button>
-              {expandedSections.customerCare && (
-                <div className="space-y-2 text-sm text-gray-300">
-                  <p>Customer Support</p>
-                  <p>Phone: +91 9596796757</p>
-                  <p>Email: support@royalnest.com</p>
-                </div>
-              )}
-            </div>
-          </div>
-
           {/* Middle Column - Projects and About */}
           <div className="space-y-6 mt-8 md:mt-0">
             <div>
@@ -134,6 +59,69 @@ const Footer = () => {
               <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
             </div>
             </Link>
+          </div>
+          {/* Left Column - Contact Information */}
+          <div className="space-y-6">
+            <div>
+              <button 
+                onClick={() => toggleSection('officeAddress')}
+                className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
+              >
+                Head Office address
+                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.officeAddress ? 'rotate-180' : ''}`} />
+              </button>
+              {expandedSections.officeAddress && (
+                <div className="space-y-2 text-sm text-gray-300">
+                  <p>Business Park, Ground Floor, H-64, Sec-63,</p>
+                  <p>Noida, Distt: Gautam Buddh Nagar,</p>
+                  <p>Uttar Pradesh-201301</p>
+                  <p>Contact No. 0120 4245551</p>
+                </div>
+              )}
+            </div>
+
+            <div>
+              <button 
+                onClick={() => toggleSection('registeredOffice')}
+                className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
+              >
+                Site office
+                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.registeredOffice ? 'rotate-180' : ''}`} />
+              </button>
+              {expandedSections.registeredOffice && (
+                <div className="space-y-2 text-sm text-gray-300">
+                  <p className="font-semibold">Royal Nest Hill View Office:</p>
+                  <p>Sector-D, Sainik Colony Extension, Chowadi Road, Jammu, Jammu & Kashmir-180011</p>
+                  <p>📱 +91 9596796757; +91 9541900771; +91 9541900772; +91 9541900773</p>
+                  <hr className="my-2 border-gray-700" />
+                  <p className="font-semibold">Royalnest Forest View Office:</p>
+                  <p>Khata-14, Cabin No.-1, Khatoni-7, Mohal Chakban Gharoh, Tehsil: Dharamshala, District:- Kangra, Himachal Pradesh-176216</p>
+                  <p>📱 +91 9818655411; +91 9833885190</p>
+                  <p>📧 sales@royalnestdharamshala.com / crm@royalnestdharamshala.com</p>
+                  <hr className="my-2 border-gray-700" />
+                  <p className="font-semibold">Royal Nest Sapphire Office:</p>
+                  <p>Village Deeli (Kunjwani), Kunjwani Bypass, (Near Anutham Hotel and Audi Showroom) Jammu, Jammu & Kashmir-180010</p>
+                  <p>📱 +91 9596796757</p>
+                </div>
+              )}
+            </div>
+
+            <div>
+              <button 
+                onClick={() => toggleSection('customerCare')}
+                className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
+              >
+                Customer care
+                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.customerCare ? 'rotate-180' : ''}`} />
+              </button>
+              {expandedSections.customerCare && (
+                <div className="space-y-2 text-sm text-gray-300">
+                  <p>Customer Support</p>
+                  <p>Phone: +91 9596796757</p>
+                  <p>Email: support@royalnest.com</p>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Right Column - Links and Information */}
@@ -181,7 +169,7 @@ const Footer = () => {
               <span className="hidden md:inline">|</span>
               <span>Privacy Policy</span>
               <span className="hidden md:inline">|</span>
-              <span>ISO 9001:2008</span>
+              <span>ISO 9001:2015</span>
               <span className="hidden md:inline">|</span>
               <span>Disclaimer</span>
             </div>
