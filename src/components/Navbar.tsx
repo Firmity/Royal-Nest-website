@@ -30,7 +30,7 @@ const navLinks = [
       {
         label: "Radisson Amritsar",
         href: "#",
-        image: "/Verticals/residential.jpg",
+        image: "/Verticals/Radisson Red Amritsar _ Updated Concept and Material Study_page-0004.jpg",
         description: "Premium hospitality experience with world-class amenities",
       },
       {
@@ -191,10 +191,12 @@ export default function Navbar() {
                 >
                   <div
                     style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: "2rem 2.5rem",
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: "2.5rem",
                       width: "100%",
+                      justifyContent: "center",
+                      alignItems: "flex-start",
                     }}
                   >
                     {link.submenu.map((sublink) => (
@@ -203,18 +205,22 @@ export default function Navbar() {
                         href={sublink.href}
                         style={{
                           display: "flex",
-                          alignItems: "flex-start",
+                          flexDirection: "column",
+                          alignItems: "center",
                           borderRadius: 10,
                           overflow: "hidden",
                           textDecoration: "none",
                           color: "#fff",
-                          minWidth: 260,
-                          maxWidth: 320,
+                          minWidth: 180,
+                          maxWidth: 220,
                           transition: "transform 0.2s, box-shadow 0.2s",
                           cursor: "pointer",
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+                          background: "rgba(0,0,0,0.25)",
+                          padding: "1rem 0.5rem",
                         }}
                         onMouseEnter={e => {
-                          e.currentTarget.style.transform = "scale(1.03)";
+                          e.currentTarget.style.transform = "scale(1.05)";
                           e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.25)";
                         }}
                         onMouseLeave={e => {
@@ -222,7 +228,7 @@ export default function Navbar() {
                           e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
                         }}
                       >
-                        <div style={{ width: 100, height: 100, position: "relative", borderRadius: 8, overflow: "hidden", margin: 16 }}>
+                        <div style={{ width: 100, height: 100, position: "relative", borderRadius: 8, overflow: "hidden", marginBottom: 16 }}>
                           <Image
                             src={sublink.image}
                             alt={sublink.label}
@@ -230,10 +236,8 @@ export default function Navbar() {
                             style={{ objectFit: "cover" }}
                           />
                         </div>
-                        <div style={{ padding: "1rem 0.5rem 1rem 0", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                          <div style={{ fontWeight: 600, fontSize: "1.1rem", marginBottom: 6 }}>{sublink.label}</div>
-                          <div style={{ fontSize: "0.95rem", color: "#ccc", lineHeight: 1.4 }}>{sublink.description}</div>
-                        </div>
+                        <div style={{ fontWeight: 600, fontSize: "1.1rem", marginBottom: 6, textAlign: "center" }}>{sublink.label}</div>
+                        <div style={{ fontSize: "0.95rem", color: "#ccc", lineHeight: 1.4, textAlign: "center" }}>{sublink.description}</div>
                       </Link>
                     ))}
                   </div>
