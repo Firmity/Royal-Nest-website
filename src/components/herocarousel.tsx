@@ -19,13 +19,13 @@ const slides = [
     link: "#"
   },
   {
-    image: "/Herocarousel/Royal Nest Sapphire, Jammu.png",
+    image: "/Herocarousel/ROYAL-SAFIRE-ROAD-17-01-20-HIRES.tif",
     title: "Royal Nest Sapphire | Kunjwani Bypass | Jammu",
     link: "#"
   },
   {
     image: "/Herocarousel/Royal Nest, GNW.jpg",
-    title: "Royal Nest | Greater Noida | Uttar Pradesh",
+    title: "Royal Nest | Greater Noida West | Uttar Pradesh",
     link: "#"
   }
 ];

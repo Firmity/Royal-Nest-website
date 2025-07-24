@@ -40,7 +40,7 @@ const markers = [
         mapQuery: "Royal+Nest+Sapphire",
     },
     {
-        name: "Greater Noida",
+        name: "Greater Noida West",
         address: "Plot No.-GH-8B, Tech. Zone-IV, Greater Noida West, Distt: Gautam Buddh Nagar, Uttar Pradesh-201306",
         representative: "",
         phone: "",
