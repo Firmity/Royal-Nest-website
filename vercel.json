@@ -1,4 +1,5 @@
 {
+    "$schema": "https://openapi.vercel.sh/vercel.json",
     "redirects": [
       {
         "source": "/(.*)",
@@ -21,6 +22,12 @@
         ],
         "destination": "https://royalnestgroup.com/:1",
         "permanent": true
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/feedback/:id",
+        "destination": "/api/feedback/:id"
       }
     ]
   }
