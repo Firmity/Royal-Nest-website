@@ -5,27 +5,27 @@ import Image from "next/image";
 const slides = [
   {
     image: "/Herocarousel/Royal Nest Hill View Pool to Landscape Area.jpg",
-    title: "Royal Nest Hill View | Jammu",
+    title: "Royal Nest Hill View | Sainik Colony Extension | Jammu",
     link: "/HillViewPage"
   },
   {
     image: "/Herocarousel/Royal Nest Hill View  Swimming pool.jpg",
-    title: "Royal Nest Hill View | Jammu",
+    title: "Royal Nest Hill View | Sainik Colony Extension | Jammu",
     link: "/HillViewPage"
   },
   {
     image: "/Herocarousel/front top view_rn forestview.jpg",
-    title: "Royal Nest Forest View | Dharamshala",
+    title: "Royalnest Forest View | Dharamshala | Himachal Pradesh",
     link: "#"
   },
   {
     image: "/Herocarousel/Royal Nest Sapphire, Jammu.png",
-    title: "Royal Nest Sapphire | Jammu",
+    title: "Royal Nest Sapphire | Kunjwani Bypass | Jammu",
     link: "#"
   },
   {
     image: "/Herocarousel/Royal Nest, GNW.jpg",
-    title: "Royal Nest | Greater Noida",
+    title: "Royal Nest | Greater Noida | Uttar Pradesh",
     link: "#"
   }
 ];
@@ -243,36 +243,50 @@ export default function HeroCarousel() {
       </div>
       <style jsx global>{`
         @media (max-width: 600px) {
+          .herocarousel-container {
+            height: 60vh !important;
+            min-height: 320px !important;
+            padding: 0 8px !important;
+          }
           .zoom-in-out {
-            /* Keep animation, but scale less on mobile */
             animation: zoomInOutMobile 6s ease-in-out infinite;
           }
           .pulse {
             animation: pulseMobile 3s ease-in-out infinite;
           }
           .float {
-            width: 40px !important;
-            height: 40px !important;
-            margin-left: 12px !important;
-            margin-right: 12px !important;
+            width: 44px !important;
+            height: 44px !important;
+            margin-left: 8px !important;
+            margin-right: 8px !important;
           }
           .arrow-anim-up, .arrow-anim-down {
-            font-size: 20px !important;
+            font-size: 22px !important;
           }
-          /* Overlay title */
           .herocarousel-title {
-            font-size: 18px !important;
-            margin-right: 12px !important;
+            font-size: 15px !important;
+            margin-right: 8px !important;
+            max-width: 60vw !important;
+            white-space: normal !important;
+            line-height: 1.2 !important;
           }
-          /* Dots */
           .herocarousel-dot {
-            width: 10px !important;
-            height: 10px !important;
-            min-width: 10px !important;
-            min-height: 10px !important;
+            width: 12px !important;
+            height: 12px !important;
+            min-width: 12px !important;
+            min-height: 12px !important;
           }
-          .herocarousel-container {
-            height: 70vh !important;
+          .herocarousel-dot.pulse {
+            box-shadow: 0 2px 6px rgba(255,255,255,0.2) !important;
+          }
+          .herocarousel-dot {
+            margin: 0 2px !important;
+          }
+          .herocarousel-container > div[style*='bottom: 90px'] {
+            bottom: 60px !important;
+          }
+          .herocarousel-container > div[style*='bottom: 32px'] {
+            bottom: 12px !important;
           }
         }
         @keyframes zoomInOutMobile {
