@@ -9,7 +9,7 @@
             "value": "royalnestgroup.in"
           }
         ],
-        "destination": "https://royalnestgroup.com/:1",
+        "destination": "https://royalnestgroup.com/$1",
         "permanent": true
       },
       {
@@ -20,7 +20,7 @@
             "value": "www.royalnestgroup.in"
           }
         ],
-        "destination": "https://royalnestgroup.com/:1",
+        "destination": "https://royalnestgroup.com/$1",
         "permanent": true
       }
     ],
