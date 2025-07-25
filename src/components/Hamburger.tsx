@@ -45,46 +45,130 @@ export default function Hamburger({ size = 34, color = "white" }) {
   return (
     <>
       {/* Hamburger Icon */}
-      <div className="hamburger-icon-wrapper" style={{ cursor: "pointer", display: open ? "none" : "block" }} onClick={() => setOpen(true)}>
+      <div
+        className="hamburger-icon-wrapper"
+        style={{
+          cursor: "pointer",
+          display: open ? "none" : "block",
+        }}
+        onClick={() => setOpen(true)}
+      >
         <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect y="12" width="48" height="2" rx="1" fill={color} />
           <rect y="25" width="48" height="2" rx="1" fill={color} />
           <rect y="38" width="48" height="2" rx="1" fill={color} />
         </svg>
       </div>
-      {/* Sidebar Drawer */}
+      {/* Sidebar Drawer and Overlay */}
       {open && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "50vw",
-            height: "100vh",
-            background: "#f7f3eb",
-            zIndex: 100,
-            boxShadow: "2px 0 16px rgba(0,0,0,0.08)",
-            display: "flex",
-            flexDirection: "column",
-            padding: "2.5rem 2.5rem 1.5rem 2.5rem",
-            fontFamily: "inherit",
-            animation: "slideIn 0.3s cubic-bezier(0.4,0,0.2,1)",
-          }}
-        >
-          {/* Cross Icon */}
-          <div style={{ alignSelf: "flex-start", marginBottom: "2.5rem", cursor: "pointer" }} onClick={() => setOpen(false)}>
-            <svg width="30" height="30" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="6" y1="6" x2="32" y2="32" stroke="#222" strokeWidth="2" strokeLinecap="round" />
-              <line x1="32" y1="6" x2="6" y2="32" stroke="#222" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </div>
-          {/* Menu Links */}
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "1rem" }}>
-            {menuLinks.map((link, idx) => (
-              <React.Fragment key={link.label}>
-                {link.submenu ? (
-                  <div style={{ position: "relative" }}>
-                    <div
+        <>
+          {/* Overlay */}
+          <div
+            className="hamburger-overlay"
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              background: "rgba(0,0,0,0.25)",
+              zIndex: 99,
+              transition: "background 0.2s",
+            }}
+            onClick={() => setOpen(false)}
+          />
+          {/* Sidebar */}
+          <div
+            className="hamburger-sidebar"
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "50vw",
+              maxWidth: 400,
+              minWidth: 260,
+              height: "100vh",
+              background: "#f7f3eb",
+              zIndex: 100,
+              boxShadow: "2px 0 16px rgba(0,0,0,0.08)",
+              display: "flex",
+              flexDirection: "column",
+              padding: "2.5rem 2.5rem 1.5rem 2.5rem",
+              fontFamily: "inherit",
+              animation: "slideIn 0.3s cubic-bezier(0.4,0,0.2,1)",
+              overflowY: "auto",
+              transition: "width 0.2s, padding 0.2s",
+            }}
+          >
+            {/* Cross Icon */}
+            <div style={{ alignSelf: "flex-start", marginBottom: "2.5rem", cursor: "pointer" }} onClick={() => setOpen(false)}>
+              <svg width="30" height="30" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="6" y1="6" x2="32" y2="32" stroke="#222" strokeWidth="2" strokeLinecap="round" />
+                <line x1="32" y1="6" x2="6" y2="32" stroke="#222" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </div>
+            {/* Menu Links */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {menuLinks.map((link, idx) => (
+                <React.Fragment key={link.label}>
+                  {link.submenu ? (
+                    <div style={{ position: "relative" }}>
+                      <div
+                        style={{
+                          color: "#222",
+                          textDecoration: "none",
+                          fontSize: "1rem",
+                          fontWeight: 400,
+                          letterSpacing: 1,
+                          marginBottom: idx === 6 ? "0.2rem" : 0,
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                        }}
+                        onClick={() => setDropdownOpen(dropdownOpen === link.label ? null : link.label)}
+                      >
+                        {link.label}
+                        <span style={{ fontSize: "0.8em" }}>{dropdownOpen === link.label ? "▲" : "▼"}</span>
+                      </div>
+                      {dropdownOpen === link.label && (
+                        <div
+                          style={{
+                            background: "#fff",
+                            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                            borderRadius: 4,
+                            margin: "0.3rem 0 0.7rem 1rem",
+                            padding: "0.2rem 0",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "0.1rem",
+                          }}
+                        >
+                          {link.submenu.map((sublink) => (
+                            <Link
+                              key={sublink.label}
+                              href={sublink.href}
+                              style={{
+                                display: "block",
+                                color: "#222",
+                                textDecoration: "none",
+                                padding: "0.5rem 1rem",
+                                fontSize: "0.95rem",
+                                fontWeight: 400,
+                                whiteSpace: "nowrap",
+                              }}
+                              onClick={() => setOpen(false)}
+                            >
+                              {sublink.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      key={link.label}
+                      href={link.href}
                       style={{
                         color: "#222",
                         textDecoration: "none",
@@ -92,84 +176,30 @@ export default function Hamburger({ size = 34, color = "white" }) {
                         fontWeight: 400,
                         letterSpacing: 1,
                         marginBottom: idx === 6 ? "0.2rem" : 0,
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
                       }}
-                      onClick={() => setDropdownOpen(dropdownOpen === link.label ? null : link.label)}
+                      onClick={() => setOpen(false)}
                     >
                       {link.label}
-                      <span style={{ fontSize: "0.8em" }}>{dropdownOpen === link.label ? "▲" : "▼"}</span>
-                    </div>
-                    {dropdownOpen === link.label && (
-                      <div
-                        style={{
-                          background: "#fff",
-                          boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                          borderRadius: 4,
-                          margin: "0.3rem 0 0.7rem 1rem",
-                          padding: "0.2rem 0",
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: "0.1rem",
-                        }}
-                      >
-                        {link.submenu.map((sublink) => (
-                          <Link
-                            key={sublink.label}
-                            href={sublink.href}
-                            style={{
-                              display: "block",
-                              color: "#222",
-                              textDecoration: "none",
-                              padding: "0.5rem 1rem",
-                              fontSize: "0.95rem",
-                              fontWeight: 400,
-                              whiteSpace: "nowrap",
-                            }}
-                            onClick={() => setOpen(false)}
-                          >
-                            {sublink.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    style={{
-                      color: "#222",
-                      textDecoration: "none",
-                      fontSize: "1rem",
-                      fontWeight: 400,
-                      letterSpacing: 1,
-                      marginBottom: idx === 6 ? "0.2rem" : 0,
-                    }}
-                    onClick={() => setOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </React.Fragment>
-            ))}
-            {/* Contact Us and Social Icons */}
-            <div >
-              <Link href="/Contact"><div style={{ color: "#222", fontSize: "1.2rem", fontWeight: 400, marginBottom: "0.7rem" }}>Contact Us</div></Link>
-              <div style={{ display: "flex", gap: "0.7rem" }}>
-                {socialIcons.map((icon) => (
-                  <span key={icon.label} style={{ display: "inline-flex", alignItems: "center" }}>
-                    {icon.icon}
-                  </span>
-                ))}
+                    </Link>
+                  )}
+                </React.Fragment>
+              ))}
+              {/* Contact Us and Social Icons */}
+              <div>
+                <Link href="/Contact"><div style={{ color: "#222", fontSize: "1.2rem", fontWeight: 400, marginBottom: "0.7rem" }}>Contact Us</div></Link>
+                <div style={{ display: "flex", gap: "0.7rem" }}>
+                  {socialIcons.map((icon) => (
+                    <span key={icon.label} style={{ display: "inline-flex", alignItems: "center" }}>
+                      {icon.icon}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
-      {/* Sidebar Animation Keyframes */}
+      {/* Sidebar Animation Keyframes and Responsive Styles */}
       <style>{`
         @keyframes slideIn {
           from { transform: translateX(-100%); }
@@ -178,11 +208,52 @@ export default function Hamburger({ size = 34, color = "white" }) {
         .hamburger-icon-wrapper {
           transition: transform 0.2s;
         }
+        /* Hide hamburger icon on desktop */
+        @media (min-width: 901px) {
+          .hamburger-icon-wrapper {
+            display: none !important;
+          }
+        }
+        /* Hamburger icon size for mobile */
         @media (max-width: 600px) {
           .hamburger-icon-wrapper svg {
             width: 26px !important;
             height: 26px !important;
           }
+        }
+        /* Sidebar full width on mobile */
+        @media (max-width: 600px) {
+          .hamburger-sidebar {
+            width: 100vw !important;
+            min-width: 0 !important;
+            max-width: 100vw !important;
+            padding: 1.2rem 1.1rem 1rem 1.1rem !important;
+          }
+          .hamburger-sidebar div[style*='font-size: 1rem'] {
+            font-size: 0.98rem !important;
+          }
+          .hamburger-sidebar div[style*='font-size: 1.2rem'] {
+            font-size: 1.05rem !important;
+          }
+        }
+        /* Sidebar width for tablet */
+        @media (max-width: 900px) and (min-width: 601px) {
+          .hamburger-sidebar {
+            width: 70vw !important;
+            min-width: 0 !important;
+            max-width: 70vw !important;
+            padding: 2rem 1.5rem 1.2rem 1.5rem !important;
+          }
+        }
+        /* Make sidebar scrollable if content overflows */
+        .hamburger-sidebar {
+          overflow-y: auto;
+          scrollbar-width: thin;
+        }
+        /* Overlay z-index and transition */
+        .hamburger-overlay {
+          z-index: 99;
+          transition: background 0.2s;
         }
       `}</style>
     </>
