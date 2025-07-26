@@ -101,6 +101,48 @@ export default function Contact() {
     return (
         <div className="bg-white">
             <Navbar />
+            {/* Map + Branch Info */}
+            <div className="flex flex-col lg:flex-row w-full mb-10 mt-35">
+                <div className="w-full lg:w-1/2 h-[300px] lg:h-[80vh]">
+                    <iframe
+                        title="Google Map"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        loading="lazy"
+                        allowFullScreen
+                        src={`https://www.google.com/maps?q=${selectedLocation.mapQuery}&output=embed`}
+                    />
+                </div>
+
+                <div className="w-full lg:w-1/2 p-4 lg:p-6 overflow-y-auto max-h-[400px] lg:max-h-[80vh]">
+                    <h2 className="text-xl lg:text-2xl font-bold mb-4 text-black">Our Branches</h2>
+                    <ul className="space-y-4">
+                        {markers.map((location, idx) => (
+                            <li
+                                key={idx}
+                                className={`p-4 border rounded-lg cursor-pointer transition-all ${selectedLocation === location
+                                    ? 'bg-yellow-100 border-yellow-400'
+                                    : 'hover:bg-gray-50'
+                                    }`}
+                                onClick={() => setSelectedLocation(location)}
+                            >
+                                <h3 className="font-semibold text-base lg:text-lg text-black">{location.name}</h3>
+                                <p className="text-sm text-gray-700 mb-1">{location.address}</p>
+                                {location.representative && (
+                                    <p className="text-sm text-black"><strong>Representative:</strong> {location.representative}</p>
+                                )}
+                                {location.phone && (
+                                    <p className="text-sm text-black"><strong>Phone:</strong> {location.phone}</p>
+                                )}
+                                {location.email && (
+                                    <p className="text-sm text-black"><strong>Email:</strong> {location.email}</p>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
             <div className="min-h-screen  flex justify-center items-center relative">
                 <div className="absolute right-0 bottom-0 w-full h-full">
                     <Image
@@ -111,7 +153,7 @@ export default function Contact() {
                     />
                 </div>
 
-                <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg z-10 mt-40 mb-20 text-black">
+                <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg z-10 mt-20 mb-20 text-black">
                     <h2 className="text-2xl font-bold mb-2 ">Connect with us today</h2>
                     <p className="mb-6">Fill out the form below to get started</p>
 
@@ -180,48 +222,6 @@ export default function Contact() {
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-            {/* Map + Branch Info */}
-            <div className="flex flex-col lg:flex-row w-full mb-10">
-                <div className="w-full lg:w-1/2 h-[300px] lg:h-[80vh]">
-                    <iframe
-                        title="Google Map"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        loading="lazy"
-                        allowFullScreen
-                        src={`https://www.google.com/maps?q=${selectedLocation.mapQuery}&output=embed`}
-                    />
-                </div>
-
-                <div className="w-full lg:w-1/2 p-4 lg:p-6 overflow-y-auto max-h-[400px] lg:max-h-[80vh]">
-                    <h2 className="text-xl lg:text-2xl font-bold mb-4 text-black">Our Branches</h2>
-                    <ul className="space-y-4">
-                        {markers.map((location, idx) => (
-                            <li
-                                key={idx}
-                                className={`p-4 border rounded-lg cursor-pointer transition-all ${selectedLocation === location
-                                    ? 'bg-yellow-100 border-yellow-400'
-                                    : 'hover:bg-gray-50'
-                                    }`}
-                                onClick={() => setSelectedLocation(location)}
-                            >
-                                <h3 className="font-semibold text-base lg:text-lg text-black">{location.name}</h3>
-                                <p className="text-sm text-gray-700 mb-1">{location.address}</p>
-                                {location.representative && (
-                                    <p className="text-sm text-black"><strong>Representative:</strong> {location.representative}</p>
-                                )}
-                                {location.phone && (
-                                    <p className="text-sm text-black"><strong>Phone:</strong> {location.phone}</p>
-                                )}
-                                {location.email && (
-                                    <p className="text-sm text-black"><strong>Email:</strong> {location.email}</p>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
                 </div>
             </div>
         </div>

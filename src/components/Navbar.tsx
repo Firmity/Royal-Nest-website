@@ -105,7 +105,7 @@ export default function Navbar() {
         left: 0,
         width: "100%",
         zIndex: 50,
-        background: "rgba(0, 0, 0, 0.1)",
+        background: "rgba(86, 93, 96, 0.68)",
         backdropFilter: isHovered ? "blur(10px)" : "none",
         WebkitBackdropFilter: isHovered ? "blur(10px)" : "none",
         color: "#fff",

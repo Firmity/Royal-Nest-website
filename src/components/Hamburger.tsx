@@ -208,12 +208,7 @@ export default function Hamburger({ size = 34, color = "white" }) {
         .hamburger-icon-wrapper {
           transition: transform 0.2s;
         }
-        /* Hide hamburger icon on desktop */
-        @media (min-width: 901px) {
-          .hamburger-icon-wrapper {
-            display: none !important;
-          }
-        }
+        
         /* Hamburger icon size for mobile */
         @media (max-width: 600px) {
           .hamburger-icon-wrapper svg {

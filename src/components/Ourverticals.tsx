@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
 interface VerticalCardProps {
@@ -90,17 +89,16 @@ const OurVerticals: React.FC = () => {
           </p>
         </div>
         <Swiper
-          modules={[Autoplay]}
           spaceBetween={16}
-          slidesPerView={1}
+          slidesPerView={1.2}
+          centeredSlides={true}
           loop={true}
-          autoplay={{ delay: 2500, disableOnInteraction: false }}
           className="w-full"
           breakpoints={{
-            0: { slidesPerView: 1, spaceBetween: 12 },
-            640: { slidesPerView: 1, spaceBetween: 16 },
-            768: { slidesPerView: 2, spaceBetween: 24 },
-            1024: { slidesPerView: 3, spaceBetween: 32 },
+            0: { slidesPerView: 1.5, spaceBetween: 12, centeredSlides: true },
+            640: { slidesPerView: 1.5, spaceBetween: 16, centeredSlides: true },
+            768: { slidesPerView: 2, spaceBetween: 24, centeredSlides: false },
+            1024: { slidesPerView: 3, spaceBetween: 32, centeredSlides: false },
           }}
         >
           {verticals.map((vertical, index) => (
