@@ -1,17 +1,17 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Hamburger from "./Hamburger";
-import Link  from "next/link";
+import Link from "next/link";
 import Image from "next/image";
 
 const navLinks = [
   {
     label: "REAL ESTATE",
-    href: "#",
+    href: "/RealEstatePage",
     submenu: [
       {
         label: "RESIDENTIAL",
-        href: "/HillViewPage",
+        href: "/RealEstatePage#residential", 
         image: "/Herocarousel/Royal Nest Hill View Parking Area Evening.jpg",
         description: "Eco-friendly buildings with green solutions",
       },
@@ -40,7 +40,7 @@ const navLinks = [
         description: "Modern comforts and exceptional service for every guest",
       }
     ],
-  },  
+  },
   {
     label: "SERVICES",
     href: "#",
@@ -76,7 +76,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Show navbar when scrolling up or at the top
       if (currentScrollY < lastScrollY || currentScrollY < 100) {
         setIsVisible(true);
@@ -84,12 +84,12 @@ export default function Navbar() {
         // Hide navbar when scrolling down
         setIsVisible(false);
       }
-      
+
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -119,14 +119,22 @@ export default function Navbar() {
       }}
     >
       {/* Top Row: Menu Icon, Logo, Contact Us */}
-      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", width: "100%", marginTop: "1rem", minHeight: "60px" }}>
+      <div className="navbar-top-row" style={{
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        marginTop: "1rem",
+        minHeight: "60px"
+      }}>
         {/* Menu Icon */}
-        <div style={{ position: "absolute", top: "25%", left: "5%", display: "flex", alignItems: "center" }}>
+        <div className="navbar-hamburger">
           <Hamburger size={34} color="white" />
         </div>
         {/* Logo */}
         <Link href="/">
-          <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", height: "60px", width: "80px", minWidth: 200}}>
+          <div className="navbar-logo">
             <Image
               src="/Royalnest.png"
               alt="Royal Nest Logo"
@@ -139,17 +147,6 @@ export default function Navbar() {
         <Link
           href="/Contact"
           className="navbar-contact-link"
-          style={{
-            position: "absolute",
-            right: "18px",
-            top: "18px",
-            color: "#fff",
-            textDecoration: "none",
-            fontWeight: 400,
-            fontSize: "0.8rem",
-            letterSpacing: 1,
-            marginTop: 0,
-          }}
         >
           CONTACT US
         </Link>

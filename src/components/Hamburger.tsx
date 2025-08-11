@@ -4,19 +4,9 @@ import Link from "next/link";
 
 const menuLinks = [
   { label: "About Us", href: "/Aboutus" },
-  {
-    label: "Residential",
-    submenu: [
-      { label: "Delivered Projects", href: "#" },
-      { label: "Ongoing Projects", href: "#" },
-      { label: "Upcoming Projects", href: "#" },
-    ],
-  },
-  { label: "Construction Material", href: "#" },
-  { label: "Hospitality", submenu: [
-    { label: "Hotel Xenious", href: "#" },
-    { label: "Radisson Amritsar", href: "#" },
-  ], },
+  { label: "Residential", href: "/RealEstatePage#residential" },
+  { label: "Construction Material", href: "/RealEstatePage#construction-material" },
+  { label: "Hospitality", href: "#" },
   { label: "Integrated Facility Management", href: "#" },
   { label: "Health & Fitness", href: "#" },
   { label: "Agriculture & Food Processing", href: "#" },
@@ -24,7 +14,7 @@ const menuLinks = [
   { label: "Careers", href: "#" },
 ];
 const socialIcons = [
-  { label: "LinkedIn", icon: (
+   { label: "LinkedIn", icon: (
     <svg width="25" height="25" viewBox="0 0 24 24" fill="black"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
   ) },
   { label: "Facebook", icon: (
@@ -40,7 +30,6 @@ const socialIcons = [
 
 export default function Hamburger({ size = 34, color = "white" }) {
   const [open, setOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
 
   return (
     <>
@@ -110,79 +99,21 @@ export default function Hamburger({ size = 34, color = "white" }) {
             {/* Menu Links */}
             <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "1rem" }}>
               {menuLinks.map((link, idx) => (
-                <React.Fragment key={link.label}>
-                  {link.submenu ? (
-                    <div style={{ position: "relative" }}>
-                      <div
-                        style={{
-                          color: "#222",
-                          textDecoration: "none",
-                          fontSize: "1rem",
-                          fontWeight: 400,
-                          letterSpacing: 1,
-                          marginBottom: idx === 6 ? "0.2rem" : 0,
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.5rem",
-                        }}
-                        onClick={() => setDropdownOpen(dropdownOpen === link.label ? null : link.label)}
-                      >
-                        {link.label}
-                        <span style={{ fontSize: "0.8em" }}>{dropdownOpen === link.label ? "▲" : "▼"}</span>
-                      </div>
-                      {dropdownOpen === link.label && (
-                        <div
-                          style={{
-                            background: "#fff",
-                            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                            borderRadius: 4,
-                            margin: "0.3rem 0 0.7rem 1rem",
-                            padding: "0.2rem 0",
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "0.1rem",
-                          }}
-                        >
-                          {link.submenu.map((sublink) => (
-                            <Link
-                              key={sublink.label}
-                              href={sublink.href}
-                              style={{
-                                display: "block",
-                                color: "#222",
-                                textDecoration: "none",
-                                padding: "0.5rem 1rem",
-                                fontSize: "0.95rem",
-                                fontWeight: 400,
-                                whiteSpace: "nowrap",
-                              }}
-                              onClick={() => setOpen(false)}
-                            >
-                              {sublink.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      style={{
-                        color: "#222",
-                        textDecoration: "none",
-                        fontSize: "1rem",
-                        fontWeight: 400,
-                        letterSpacing: 1,
-                        marginBottom: idx === 6 ? "0.2rem" : 0,
-                      }}
-                      onClick={() => setOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </React.Fragment>
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  style={{
+                    color: "#222",
+                    textDecoration: "none",
+                    fontSize: "1rem",
+                    fontWeight: 400,
+                    letterSpacing: 1,
+                    marginBottom: idx === 6 ? "0.2rem" : 0,
+                  }}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
               ))}
               {/* Contact Us and Social Icons */}
               <div>
@@ -239,16 +170,6 @@ export default function Hamburger({ size = 34, color = "white" }) {
             max-width: 70vw !important;
             padding: 2rem 1.5rem 1.2rem 1.5rem !important;
           }
-        }
-        /* Make sidebar scrollable if content overflows */
-        .hamburger-sidebar {
-          overflow-y: auto;
-          scrollbar-width: thin;
-        }
-        /* Overlay z-index and transition */
-        .hamburger-overlay {
-          z-index: 99;
-          transition: background 0.2s;
         }
       `}</style>
     </>
