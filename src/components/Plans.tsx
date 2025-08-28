@@ -18,9 +18,13 @@ const plans = [
   {
     title: "Floor Plan",
     images: [
-      "/plans/floor1.jpg",
-      "/plans/floor2.jpg",
-      "/plans/floor3.jpg",
+      "/plans/TOWER-C UNIT 1,3,4 & 5_page-0001.jpg",
+      "/plans/TOWER-C UNIT- 2_page-0001.jpg",
+      "/plans/UNIT 3.jpg",
+      "/plans/TOWER A GROUND FLOOR  UNIT 3_page-0001.jpg",
+      "/plans/TOWER B - GROUND FLOOR  UNIT 1_page-0001.jpg",
+      "/plans/TOWER B - GROUND FLOOR  UNIT 4_page-0001.jpg",
+      "/plans/UNIT 1.jpg",
     ],
   },
   {
@@ -83,13 +87,15 @@ export default function PlanSection() {
                 className="border-4 border-blue-500 shadow-lg rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
                 onClick={() => setModalImage(img)}
               >
-                <Image
-                  src={img}
-                  alt={`${activeTab.title} ${i + 1}`}
-                  width={800}
-                  height={600}
-                  className="object-contain"
-                />
+                {/* FIXED SIZE IMAGE CONTAINER */}
+                <div className="w-full h-64 md:h-80 relative">
+                  <Image
+                    src={img}
+                    alt={`${activeTab.title} ${i + 1}`}
+                    fill
+                    className="object-cover" 
+                  />
+                </div>
               </div>
             </SwiperSlide>
           ))}
@@ -112,7 +118,7 @@ export default function PlanSection() {
             alt="Zoomed Plan"
             width={1200}
             height={800}
-            className="rounded-lg"
+            className="rounded-lg object-contain"
           />
         )}
       </Modal>
