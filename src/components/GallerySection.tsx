@@ -6,76 +6,45 @@ import Modal from "react-modal";
 
 const galleryTabs = {
   Elevation: [
-    "/gallery/elevation1.jpg",
-    "/gallery/elevation2.jpg",
-    "/gallery/elevation3.jpg",
-    "/gallery/elevation4.jpg",
-    "/gallery/elevation5.jpg",
-    "/gallery/elevation6.jpg",
-    "/gallery/elevation7.jpg",
+    "/Gallery/Royal Nest Hill View  Swimming pool.jpg",
+    "/Gallery/Royal Nest Hill View  TOWER C NIGHT.jpg",
+    "/Gallery/Royal Nest Hill View  TOWER C.jpg",
+    "/Gallery/Royal Nest Hill View Aerial View.jpg",
+    "/Gallery/Royal Nest Hill View Fountain Area.jpg",
+    "/Gallery/Royal Nest Hill View Parking Area Evening.jpg",
+    "/Gallery/Royal Nest Hill View Penthouse Terrace.jpg",
+    "/Gallery/Royal Nest Hill View Pool to Landscape Area.jpg"
   ],
-  Interior: [
-    "/gallery/interior1.jpg",
-    "/gallery/interior2.jpg",
-    "/gallery/interior3.jpg",
-    "/gallery/interior4.jpg",
-    "/gallery/interior5.jpg",
-  ]
 } as const;
 
-type GalleryTabKey = keyof typeof galleryTabs;
-
 export default function GallerySection() {
-  const [activeTab, setActiveTab] = useState<GalleryTabKey>("Elevation");
+  // Only use Elevation images
+  const images = galleryTabs.Elevation; 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
-  const [visibleCount, setVisibleCount] = useState(5); // show 5 initially
+  const [visibleCount, setVisibleCount] = useState(6); // show 6 initially
 
   const openModal = (img: string) => {
     setSelectedImage(img);
     setIsModalOpen(true);
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedImage("");
-  };
-
-  const handleTabChange = (tab: GalleryTabKey) => {
-    setActiveTab(tab);
-    setVisibleCount(5); // reset visible count when tab changes
   };
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 5); // load 5 more each click
   };
 
-  const currentImages = galleryTabs[activeTab].slice(0, visibleCount);
+  const currentImages = images.slice(0, visibleCount);
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-6">
       <h2 className="text-4xl font-bold text-center mb-8 text-black">Gallery</h2>
-
-      {/* Tabs */}
-      <div className="flex flex-wrap justify-center gap-4 mb-10">
-        {Object.keys(galleryTabs).map((tab) => (
-          <button
-            key={tab}
-            onClick={() => handleTabChange(tab as GalleryTabKey)}
-            className={`px-4 py-2 rounded-md font-medium transition ${
-              activeTab === tab
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
-
       {/* Image Grid */}
       <motion.div
-        key={activeTab + visibleCount} // triggers animation when more are loaded
+        key={visibleCount} // animation triggers when loading more images
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
@@ -88,7 +57,7 @@ export default function GallerySection() {
           >
             <Image
               src={src}
-              alt={`${activeTab} ${index + 1}`}
+              alt={`Elevation ${index + 1}`}
               fill
               loading="lazy"
               className="object-cover object-center"
@@ -100,9 +69,8 @@ export default function GallerySection() {
           </div>
         ))}
       </motion.div>
-
       {/* Load More Button */}
-      {visibleCount < galleryTabs[activeTab].length && (
+      {visibleCount < images.length && (
         <div className="flex justify-center mt-10">
           <button
             onClick={handleLoadMore}
@@ -112,7 +80,6 @@ export default function GallerySection() {
           </button>
         </div>
       )}
-
       {/* Modal */}
       <Modal
         isOpen={isModalOpen}

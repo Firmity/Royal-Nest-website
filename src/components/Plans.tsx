@@ -10,10 +10,7 @@ import "swiper/css/navigation";
 const plans = [
   {
     title: "Master Plan",
-    images: [
-      "/plans/master1.jpg",
-      "/plans/master2.jpg",
-    ],
+    images: ["/plans/10-10-2023 HILL VIEW SITE PLAN (master).png"],
   },
   {
     title: "Floor Plan",
@@ -25,13 +22,6 @@ const plans = [
       "/plans/TOWER B - GROUND FLOOR  UNIT 1_page-0001.jpg",
       "/plans/TOWER B - GROUND FLOOR  UNIT 4_page-0001.jpg",
       "/plans/UNIT 1.jpg",
-    ],
-  },
-  {
-    title: "Isometric View",
-    images: [
-      "/plans/iso1.jpg",
-      "/plans/iso2.jpg",
     ],
   },
 ];
@@ -69,37 +59,57 @@ export default function PlanSection() {
         {activeTab.title}
       </div>
 
-      {/* Swiper Carousel */}
+      {/* Responsive Image Display */}
       <div className="p-6">
-        <Swiper
-          modules={[Navigation]}
-          navigation
-          spaceBetween={20}
-          slidesPerView={1}
-          breakpoints={{
-            640: { slidesPerView: 1 },
-            1024: { slidesPerView: 2 },
-          }}
-        >
-          {activeTab.images.map((img, i) => (
-            <SwiperSlide key={i}>
-              <div
-                className="border-4 border-blue-500 shadow-lg rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
-                onClick={() => setModalImage(img)}
-              >
-                {/* FIXED SIZE IMAGE CONTAINER */}
-                <div className="w-full h-64 md:h-80 relative">
-                  <Image
-                    src={img}
-                    alt={`${activeTab.title} ${i + 1}`}
-                    fill
-                    className="object-cover" 
-                  />
-                </div>
+        {activeTab.title === "Master Plan" ? (
+          <div className="flex justify-center">
+            <div
+              className="border-4 border-blue-500 shadow-lg rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300
+        bg-white"
+              style={{ maxWidth: "900px", width: "100%" }}
+              onClick={() => setModalImage(activeTab.images[0])}
+            >
+              <div className="relative w-full" style={{ height: "480px" }}>
+                <Image
+                  src={activeTab.images[0]}
+                  alt="Master Plan"
+                  fill
+                  className="object-contain"
+                  style={{ background: "#fff" }}
+                />
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            </div>
+          </div>
+        ) : (
+          <Swiper
+            modules={[Navigation]}
+            navigation
+            spaceBetween={20}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              1024: { slidesPerView: 2 },
+            }}
+          >
+            {activeTab.images.map((img, i) => (
+              <SwiperSlide key={i}>
+                <div
+                  className="border-4 border-blue-500 shadow-lg rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
+                  onClick={() => setModalImage(img)}
+                >
+                  <div className="w-full h-64 md:h-80 relative">
+                    <Image
+                      src={img}
+                      alt={`${activeTab.title} ${i + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
 
       {/* Modal */}
