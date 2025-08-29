@@ -554,66 +554,81 @@ export default function HillViewPage() {
         {/* Location Buttons */}
         <div className="flex flex-wrap justify-center mb-2 gap-4">
           <button
-            className={`${baseButtonClass} ${
-              activePopup === "shopping"
-                ? "bg-green-600 hover:bg-green-700 focus:ring-green-300"
-                : blueGradientButtonClass
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-semibold shadow-md transform transition
+      hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4
+      focus-visible:ring-green-400 focus-visible:ring-offset-2 select-none ${
+        activePopup === "shopping"
+          ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white ring-0"
+          : "bg-gray-100 text-green-900 border border-green-200 shadow-sm"
+      }`}
             onClick={() => {
               setActivePopup((prev) =>
                 prev === "shopping" ? null : "shopping"
               );
             }}
+            aria-pressed={activePopup === "shopping"}
           >
-            Shopping &amp; Restaurants Location
+            Shopping &amp; Restaurants
           </button>
           <button
-            className={`${baseButtonClass} ${
-              activePopup === "banks"
-                ? "bg-green-600 hover:bg-green-700 focus:ring-green-300"
-                : blueGradientButtonClass
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-semibold shadow-md transform transition
+      hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4
+      focus-visible:ring-green-400 focus-visible:ring-offset-2 select-none ${
+        activePopup === "banks"
+          ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white ring-0"
+          : "bg-gray-100 text-green-900 border border-green-200 shadow-sm"
+      }`}
             onClick={() => {
               setActivePopup((prev) => (prev === "banks" ? null : "banks"));
             }}
+            aria-pressed={activePopup === "banks"}
           >
             Banks
           </button>
           <button
-            className={`${baseButtonClass} ${
-              activePopup === "hospitals"
-                ? "bg-green-600 hover:bg-green-700 focus:ring-green-300"
-                : blueGradientButtonClass
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-semibold shadow-md transform transition
+      hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4
+      focus-visible:ring-green-400 focus-visible:ring-offset-2 select-none ${
+        activePopup === "hospitals"
+          ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white ring-0"
+          : "bg-gray-100 text-green-900 border border-green-200 shadow-sm"
+      }`}
             onClick={() => {
               setActivePopup((prev) =>
                 prev === "hospitals" ? null : "hospitals"
               );
             }}
+            aria-pressed={activePopup === "hospitals"}
           >
             Hospitals &amp; Clinics
           </button>
           <button
-            className={`${baseButtonClass} ${
-              activePopup === "schools"
-                ? "bg-green-600 hover:bg-green-700 focus:ring-green-300"
-                : blueGradientButtonClass
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-semibold shadow-md transform transition
+      hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4
+      focus-visible:ring-green-400 focus-visible:ring-offset-2 select-none ${
+        activePopup === "schools"
+          ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white ring-0"
+          : "bg-gray-100 text-green-900 border border-green-200 shadow-sm"
+      }`}
             onClick={() => {
               setActivePopup((prev) => (prev === "schools" ? null : "schools"));
             }}
+            aria-pressed={activePopup === "schools"}
           >
             Schools
           </button>
           <button
-            className={`${baseButtonClass} ${
-              activePopup === "popular"
-                ? "bg-green-600 hover:bg-green-700 focus:ring-green-300"
-                : blueGradientButtonClass
-            }`}
+            className={`px-6 py-2 rounded-full text-sm font-semibold shadow-md transform transition
+      hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4
+      focus-visible:ring-green-400 focus-visible:ring-offset-2 select-none ${
+        activePopup === "popular"
+          ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white ring-0"
+          : "bg-gray-100 text-green-900 border border-green-200 shadow-sm"
+      }`}
             onClick={() => {
               setActivePopup((prev) => (prev === "popular" ? null : "popular"));
             }}
+            aria-pressed={activePopup === "popular"}
           >
             Popular Places
           </button>
@@ -666,92 +681,134 @@ export default function HillViewPage() {
           {/* Popup slider content */}
           {activePopup && (
             <div
-              className="absolute bottom-3 left-0.5 z-20 border border-green-400 rounded-3xl shadow-2xl bg-white/60 p-4 flex flex-col items-center transition-all duration-300 animate-fade-in"
+              className="absolute bottom-3 left-2 z-20 transition-all duration-300 animate-fade-in"
               style={{
-                width: "313px",
-                height: "215px",
-                background:
-                  "linear-gradient(120deg, rgba(163,250,210,0.68) 0%, rgba(28,199,149,0.12) 100%)",
-                clipPath: `
-          polygon(
-            0 0,
-            100% 0,
-            100% 100%,
-            56px 100%,
-            56px 170px,
-            0 170px
-          )
-        `,
-                WebkitClipPath: `
-          polygon(
-            0 0,
-            100% 0,
-            100% 100%,
-            56px 100%,
-            56px 170px,
-            0 170px
-          )
-        `,
-                boxShadow:
-                  "0 6px 48px 0 rgba(52,199,89,0.18), 0 2px 4px 0 rgba(0,0,0,0.12)",
-                overflow: "hidden",
+                width: "305px",
+                height: "214px",
+                // keep pointer events for inner content
+                pointerEvents: "auto",
               }}
             >
-              <div className="flex items-center justify-between w-full mb-3 pr-2">
-                <button
-                  className="p-2 rounded-full bg-green-100 hover:bg-green-500 transition-all duration-200"
-                  title="Previous"
-                  onClick={handlePrev}
-                >
-                  <FaArrowLeft className="text-green-600 w-5 h-5" />
-                </button>
-                <span
-                  className="flex-1 mx-2 font-bold text-lg border border-green-300 shadow bg-green-500/20 rounded-xl px-3 py-1 text-green-900 text-center break-words"
-                  style={{
-                    minHeight: 38,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "1.05rem",
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {locationsData[activePopup][slideIdx].name}
-                </span>
-                <button
-                  className="p-2 rounded-full bg-green-100 hover:bg-green-500 transition-all duration-200"
-                  title="Next"
-                  onClick={handleNext}
-                >
-                  <FaArrowRight className="text-green-600 w-5 h-5" />
-                </button>
-              </div>
-              <div className="flex justify-center items-center w-full mb-3 h-[90px]">
-                <div className="bg-white/70 rounded-2xl shadow-lg border-2 border-green-200 p-1 flex items-center justify-center w-[85px] h-[85px]">
-                  <Image
-                    src={locationsData[activePopup][slideIdx].images[0].src}
-                    alt={locationsData[activePopup][slideIdx].images[0].alt}
-                    width={70}
-                    height={70}
-                    className="object-contain rounded-xl drop-shadow-lg"
-                    style={{
-                      background:
-                        "linear-gradient(140deg, #C9FFC6 50%, #F6FFFB 100%)",
-                      width: "70px",
-                      height: "70px",
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                {locationsData[activePopup].map((_, i) => (
+              {/* BACKGROUND SHAPE: single SVG path for continuous border + fill */}
+              <svg
+                viewBox="0 0 305 214"
+                preserveAspectRatio="none"
+                className="absolute inset-0 w-[305px] h-[214px] -z-10"
+                style={{ left: 0, top: 0 }}
+                aria-hidden="true"
+                focusable="false"
+              >
+                <defs>
+                  <linearGradient
+                    id="popupGrad"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stopColor="#A3FAD2" stopOpacity="0.68" />
+                    <stop
+                      offset="100%"
+                      stopColor="#1CC795"
+                      stopOpacity="0.12"
+                    />
+                  </linearGradient>
+                </defs>
+                {/* single continuous path that matches the notch shape — stroke = border */}
+                <path
+                  d="M6 6 H298 A6 6 0 0 1 304 12 V209 A6 6 0 0 1 298 215 H47 V170 H6 Z"
+                  fill="url(#popupGrad)"
+                  stroke="#28e696"
+                  strokeWidth="3"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                />
+                {/* optional subtle inner outline to match original look */}
+                <path
+                  d="M6 6 H298 A6 6 0 0 1 304 12 V209 A6 6 0 0 1 298 215 H47 V170 H6 Z"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeOpacity="0.06"
+                  strokeWidth="1"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                />
+              </svg>
+
+              {/* CONTENT: keep the original layout inside, but without the clipped polygon */}
+              <div
+                className="relative z-10 border-transparent rounded-3xl p-4 flex flex-col items-center"
+                style={{
+                  width: "304px",
+                  height: "215px",
+                  // give inner padding so content doesn't overlap stroke visually
+                  boxSizing: "border-box",
+                }}
+              >
+                <div className="flex items-center justify-between w-full mb-3 pr-2">
+                  <button
+                    className="p-2 rounded-full bg-white/80 hover:bg-green-50 transition-all duration-200 shadow-sm"
+                    title="Previous"
+                    onClick={handlePrev}
+                    aria-label="Previous location"
+                  >
+                    <FaArrowLeft className="text-green-600 w-5 h-5" />
+                  </button>
                   <span
-                    key={i}
-                    className={`block w-2 h-2 rounded-full ${
-                      i === slideIdx ? "bg-green-600 scale-125" : "bg-green-300"
-                    } transition-all`}
-                  />
-                ))}
+                    className="flex-1 mx-2 font-bold text-lg border border-green-300 shadow bg-green-500/10 rounded-xl px-3 py-1 text-green-900 text-center break-words"
+                    style={{
+                      minHeight: 38,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.05rem",
+                      lineHeight: 1.2,
+                      backgroundClip: "padding-box",
+                    }}
+                  >
+                    {locationsData[activePopup][slideIdx].name}
+                  </span>
+                  <button
+                    className="p-2 rounded-full bg-white/80 hover:bg-green-50 transition-all duration-200 shadow-sm"
+                    title="Next"
+                    onClick={handleNext}
+                    aria-label="Next location"
+                  >
+                    <FaArrowRight className="text-green-600 w-5 h-5" />
+                  </button>
+                </div>
+
+                <div className="flex justify-center items-center w-full mb-3 h-[90px]">
+                  <div className="bg-white/90 rounded-2xl shadow-lg border-2 border-green-200 p-1 flex items-center justify-center w-[85px] h-[85px]">
+                    <Image
+                      src={locationsData[activePopup][slideIdx].images[0].src}
+                      alt={locationsData[activePopup][slideIdx].images[0].alt}
+                      width={70}
+                      height={70}
+                      className="object-contain rounded-xl drop-shadow-lg"
+                      style={{
+                        background:
+                          "linear-gradient(140deg, #C9FFC6 50%, #F6FFFB 100%)",
+                        width: "70px",
+                        height: "70px",
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-2">
+                  {locationsData[activePopup].map((_, i) => (
+                    <span
+                      key={i}
+                      className={`block w-2 h-2 rounded-full ${
+                        i === slideIdx
+                          ? "bg-green-600 scale-125"
+                          : "bg-green-300"
+                      } transition-all`}
+                      aria-hidden
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           )}
@@ -776,7 +833,7 @@ export default function HillViewPage() {
           }
         }
         .animate-fade-in {
-          animation: fade-in 0.3s ease forwards;
+          animation: fade-in 0.26s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
         }
       `}</style>
     </div>
