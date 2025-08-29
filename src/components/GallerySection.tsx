@@ -1,108 +1,124 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import Modal from "react-modal";
+import {
+  FaTimes,
+  FaArrowLeft,
+  FaArrowRight,
+  FaSearchPlus,
+  FaSearchMinus,
+  FaExpand,
+  FaCompress,
+} from "react-icons/fa";
+
+if (typeof window !== "undefined") {
+  Modal.setAppElement("body");
+}
 
 const galleryTabs = {
   Elevation: [
-    "/gallery/elevation1.jpg",
-    "/gallery/elevation2.jpg",
-    "/gallery/elevation3.jpg",
-    "/gallery/elevation4.jpg",
-    "/gallery/elevation5.jpg",
-    "/gallery/elevation6.jpg",
-    "/gallery/elevation7.jpg",
+    "/Gallery/Royal Nest Hill View  Swimming pool.jpg",
+    "/Gallery/Royal Nest Hill View  TOWER C NIGHT.jpg",
+    "/Gallery/Royal Nest Hill View  TOWER C.jpg",
+    "/Gallery/Royal Nest Hill View Aerial View.jpg",
+    "/Gallery/Royal Nest Hill View Fountain Area.jpg",
+    "/Gallery/Royal Nest Hill View Parking Area Evening.jpg",
+    "/Gallery/Royal Nest Hill View Penthouse Terrace.jpg",
+    "/Gallery/Royal Nest Hill View Pool to Landscape Area.jpg",
   ],
-  Interior: [
-    "/gallery/interior1.jpg",
-    "/gallery/interior2.jpg",
-    "/gallery/interior3.jpg",
-    "/gallery/interior4.jpg",
-    "/gallery/interior5.jpg",
-  ]
 } as const;
 
-type GalleryTabKey = keyof typeof galleryTabs;
-
 export default function GallerySection() {
-  const [activeTab, setActiveTab] = useState<GalleryTabKey>("Elevation");
+  const images = galleryTabs.Elevation;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("");
-  const [visibleCount, setVisibleCount] = useState(5); // show 5 initially
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(6);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
 
-  const openModal = (img: string) => {
-    setSelectedImage(img);
+  const openModal = (index: number) => {
+    setCurrentIndex(index);
+    setZoomLevel(1);
+    setIsFullScreen(false);
     setIsModalOpen(true);
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedImage("");
+    setZoomLevel(1);
+    setIsFullScreen(false);
   };
 
-  const handleTabChange = (tab: GalleryTabKey) => {
-    setActiveTab(tab);
-    setVisibleCount(5); // reset visible count when tab changes
+  const gotoNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setZoomLevel(1);
   };
+
+  const gotoPrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+    setZoomLevel(1);
+  };
+
+  const zoomIn = () => {
+    setZoomLevel((prev) => Math.min(prev + 0.5, 3));
+  };
+
+  const zoomOut = () => {
+    setZoomLevel((prev) => Math.max(prev - 0.5, 1));
+  };
+
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      imageWrapperRef.current?.requestFullscreen();
+      setIsFullScreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullScreen(false);
+    }
+  };
+
+  useEffect(() => {
+    setZoomLevel(1);
+    setIsFullScreen(false);
+  }, [currentIndex, isModalOpen]);
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 5); // load 5 more each click
+    setVisibleCount((prev) => Math.min(prev + 5, images.length));
   };
 
-  const currentImages = galleryTabs[activeTab].slice(0, visibleCount);
+  const currentImages = images.slice(0, visibleCount);
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-6">
       <h2 className="text-4xl font-bold text-center mb-8 text-black">Gallery</h2>
 
-      {/* Tabs */}
-      <div className="flex flex-wrap justify-center gap-4 mb-10">
-        {Object.keys(galleryTabs).map((tab) => (
-          <button
-            key={tab}
-            onClick={() => handleTabChange(tab as GalleryTabKey)}
-            className={`px-4 py-2 rounded-md font-medium transition ${
-              activeTab === tab
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
-
       {/* Image Grid */}
-      <motion.div
-        key={activeTab + visibleCount} // triggers animation when more are loaded
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {currentImages.map((src, index) => (
           <div
             key={index}
             className="relative w-full h-64 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition cursor-pointer"
-            onClick={() => openModal(src)}
+            onClick={() => openModal(index)}
           >
             <Image
               src={src}
-              alt={`${activeTab} ${index + 1}`}
+              alt={`Elevation ${index + 1}`}
               fill
               loading="lazy"
               className="object-cover object-center"
             />
-            {/* Zoom icon */}
             <div className="absolute bottom-2 right-2 bg-white/80 p-1 rounded-full">
               🔍
             </div>
           </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* Load More Button */}
-      {visibleCount < galleryTabs[activeTab].length && (
+      {visibleCount < images.length && (
         <div className="flex justify-center mt-10">
           <button
             onClick={handleLoadMore}
@@ -117,23 +133,83 @@ export default function GallerySection() {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
-        className="max-w-4xl mx-auto mt-24 outline-none"
-        overlayClassName="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+        className="fixed inset-0 w-screen h-screen flex items-center justify-center bg-black/90 m-0 p-0 outline-none"
+        overlayClassName="fixed inset-0 bg-black/90 z-50"
       >
-        <div className="relative w-full h-[80vh] bg-white rounded-xl overflow-hidden shadow-lg">
+        <div
+          ref={imageWrapperRef}
+          className="relative w-full h-full flex items-center justify-center overflow-hidden"
+          style={{ cursor: zoomLevel > 1 ? "grab" : "auto" }}
+        >
           <Image
-            src={selectedImage}
-            alt="Zoomed Image"
+            src={images[currentIndex]}
+            alt={`Gallery Image ${currentIndex + 1}`}
             fill
-            loading="eager"
-            className="object-contain"
+            className="object-contain w-full h-full transition-transform duration-300"
+            style={{ transform: `scale(${zoomLevel})` }}
+            priority
           />
+
+          {/* Close Button */}
           <button
             onClick={closeModal}
-            className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full z-50"
+            className="absolute top-8 right-10 z-50 bg-white/85 hover:bg-red-500 hover:text-white transition-colors rounded-full p-3 shadow-xl"
+            aria-label="Close"
+            style={{ fontSize: 28 }}
           >
-            ✕
+            <FaTimes />
           </button>
+
+          {/* Left/Right Arrows */}
+          <button
+            onClick={gotoPrev}
+            className="absolute left-8 top-1/2 -translate-y-1/2 z-50 bg-white/85 hover:bg-blue-600 hover:text-white transition-colors rounded-full p-3 shadow-xl"
+            aria-label="Previous"
+            style={{ fontSize: 32 }}
+          >
+            <FaArrowLeft />
+          </button>
+          <button
+            onClick={gotoNext}
+            className="absolute right-8 top-1/2 -translate-y-1/2 z-50 bg-white/85 hover:bg-blue-600 hover:text-white transition-colors rounded-full p-3 shadow-xl"
+            aria-label="Next"
+            style={{ fontSize: 32 }}
+          >
+            <FaArrowRight />
+          </button>
+
+          {/* Zoom & Full Screen Controls */}
+          <div className="absolute bottom-10 right-12 z-50 flex flex-col gap-4">
+            <button
+              onClick={zoomIn}
+              className="bg-white/85 hover:bg-blue-600 hover:text-white transition-colors rounded-full p-3 shadow-xl mb-2"
+              aria-label="Zoom in"
+              style={{ fontSize: 25 }}
+            >
+              <FaSearchPlus />
+            </button>
+            <button
+              onClick={zoomOut}
+              className="bg-white/85 hover:bg-blue-600 hover:text-white transition-colors rounded-full p-3 shadow-xl mb-2"
+              aria-label="Zoom out"
+              style={{ fontSize: 25 }}
+            >
+              <FaSearchMinus />
+            </button>
+            <button
+              onClick={toggleFullScreen}
+              className="bg-white/85 hover:bg-blue-600 hover:text-white transition-colors rounded-full p-3 shadow-xl"
+              aria-label="Toggle full screen"
+              style={{ fontSize: 25 }}
+            >
+              {isFullScreen ? <FaCompress /> : <FaExpand />}
+            </button>
+          </div>
+
+          {/* Image Position Counter */}
+          <div className="absolute bottom-4 w-full text-center text-white font-bold tracking-widest z-50 shadow-lg drop-shadow-lg">
+            {currentIndex + 1} / {images.length}
+          </div>
         </div>
       </Modal>
     </section>
