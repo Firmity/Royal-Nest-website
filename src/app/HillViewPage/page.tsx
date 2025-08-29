@@ -551,7 +551,7 @@ export default function HillViewPage() {
           Nearby Options
         </h2>
 
-        {/* Location Buttons */}
+        {/* Location 5 Buttons */}
         <div className="flex flex-wrap justify-center mb-2 gap-4">
           <button
             className={`px-6 py-2 rounded-full text-sm font-semibold shadow-md transform transition
