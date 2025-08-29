@@ -1,11 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import "swiper/css";
 import "swiper/css/navigation";
 import ContactPage from "@/components/contactpage";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import {
   FaLeaf,
   FaSun,
@@ -171,34 +176,75 @@ const locationsData: Record<string, Destination[]> = {
   ],
 };
 
+// Advanced spec icons (replace "/spec-icons/..." with your actual icons)
+const specIcons: Record<string, string> = {
+  Structure: "/specification/structure.jpeg",
+  Flooring: "/specification/flooring.png",
+  Bathrooms: "/specification/bathroom.png",
+  Doors: "/specification/doors.png",
+  Windows: "/specification/windows.jpeg",
+  Paint: "/specification/paint.png",
+  Kitchen: "/specification/kitchen.png",
+  Balcony: "/specification/balcony.jpeg",
+};
+
+const CARD_WIDTH = 125;
+const GAP = 18;
+const VISIBLE_COUNT = 5;
+
 export default function HillViewPage() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 300], [0, 80]);
 
-  // Track which pop-up is open & the slide index inside the open popup
+  // For location popup slider
   const [activePopup, setActivePopup] = useState<
     "shopping" | "hospitals" | "schools" | "banks" | "popular" | null
   >("shopping");
   const [slideIdx, setSlideIdx] = useState(0);
 
-  // Reset slide index on popup change
+  // Specification carousel state
+  const [centerIdx, setCenterIdx] = useState(2);
+  const [hoverIdx, setHoverIdx] = useState<number | null>(null);
+
+  // Carousel wrap helper
+  const mod = (n: number, m: number) => ((n % m) + m) % m;
+  const positions = Array(VISIBLE_COUNT)
+    .fill(0)
+    .map((_, i) => mod(centerIdx - 2 + i, project.specifications.length));
+
+  // Carousel nav
+  const prev = () =>
+    setCenterIdx((c) => mod(c - 1, project.specifications.length));
+  const next = () =>
+    setCenterIdx((c) => mod(c + 1, project.specifications.length));
+
+  // Location popup slider nav
   React.useEffect(() => {
     setSlideIdx(0);
   }, [activePopup]);
 
-  function handlePrev() {
+  const handlePrev = () => {
     if (!activePopup) return;
     setSlideIdx((prev) =>
       prev === 0 ? locationsData[activePopup].length - 1 : prev - 1
     );
-  }
+  };
 
-  function handleNext() {
+  const handleNext = () => {
     if (!activePopup) return;
     setSlideIdx((prev) =>
       prev === locationsData[activePopup].length - 1 ? 0 : prev + 1
     );
-  }
+  };
+
+  // Dots
+  const goTo = (i: number) => setCenterIdx(i);
+
+  // Optional autoplay for specs
+  React.useEffect(() => {
+    const id = setInterval(() => next(), 4500);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <div className="w-full min-h-screen bg-white relative">
@@ -354,29 +400,150 @@ export default function HillViewPage() {
         <PlanSection />
       </section>
 
-      {/* Specifications */}
-      {project.specifications?.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 py-12">
-          <h2 className="text-3xl font-semibold text-center mb-8 text-black">
-            Specifications
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-700">
-            {project.specifications.map((spec, idx) => (
-              <motion.div
-                key={idx}
-                className="bg-gray-50 p-4 rounded-lg shadow hover:shadow-md transition"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05, duration: 0.4 }}
-              >
-                <p className="font-semibold">{spec.label}</p>
-                <p className="text-sm">{spec.value}</p>
-              </motion.div>
-            ))}
+      {/* Specifications section with advanced glorious slider */}
+      <section className="max-w-6xl mx-auto px-4 py-12 flex flex-col items-center">
+        <h2 className="text-4xl font-bold text-center mb-4 text-black">
+          Specification
+        </h2>
+        <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto text-lg font-medium">
+          “We see technology not just as a tool, but as a way to simplify life
+          and make everyday experiences better.”
+        </p>
+        <div
+          className="flex items-center w-full justify-center relative"
+          style={{ minHeight: 200 }}
+        >
+          {/* Arrow Nav */}
+          <button
+            onClick={() =>
+              setCenterIdx(mod(centerIdx - 1, project.specifications.length))
+            }
+            className="absolute left-0 z-20 p-0.5 rounded-full text-green-500 hover:bg-green-100 transition-all disabled:opacity-50"
+            aria-label="Previous"
+          >
+            <svg className="w-8 h-8" viewBox="0 0 24 24">
+              <path
+                d="M15 19l-7-7 7-7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+            </svg>
+          </button>
+
+          {/* Cards */}
+          <div className="flex relative gap-[18px] justify-center items-center w-[720px] overflow-visible">
+            {positions.map((idx, slot) => {
+              const spec = project.specifications[idx];
+              const isHover = hoverIdx === idx;
+              return (
+                <motion.div
+                  key={idx}
+                  className={`relative flex flex-col items-center cursor-pointer`}
+                  style={{
+                    width: CARD_WIDTH,
+                    zIndex: isHover ? 50 : 10 + slot * 2,
+                  }}
+                  onMouseEnter={() => setHoverIdx(idx)}
+                  onMouseLeave={() => setHoverIdx(null)}
+                  whileHover={{ y: -15, scale: 1.13 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 15 }}
+                >
+                  <motion.div
+                    className="w-20 h-20 bg-white border border-gray-200 rounded-lg flex items-center justify-center shadow-md"
+                    style={{
+                      boxShadow: isHover
+                        ? "0 8px 40px 0 #22c55e55, 0 1.5px 5px #2221"
+                        : "0 1px 8px #0001",
+                    }}
+                    animate={{
+                      background: isHover
+                        ? "linear-gradient(135deg,#22c55e22,#abffc822)"
+                        : "#fff",
+                    }}
+                  >
+                    <Image
+                      src={specIcons[spec.label] || "/spec-icons/default.png"}
+                      alt={spec.label}
+                      width={48}
+                      height={48}
+                      className="object-contain select-none"
+                    />
+                  </motion.div>
+                  <span
+                    className={`mt-2 text-sm font-bold ${
+                      isHover ? "text-green-600" : ""
+                    }`}
+                  >
+                    {spec.label}
+                  </span>
+                  <AnimatePresence>
+                    {isHover && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                        animate={{
+                          opacity: 1,
+                          y: -65,
+                          scale: 1.03,
+                          boxShadow:
+                            "0 6px 34px 0 #22c55e70, 0 1.5px 5px #2222",
+                        }}
+                        exit={{ opacity: 0, y: 8, scale: 0.9 }}
+                        className="absolute left-1/2 -translate-x-1/2 w-56 bg-green-500 text-white rounded-xl px-5 py-4 text-center text-base shadow-2xl pointer-events-none"
+                        style={{
+                          fontWeight: 500,
+                          lineHeight: 1.45,
+                          top: "-52px",
+                          border: "2.5px solid #28e696",
+                        }}
+                      >
+                        <span style={{ fontFamily: "'Inter',sans-serif" }}>
+                          {spec.value}
+                        </span>
+                        <div className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 w-4 h-4 bg-green-500 rotate-45 border-b-2 border-r-2 border-green-200" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
           </div>
-        </section>
-      )}
+
+          {/* Arrow Nav */}
+          <button
+            onClick={() =>
+              setCenterIdx(mod(centerIdx + 1, project.specifications.length))
+            }
+            className="absolute right-0 z-20 p-0.5 rounded-full text-green-500 hover:bg-green-100 transition-all disabled:opacity-50"
+            aria-label="Next"
+          >
+            <svg className="w-8 h-8" viewBox="0 0 24 24">
+              <path
+                d="M9 5l7 7-7 7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-6 mt-7">
+          {project.specifications.map((_, i) => (
+            <button
+              key={i}
+              className={`w-4 h-4 rounded-full transition-all ${
+                i === centerIdx
+                  ? "bg-green-600 scale-125 shadow-lg"
+                  : "bg-green-300"
+              } `}
+              onClick={() => goTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      </section>
 
       {/* Google Map Embed */}
       <section className="max-w-6xl mx-auto px-4 py-12 relative">
@@ -499,22 +666,38 @@ export default function HillViewPage() {
           {/* Popup slider content */}
           {activePopup && (
             <div
-              className={`absolute bottom-2 left-16 
-      backdrop-blur-md bg-white/50 border border-green-400 
-      rounded-3xl shadow-2xl z-20 p-4 flex flex-col items-center
-      w-[250px] h-[215px] transition-all duration-300 animate-fade-in`}
+              className="absolute bottom-3 left-0.5 z-20 border border-green-400 rounded-3xl shadow-2xl bg-white/60 p-4 flex flex-col items-center transition-all duration-300 animate-fade-in"
               style={{
-                boxShadow:
-                  "0 6px 48px 0 rgba(52,199,89,0.18), 0 2px 4px 0 rgba(0,0,0,0.12)",
+                width: "313px",
+                height: "215px",
                 background:
                   "linear-gradient(120deg, rgba(163,250,210,0.68) 0%, rgba(28,199,149,0.12) 100%)",
-                minWidth: "250px",
-                minHeight: "215px",
-                maxWidth: "250px",
-                maxHeight: "215px",
+                clipPath: `
+          polygon(
+            0 0,
+            100% 0,
+            100% 100%,
+            56px 100%,
+            56px 170px,
+            0 170px
+          )
+        `,
+                WebkitClipPath: `
+          polygon(
+            0 0,
+            100% 0,
+            100% 100%,
+            56px 100%,
+            56px 170px,
+            0 170px
+          )
+        `,
+                boxShadow:
+                  "0 6px 48px 0 rgba(52,199,89,0.18), 0 2px 4px 0 rgba(0,0,0,0.12)",
+                overflow: "hidden",
               }}
             >
-              <div className="flex items-center justify-between w-full mb-3">
+              <div className="flex items-center justify-between w-full mb-3 pr-2">
                 <button
                   className="p-2 rounded-full bg-green-100 hover:bg-green-500 transition-all duration-200"
                   title="Previous"
@@ -579,6 +762,23 @@ export default function HillViewPage() {
       <section className="max-w-6xl mx-auto px-4 py-12">
         <ContactPage />
       </section>
+
+      {/* Popup animation style */}
+      <style jsx global>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease forwards;
+        }
+      `}</style>
     </div>
   );
 }

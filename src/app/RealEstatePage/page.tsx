@@ -9,11 +9,21 @@ const properties = [
     status: "Ongoing",
     image: "/Herocarousel/Royal Nest Hill View  Swimming pool.jpg",
     name: "Royal Nest Hill View",
-    price: "₹ 2 Cr",
+    price: "₹ 65 Lakhs",
     units: "2 BHK & 3 BHK",
     category: "Residential",
     registration: ["RERA-JK-JMU-1-2025"],
   },
+  {
+    status: "Ongoing",
+    image: "/Herocarousel/front top view_rn forestview.jpg",
+    name: "Royal Nest Forest View",
+    price: "₹ 45 Lakhs",
+    units: "2 BHK & 3 BHK",
+    category: "Residential",
+    registration: ["HPRERAKAN2023036/P"],
+    exploreLink: "https://royalnestdharamshala.com/", // external URL
+  }
 ];
 
 const categories = [
@@ -133,25 +143,38 @@ export default function RealEstatePage() {
                       ))}
                     </ul>
                   </div>
-                  <Link href={`/HillViewPage`} className="inline-block mt-6">
-                    <button className="px-6 py-2 border-2 border-blue-700 text-blue-700 bg-blue-50 font-semibold rounded-full text-lg hover:bg-blue-100 transition">
-                      Explore
-                    </button>
-                  </Link>
+                  {prop.exploreLink ? (
+                    <a
+                      href={prop.exploreLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block mt-6"
+                    >
+                      <button className="px-6 py-2 border-2 border-blue-700 text-blue-700 bg-blue-50 font-semibold rounded-full text-lg hover:bg-blue-100 transition">
+                        Explore
+                      </button>
+                    </a>
+                  ) : (
+                    <Link href={`/HillViewPage`} className="inline-block mt-6">
+                      <button className="px-6 py-2 border-2 border-blue-700 text-blue-700 bg-blue-50 font-semibold rounded-full text-lg hover:bg-blue-100 transition">
+                        Explore
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </div>
             ))
           )}
-
-          {/* Scroll to Top Button */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="fixed right-4 bottom-4 bg-blue-700 text-white rounded-full p-3 shadow-md hover:bg-blue-800 transition"
-            aria-label="Scroll to Top"
-          >
-            ↑
-          </button>
         </main>
+
+        {/* Scroll to Top Button */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed right-4 bottom-4 bg-blue-700 text-white rounded-full p-3 shadow-md hover:bg-blue-800 transition"
+          aria-label="Scroll to Top"
+        >
+          ↑
+        </button>
       </div>
     </div>
   );

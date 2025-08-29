@@ -1,24 +1,32 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { ChevronDown, Facebook, Linkedin, Youtube, Instagram } from 'lucide-react';
-import Link from 'next/link';
+import React, { useState } from "react";
+import {
+  ChevronDown,
+  Facebook,
+  Linkedin,
+  Youtube,
+  Instagram,
+} from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
-  type SectionType = 'officeAddress' | 'registeredOffice' | 'customerCare';
-  
-  const [expandedSections, setExpandedSections] = useState<Record<SectionType, boolean>>({
+  type SectionType = "officeAddress" | "registeredOffice" | "customerCare";
+
+  const [expandedSections, setExpandedSections] = useState<
+    Record<SectionType, boolean>
+  >({
     officeAddress: true,
     registeredOffice: false,
-    customerCare: false
+    customerCare: false,
   });
 
   const toggleSection = (section: SectionType) => {
-    setExpandedSections(prev => {
+    setExpandedSections((prev) => {
       const newState: Record<SectionType, boolean> = {
         officeAddress: false,
         registeredOffice: false,
-        customerCare: false
+        customerCare: false,
       };
       newState[section] = !prev[section];
       return newState;
@@ -43,9 +51,11 @@ const Footer = () => {
               </div>
             </div>
 
-            <Link href="/Aboutus"><div>
-              <h3 className="font-semibold text-lg mb-4">About Us</h3>
-            </div></Link>
+            <Link href="/Aboutus">
+              <div>
+                <h3 className="font-semibold text-lg mb-4">About Us</h3>
+              </div>
+            </Link>
 
             <div>
               <h3 className="font-semibold text-lg mb-4">Career</h3>
@@ -55,64 +65,96 @@ const Footer = () => {
               <h3 className="font-semibold text-lg mb-4">Media</h3>
             </div>
             <Link href="/Contact">
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
-            </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
+              </div>
             </Link>
           </div>
           {/* Left Column - Contact Information */}
           <div className="space-y-6">
             <div>
-              <button 
-                onClick={() => toggleSection('officeAddress')}
+              <button
+                onClick={() => toggleSection("officeAddress")}
                 className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
               >
                 Head Office address
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.officeAddress ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    expandedSections.officeAddress ? "rotate-180" : ""
+                  }`}
+                />
               </button>
               {expandedSections.officeAddress && (
                 <div className="space-y-2 text-sm text-gray-300">
                   <p>Business Park, Ground Floor, H-64, Sec-63,</p>
                   <p>Noida, Distt: Gautam Buddh Nagar,</p>
                   <p>Uttar Pradesh-201301</p>
-                  <p>Contact No. 0120 4245551</p>
+                  <p>
+                    Contact No. 0120 4245551
+                    <br />
+                    +91 95400 09950
+                  </p>
                 </div>
               )}
             </div>
 
             <div>
-              <button 
-                onClick={() => toggleSection('registeredOffice')}
+              <button
+                onClick={() => toggleSection("registeredOffice")}
                 className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
               >
                 Site office
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.registeredOffice ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    expandedSections.registeredOffice ? "rotate-180" : ""
+                  }`}
+                />
               </button>
               {expandedSections.registeredOffice && (
                 <div className="space-y-2 text-sm text-gray-300">
                   <p className="font-semibold">Royal Nest Hill View Office:</p>
-                  <p>Sector-D, Sainik Colony Extension, Chowadi Road, Jammu, Jammu & Kashmir-180011</p>
-                  <p>📱 +91 9596796757; +91 9541900771; +91 9541900772; +91 9541900773</p>
+                  <p>
+                    Sector-D, Sainik Colony Extension, Chowadi Road, Jammu,
+                    Jammu & Kashmir-180011
+                  </p>
+                  <p>
+                    📱 +91 9596796757; +91 9541900771; +91 9541900772; +91
+                    9541900773
+                  </p>
                   <hr className="my-2 border-gray-700" />
                   <p className="font-semibold">Royalnest Forest View Office:</p>
-                  <p>Khata-14, Cabin No.-1, Khatoni-7, Mohal Chakban Gharoh, Tehsil: Dharamshala, District:- Kangra, Himachal Pradesh-176216</p>
+                  <p>
+                    Khata-14, Cabin No.-1, Khatoni-7, Mohal Chakban Gharoh,
+                    Tehsil: Dharamshala, District:- Kangra, Himachal
+                    Pradesh-176216
+                  </p>
                   <p>📱 +91 9818655411; +91 9833885190</p>
-                  <p>📧 sales@royalnestdharamshala.com / crm@royalnestdharamshala.com</p>
+                  <p>
+                    📧 sales@royalnestdharamshala.com /
+                    crm@royalnestdharamshala.com
+                  </p>
                   <hr className="my-2 border-gray-700" />
                   <p className="font-semibold">Royal Nest Sapphire Office:</p>
-                  <p>Village Deeli (Kunjwani), Kunjwani Bypass, (Near Anutham Hotel and Audi Showroom) Jammu, Jammu & Kashmir-180010</p>
+                  <p>
+                    Village Deeli (Kunjwani), Kunjwani Bypass, (Near Anutham
+                    Hotel and Audi Showroom) Jammu, Jammu & Kashmir-180010
+                  </p>
                   <p>📱 +91 9596796757</p>
                 </div>
               )}
             </div>
 
             <div>
-              <button 
-                onClick={() => toggleSection('customerCare')}
+              <button
+                onClick={() => toggleSection("customerCare")}
                 className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
               >
                 Customer care
-                <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.customerCare ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    expandedSections.customerCare ? "rotate-180" : ""
+                  }`}
+                />
               </button>
               {expandedSections.customerCare && (
                 <div className="space-y-2 text-sm text-gray-300">
@@ -177,16 +219,31 @@ const Footer = () => {
             {/* Social Media Icons */}
             <div className="flex items-center justify-center space-x-4">
               <div className="flex space-x-3">
-                <a href="#" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61579142082504#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+                >
                   <Facebook className="w-4 h-4" />
                 </a>
-                <a href="#" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+
+                <a
+                  href="#"
+                  className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+                >
                   <Linkedin className="w-4 h-4" />
                 </a>
-                <a href="#" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                <a
+                  href="#"
+                  className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+                >
                   <Youtube className="w-4 h-4" />
                 </a>
-                <a href="#" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                <a
+                  href="#"
+                  className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+                >
                   <Instagram className="w-4 h-4" />
                 </a>
               </div>

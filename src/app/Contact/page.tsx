@@ -12,7 +12,7 @@ const markers = [
         name: "Head Office",
         address: "Business Park, Ground Floor, H-64, Sec-63, Noida, Distt: Gautam Buddh Nagar, Uttar Pradesh-201301",
         representative: "",
-        phone: "0120 4245551",
+        phone: "0120 4245551; +91 95400 09950",
         email: "",
         mapQuery: "Ufirm+Business+Park",
     },
