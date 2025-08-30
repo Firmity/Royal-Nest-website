@@ -120,7 +120,6 @@ const AnimatedNumber = ({ to }: { to: number }) => {
 
   useEffect(() => {
     if (!inView) return;
-    const start = 0;
     const duration = 1500;
     const startTime = performance.now();
     function animate(now: number) {

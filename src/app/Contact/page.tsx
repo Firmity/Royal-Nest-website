@@ -1,10 +1,6 @@
 "use client";
-
-import Image from "next/image";
 import Navbar from "@/components/Navbar";
-import { useState, useRef } from "react";
-import { FaLinkedin, FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
 import ContactPage from "@/components/contactpage";
 
 const markers = [
@@ -51,53 +47,7 @@ const markers = [
 ];
 
 export default function Contact() {
-    const [, setIsVerified] = useState(false);
-    const recaptchaRef = useRef<ReCAPTCHA>(null);
     const [selectedLocation, setSelectedLocation] = useState(markers[0]);
-
-    const [form, setForm] = useState({
-        name: "", email: "", phone: "", category: "", message: "", receiveComm: true
-    });
-
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-    ) => {
-        const { name, value, type } = e.target;
-        const checked = (type === 'checkbox' && 'checked' in e.target) ? (e.target as HTMLInputElement).checked : undefined;
-        setForm({ ...form, [name]: type === 'checkbox' ? checked : value });
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(form),
-        });
-        const data = await response.json();
-        if (data.success) {
-            alert("Your message has been sent!");
-            setForm({ name: "", email: "", phone: "", category: "", message: "", receiveComm: true });
-        } else {
-            alert("Something went wrong. Please try again.");
-        }
-    };
-
-    const handleCaptchaSubmission = async (token: string | null) => {
-        if (token) {
-            await fetch("/api", {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ token }),
-            });
-            setIsVerified(true);
-        } else {
-            setIsVerified(false);
-        }
-    };
 
     return (
         <div className="bg-white">

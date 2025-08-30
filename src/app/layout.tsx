@@ -29,10 +29,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClientRoot>{children}</ClientRoot>
-
-        {/* WhatsApp Widget Script */}
-        {/* Use next/script for proper client-side loading */}
-        {/* @ts-ignore */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
