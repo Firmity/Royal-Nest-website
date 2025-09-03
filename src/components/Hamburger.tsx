@@ -65,13 +65,7 @@ export default function Hamburger({ size = 34, color = "white" }) {
         }}
         onClick={() => setOpen(true)}
       >
-        <svg
-          width={size}
-          height={size}
-          viewBox="0 0 48 48"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect y="12" width="48" height="2" rx="1" fill={color} />
           <rect y="25" width="48" height="2" rx="1" fill={color} />
           <rect y="38" width="48" height="2" rx="1" fill={color} />
@@ -119,106 +113,97 @@ export default function Hamburger({ size = 34, color = "white" }) {
             }}
           >
             {/* Cross Icon */}
-            <div
-              style={{
-                alignSelf: "flex-start",
-                marginBottom: "2.5rem",
-                cursor: "pointer",
-              }}
-              onClick={() => setOpen(false)}
-            >
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 38 38"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <line
-                  x1="6"
-                  y1="6"
-                  x2="32"
-                  y2="32"
-                  stroke="#222"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="32"
-                  y1="6"
-                  x2="6"
-                  y2="32"
-                  stroke="#222"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
+            <div style={{ alignSelf: "flex-start", marginBottom: "2.5rem", cursor: "pointer" }} onClick={() => setOpen(false)}>
+              <svg width="30" height="30" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="6" y1="6" x2="32" y2="32" stroke="#222" strokeWidth="2" strokeLinecap="round" />
+                <line x1="32" y1="6" x2="6" y2="32" stroke="#222" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </div>
             {/* Menu Links */}
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-              }}
-            >
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "1rem" }}>
               {menuLinks.map((link, idx) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  style={{
-                    color: "#222",
-                    textDecoration: "none",
-                    fontSize: "1rem",
-                    fontWeight: 400,
-                    letterSpacing: 1,
-                    marginBottom: idx === 6 ? "0.2rem" : 0,
-                  }}
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </Link>
+                <React.Fragment key={link.label}>
+                  {link.submenu ? (
+                    <div style={{ position: "relative" }}>
+                      <div
+                        style={{
+                          color: "#222",
+                          textDecoration: "none",
+                          fontSize: "1rem",
+                          fontWeight: 400,
+                          letterSpacing: 1,
+                          marginBottom: idx === 6 ? "0.2rem" : 0,
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                        }}
+                        onClick={() => setDropdownOpen(dropdownOpen === link.label ? null : link.label)}
+                      >
+                        {link.label}
+                        <span style={{ fontSize: "0.8em" }}>{dropdownOpen === link.label ? "▲" : "▼"}</span>
+                      </div>
+                      {dropdownOpen === link.label && (
+                        <div
+                          style={{
+                            background: "#fff",
+                            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                            borderRadius: 4,
+                            margin: "0.3rem 0 0.7rem 1rem",
+                            padding: "0.2rem 0",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "0.1rem",
+                          }}
+                        >
+                          {link.submenu.map((sublink) => (
+                            <Link
+                              key={sublink.label}
+                              href={sublink.href}
+                              style={{
+                                display: "block",
+                                color: "#222",
+                                textDecoration: "none",
+                                padding: "0.5rem 1rem",
+                                fontSize: "0.95rem",
+                                fontWeight: 400,
+                                whiteSpace: "nowrap",
+                              }}
+                              onClick={() => setOpen(false)}
+                            >
+                              {sublink.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      style={{
+                        color: "#222",
+                        textDecoration: "none",
+                        fontSize: "1rem",
+                        fontWeight: 400,
+                        letterSpacing: 1,
+                        marginBottom: idx === 6 ? "0.2rem" : 0,
+                      }}
+                      onClick={() => setOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </React.Fragment>
               ))}
               {/* Contact Us and Social Icons */}
               <div>
-                <Link href="/Contact">
-                  <div
-                    style={{
-                      color: "#222",
-                      fontSize: "1.2rem",
-                      fontWeight: 400,
-                      marginBottom: "0.7rem",
-                    }}
-                  >
-                    Contact Us
-                  </div>
-                </Link>
+                <Link href="/Contact"><div style={{ color: "#222", fontSize: "1.2rem", fontWeight: 400, marginBottom: "0.7rem" }}>Contact Us</div></Link>
                 <div style={{ display: "flex", gap: "0.7rem" }}>
                   {socialIcons.map((icon) => (
-                    <a
-                      key={icon.label}
-                      href={
-                        icon.label === "Facebook"
-                          ? "https://www.facebook.com/profile.php?id=61579142082504"
-                          : icon.label === "LinkedIn"
-                          ? "https://www.linkedin.com/company/your-company-id"
-                          : icon.label === "Instagram"
-                          ? "https://www.instagram.com/yourpage"
-                          : icon.label === "YouTube"
-                          ? "https://www.youtube.com/@yourchannel"
-                          : "#"
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        cursor: "pointer",
-                      }}
-                    >
+                    <span key={icon.label} style={{ display: "inline-flex", alignItems: "center" }}>
                       {icon.icon}
-                    </a>
+                    </span>
                   ))}
                 </div>
               </div>
@@ -266,6 +251,16 @@ export default function Hamburger({ size = 34, color = "white" }) {
             max-width: 70vw !important;
             padding: 2rem 1.5rem 1.2rem 1.5rem !important;
           }
+        }
+        /* Make sidebar scrollable if content overflows */
+        .hamburger-sidebar {
+          overflow-y: auto;
+          scrollbar-width: thin;
+        }
+        /* Overlay z-index and transition */
+        .hamburger-overlay {
+          z-index: 99;
+          transition: background 0.2s;
         }
       `}</style>
     </>
