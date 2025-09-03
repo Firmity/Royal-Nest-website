@@ -335,12 +335,9 @@ export default function HillViewPage() {
         <h2 className="text-3xl font-bold text-center mb-10 text-black">
           Project Highlights
         </h2>
+        {/* Grid for first 6 items with 2 columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
-            {
-              icon: <FaLeaf className="text-green-600 w-6 h-6" />,
-              text: "IGBC Gold Certified Green Building – eco-friendly & energy-efficient design",
-            },
             {
               icon: <FaSun className="text-yellow-500 w-6 h-6" />,
               text: "75% Open Green Landscape Area with curated biodiversity and jogging tracks",
@@ -365,10 +362,6 @@ export default function HillViewPage() {
               icon: <FaSun className="text-orange-400 w-6 h-6" />,
               text: "Glass façade balconies & French windows for panoramic views",
             },
-            {
-              icon: <FaShieldAlt className="text-indigo-600 w-6 h-6" />,
-              text: "Strategically located: 30 min to Airport, 20 min to Railway Station",
-            },
           ].map((item, idx) => (
             <motion.div
               key={idx}
@@ -382,6 +375,25 @@ export default function HillViewPage() {
               <p className="text-gray-700">{item.text}</p>
             </motion.div>
           ))}
+        </div>
+
+        {/* The 7th item centered below */}
+        <div className="flex justify-center mt-6">
+          <motion.div
+            className="flex items-start gap-4 bg-gray-50 p-4 rounded-xl shadow hover:shadow-md transition max-w-xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
+            <div className="flex-shrink-0">
+              <FaShieldAlt className="text-indigo-600 w-6 h-6" />
+            </div>
+            <p className="text-gray-700">
+              Strategically located: 30 min to Airport, 20 min to Railway
+              Station
+            </p>
+          </motion.div>
         </div>
       </section>
 

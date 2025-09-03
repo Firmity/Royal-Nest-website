@@ -113,7 +113,7 @@ export default function ContactPage() {
           >
             {/* Family image */}
             <Image 
-              src="/contact.jpg" 
+              src="/Contact new.png" 
               alt="Family" 
               fill
               className="absolute inset-0 w-full h-full object-contain sm:object-cover bg-white"
