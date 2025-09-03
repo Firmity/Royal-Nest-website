@@ -7,6 +7,8 @@ import {
   Linkedin,
   Youtube,
   Instagram,
+  Phone,
+  Mail,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -44,22 +46,26 @@ const Footer = () => {
             <div>
               <h3 className="font-semibold text-lg mb-4">Projects</h3>
               <div className="space-y-2 text-sm text-gray-300">
-                <p><a
-                  href="/HillViewPage"
-                  className="hover:underline"
-                  target="_self"
-                  rel="noopener"
-                >
-                  Royal Nest Hill View | Jammu
-                </a></p>
-                <p><a
-                  href="https://royalnestdharamshala.com/"
-                  className="hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Royal Nest Forest View | Dharamshala
-                </a></p>
+                <p>
+                  <a
+                    href="/HillViewPage"
+                    className="hover:underline"
+                    target="_self"
+                    rel="noopener"
+                  >
+                    Royal Nest Hill View | Jammu
+                  </a>
+                </p>
+                <p>
+                  <a
+                    href="https://royalnestdharamshala.com/"
+                    className="hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Royal Nest Forest View | Dharamshala
+                  </a>
+                </p>
                 <p>Royal Nest Sapphire | Jammu</p>
                 <p>Royal Nest | Greater Noida</p>
               </div>
@@ -70,11 +76,11 @@ const Footer = () => {
                 <h3 className="font-semibold text-lg mb-4">About Us</h3>
               </div>
             </Link>
-
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Career</h3>
-            </div>
-
+            <Link href="/CareerPage">
+              <div>
+                <h3 className="font-semibold text-lg mb-4">CareerPage</h3>
+              </div>
+            </Link>
             <div>
               <h3 className="font-semibold text-lg mb-4">Media</h3>
             </div>
@@ -103,8 +109,9 @@ const Footer = () => {
                   <p>Business Park, Ground Floor, H-64, Sec-63,</p>
                   <p>Noida, Distt: Gautam Buddh Nagar,</p>
                   <p>Uttar Pradesh-201301</p>
-                  <p>
-                    Phone No. +91 95400 09950
+                  <p className="flex items-center">
+                    <Phone className="w-4 h-4 mr-1 inline" />
+                    Phone: +91 9540009950
                   </p>
                 </div>
               )}
@@ -116,7 +123,6 @@ const Footer = () => {
                 className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
               >
                 Site Office address
-
                 <ChevronDown
                   className={`w-4 h-4 transition-transform ${
                     expandedSections.registeredOffice ? "rotate-180" : ""
@@ -163,8 +169,14 @@ const Footer = () => {
               {expandedSections.customerCare && (
                 <div className="space-y-2 text-sm text-gray-300">
                   <p>Customer Support</p>
-                  <p>Phone: +91 9540009950</p>
-                  <p>Email: info@royalnestgroup.com</p>
+                  <p className="flex items-center">
+                    <Phone className="w-4 h-4 mr-1 inline" />
+                    Phone: +91 9540009950
+                  </p>
+                  <p className="flex items-center">
+                    <Mail className="w-4 h-4 mr-1 inline" />
+                    Email: info@royalnestgroup.com
+                  </p>
                 </div>
               )}
             </div>
