@@ -181,7 +181,7 @@ export default function AboutPage() {
       <Section className="bg-[#faf6ee] relative">
         <div className="max-w-5xl mx-auto flex flex-col items-center">
           <p className="text-lg text-black mb-4 text-center">
-            Royal Nest Group, the flagship brand of Omkar Nest (P) Limited, is a name synonymous with quality, structural integrity, and sustainability in the Indian real estate and infrastructure sector. Founded by visionaries—Late Shri Omkar Nath Shastri, Mr. Kamal Krishan, and current Managing Director Mr. Vimal Kumar—the group has built a legacy rooted in strong foundations, certified green construction, and a commitment to delivering buildings that inspire trust and long-term value.
+          Royal Nest Group, the flagship brand of Omkar Nest (P) Limited, is a name synonymous with quality, structural integrity, and sustainability in the Indian real estate and infrastructure sector. Founded by visionaries—Late Shri Omkar Nath Shastri, Mr. Kamal Krishan, and current Chief Managing & Group Director &quot;Mr. Vimal Kumar&quot; & Managing Director &quot;Mr. Atal Kumar&quot; --- the group has built a legacy rooted in strong foundations, certified green construction, and a commitment to delivering buildings that inspire trust and long-term value.
           </p>
           <div className="w-full flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 mt-6">
             {[

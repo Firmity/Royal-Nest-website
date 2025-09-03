@@ -44,8 +44,22 @@ const Footer = () => {
             <div>
               <h3 className="font-semibold text-lg mb-4">Projects</h3>
               <div className="space-y-2 text-sm text-gray-300">
-                <p>Royal Nest Hill View | Jammu</p>
-                <p>Royal Nest Forest View | Dharamshala</p>
+                <p><a
+                  href="/HillViewPage"
+                  className="hover:underline"
+                  target="_self"
+                  rel="noopener"
+                >
+                  Royal Nest Hill View | Jammu
+                </a></p>
+                <p><a
+                  href="https://royalnestdharamshala.com/"
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Royal Nest Forest View | Dharamshala
+                </a></p>
                 <p>Royal Nest Sapphire | Jammu</p>
                 <p>Royal Nest | Greater Noida</p>
               </div>
@@ -90,9 +104,7 @@ const Footer = () => {
                   <p>Noida, Distt: Gautam Buddh Nagar,</p>
                   <p>Uttar Pradesh-201301</p>
                   <p>
-                    Contact No. 0120 4245551
-                    <br />
-                    +91 95400 09950
+                    Phone No. +91 95400 09950
                   </p>
                 </div>
               )}
@@ -103,7 +115,8 @@ const Footer = () => {
                 onClick={() => toggleSection("registeredOffice")}
                 className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
               >
-                Site office
+                Site Office address
+
                 <ChevronDown
                   className={`w-4 h-4 transition-transform ${
                     expandedSections.registeredOffice ? "rotate-180" : ""
@@ -117,10 +130,7 @@ const Footer = () => {
                     Sector-D, Sainik Colony Extension, Chowadi Road, Jammu,
                     Jammu & Kashmir-180011
                   </p>
-                  <p>
-                    📱 +91 9596796757; +91 9541900771; +91 9541900772; +91
-                    9541900773
-                  </p>
+
                   <hr className="my-2 border-gray-700" />
                   <p className="font-semibold">Royalnest Forest View Office:</p>
                   <p>
@@ -128,18 +138,12 @@ const Footer = () => {
                     Tehsil: Dharamshala, District:- Kangra, Himachal
                     Pradesh-176216
                   </p>
-                  <p>📱 +91 9818655411; +91 9833885190</p>
-                  <p>
-                    📧 sales@royalnestdharamshala.com /
-                    crm@royalnestdharamshala.com
-                  </p>
                   <hr className="my-2 border-gray-700" />
                   <p className="font-semibold">Royal Nest Sapphire Office:</p>
                   <p>
                     Village Deeli (Kunjwani), Kunjwani Bypass, (Near Anutham
                     Hotel and Audi Showroom) Jammu, Jammu & Kashmir-180010
                   </p>
-                  <p>📱 +91 9596796757</p>
                 </div>
               )}
             </div>
@@ -159,8 +163,8 @@ const Footer = () => {
               {expandedSections.customerCare && (
                 <div className="space-y-2 text-sm text-gray-300">
                   <p>Customer Support</p>
-                  <p>Phone: +91 9596796757</p>
-                  <p>Email: support@royalnest.com</p>
+                  <p>Phone: +91 9540009950</p>
+                  <p>Email: info@royalnestgroup.com</p>
                 </div>
               )}
             </div>

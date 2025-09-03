@@ -14,7 +14,7 @@ const menuLinks = [
   { label: "Health & Fitness", href: "#" },
   { label: "Agriculture & Food Processing", href: "#" },
   { label: "Media", href: "#" },
-  { label: "Careers", href: "#" },
+  { label: "Careers", href: "/CareerPage" },
 ];
 const socialIcons = [
   {
