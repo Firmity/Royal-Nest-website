@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import "swiper/css";
@@ -77,6 +78,13 @@ const project = {
   mapEmbedUrl:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3358.292261421136!2d74.91956981006979!3d32.67827297359536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391e9d457db987e7%3A0x50d0229c93f9f5ae!2sRoyal%20Nest%20Hill%20View!5e0!3m2!1sen!2sin!4v1753344228472!5m2!1sen!2sin",
 };
+
+
+const baseButtonClass =
+  "px-5 py-2 rounded-lg font-semibold text-white shadow-md transition duration-300 ease-in-out select-none";
+
+const blueGradientButtonClass =
+  "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 focus:ring-4 focus:ring-blue-300";
 
 type Destination = {
   name: string;
@@ -183,6 +191,8 @@ const specIcons: Record<string, string> = {
 };
 
 const CARD_WIDTH = 125;
+const GAP = 18;
+
 const VISIBLE_COUNT = 5;
 
 export default function HillViewPage() {
@@ -206,6 +216,9 @@ export default function HillViewPage() {
     .map((_, i) => mod(centerIdx - 2 + i, project.specifications.length));
 
   // Carousel nav
+  const prev = () =>
+    setCenterIdx((c) => mod(c - 1, project.specifications.length));
+
   const next = () =>
     setCenterIdx((c) => mod(c + 1, project.specifications.length));
 
@@ -232,13 +245,10 @@ export default function HillViewPage() {
   const goTo = (i: number) => setCenterIdx(i);
 
   // Optional autoplay for specs
-  useEffect(() => {
-  const interval = setInterval(() => {
-    next();
-  }, 3000);
-
-  return () => clearInterval(interval);
-}, [next]); // add next
+  React.useEffect(() => {
+    const id = setInterval(() => next(), 4500);
+    return () => clearInterval(id);
+  }, []);
 
 
   return (
@@ -330,12 +340,9 @@ export default function HillViewPage() {
         <h2 className="text-3xl font-bold text-center mb-10 text-black">
           Project Highlights
         </h2>
+        {/* Grid for first 6 items with 2 columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
-            {
-              icon: <FaLeaf className="text-green-600 w-6 h-6" />,
-              text: "IGBC Gold Certified Green Building – eco-friendly & energy-efficient design",
-            },
             {
               icon: <FaSun className="text-yellow-500 w-6 h-6" />,
               text: "75% Open Green Landscape Area with curated biodiversity and jogging tracks",
@@ -360,10 +367,6 @@ export default function HillViewPage() {
               icon: <FaSun className="text-orange-400 w-6 h-6" />,
               text: "Glass façade balconies & French windows for panoramic views",
             },
-            {
-              icon: <FaShieldAlt className="text-indigo-600 w-6 h-6" />,
-              text: "Strategically located: 30 min to Airport, 20 min to Railway Station",
-            },
           ].map((item, idx) => (
             <motion.div
               key={idx}
@@ -377,6 +380,25 @@ export default function HillViewPage() {
               <p className="text-gray-700">{item.text}</p>
             </motion.div>
           ))}
+        </div>
+
+        {/* The 7th item centered below */}
+        <div className="flex justify-center mt-6">
+          <motion.div
+            className="flex items-start gap-4 bg-gray-50 p-4 rounded-xl shadow hover:shadow-md transition max-w-xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
+            <div className="flex-shrink-0">
+              <FaShieldAlt className="text-indigo-600 w-6 h-6" />
+            </div>
+            <p className="text-gray-700">
+              Strategically located: 30 min to Airport, 20 min to Railway
+              Station
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -546,7 +568,6 @@ export default function HillViewPage() {
           Nearby Options
         </h2>
 
-        {/* Location Buttons */}
         <div className="flex flex-wrap justify-center mb-2 gap-4">
           <button
             className={`px-6 py-2 rounded-full text-sm font-semibold shadow-md transform transition
