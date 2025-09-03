@@ -1,10 +1,6 @@
 "use client";
-
-import Image from "next/image";
 import Navbar from "@/components/Navbar";
-import { useState, useRef } from "react";
-import { FaLinkedin, FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
 import ContactPage from "@/components/contactpage";
 import { FaPhone, FaEnvelope } from "react-icons/fa";
 

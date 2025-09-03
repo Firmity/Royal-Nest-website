@@ -116,6 +116,7 @@ const Footer = () => {
                 className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
               >
                 Site Office address
+
                 <ChevronDown
                   className={`w-4 h-4 transition-transform ${
                     expandedSections.registeredOffice ? "rotate-180" : ""
@@ -137,7 +138,6 @@ const Footer = () => {
                     Tehsil: Dharamshala, District:- Kangra, Himachal
                     Pradesh-176216
                   </p>
-
                   <hr className="my-2 border-gray-700" />
                   <p className="font-semibold">Royal Nest Sapphire Office:</p>
                   <p>
