@@ -55,7 +55,6 @@ export default function RootLayout({
 
         {/* WhatsApp Widget Script */}
         {/* Use next/script for proper client-side loading */}
-        {/* @ts-ignore */}
         <script
           dangerouslySetInnerHTML={{
             __html: `

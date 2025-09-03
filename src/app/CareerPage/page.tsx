@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
+import Image from "next/image";
 
 export default function CareerPage() {
   const [loading, setLoading] = useState(false);
@@ -63,9 +64,10 @@ export default function CareerPage() {
       <main className="flex flex-1 flex-col md:flex-row items-center justify-center gap-10 max-w-7xl mx-auto py-12 px-6">
         {/* Left Side - Photo */}
         <div className="w-full md:w-1/2 flex items-center justify-center bg-white p-6 rounded-xl shadow-lg">
-          <img
+          <Image
             src="/career.jpg"
             alt="Career at Royal Nest"
+            fill
             className="max-w-full h-auto rounded-lg object-cover shadow-xl"
             loading="lazy"
           />
