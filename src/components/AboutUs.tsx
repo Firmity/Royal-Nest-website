@@ -4,7 +4,7 @@ import React from 'react';
 import { motion, easeOut } from 'framer-motion';
 import InfiniteNumbers from './ui/InfiniteNumbers';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 const AboutUs: React.FC = () => {
   // Simple animation variants for images and numbers
@@ -67,7 +67,7 @@ const AboutUs: React.FC = () => {
       {/* Infinite Numbers Section with Images */}
       <div className="relative mt-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left Image */}
+          {/* Left Image
           <motion.div
             className="hidden lg:block w-full"
             initial="hidden"
@@ -83,7 +83,7 @@ const AboutUs: React.FC = () => {
                 className="object-cover"
               />
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* Right Side - Infinite Numbers and Bottom Image */}
           <div className="flex flex-col space-y-8 items-start">
@@ -105,8 +105,8 @@ const AboutUs: React.FC = () => {
             </motion.div>
 
             {/* Bottom Image */}
-            <motion.div
-              className="hidden lg:block w-full"
+            {/* <motion.div
+              className="w-full"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={scaleIn}
@@ -120,7 +120,7 @@ const AboutUs: React.FC = () => {
                   className="object-cover"
                 />
               </div>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </div>
