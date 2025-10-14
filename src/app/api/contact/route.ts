@@ -35,10 +35,10 @@ export async function POST(req: Request) {
         });
 
         return new Response(JSON.stringify({ message: "Email sent successfully" }), { status: 200 });
-    } catch (error: any) {
-        console.error("Email sending error:", error.message || error);
+    } catch (error: unknown) {
+        console.error("Email sending error:", error instanceof Error ? error.message : error);
         return new Response(
-            JSON.stringify({ message: "Failed to send email", error: error.message }),
+            JSON.stringify({ message: "Failed to send email", error: error instanceof Error ? error.message : "Unknown error" }),
             { status: 500 }
         );
     }

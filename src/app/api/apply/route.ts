@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { SendMailOptions } from "nodemailer";
 import { promises as fs } from "fs";
 import path from "path";
 import { tmpdir } from "os";
@@ -42,7 +43,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const mailOptions: any = {
+    const mailOptions: SendMailOptions = {
       from: process.env.EMAIL_USER,
       to: [process.env.EMAIL_USER ?? "", "Nest.atal@gmail.com"],
       replyTo: email,
