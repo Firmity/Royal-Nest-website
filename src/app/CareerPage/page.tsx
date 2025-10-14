@@ -9,12 +9,13 @@ import Navbar from "@/components/Navbar";
 export default function CareerPage() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    designation: "",
-    resume: null as File | null,
-  });
+  name: "",
+  email: "",
+  phone: "",
+  designation: "",
+  designationOther: "",
+  resume: null as File | null,
+});
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -62,7 +63,10 @@ export default function CareerPage() {
       formPayload.append("name", formData.name);
       formPayload.append("email", formData.email);
       formPayload.append("phone", formData.phone);
-      formPayload.append("designation", formData.designation);
+      formPayload.append(
+  "designation",
+  formData.designation === "Other" ? formData.designationOther : formData.designation
+);
       if (formData.resume) {
         formPayload.append("resume", formData.resume);
       }
@@ -81,6 +85,7 @@ export default function CareerPage() {
           email: "",
           phone: "",
           designation: "",
+          designationOther: "",
           resume: null,
         });
         if (fileInputRef.current) {
@@ -211,7 +216,6 @@ export default function CareerPage() {
                 { label: "Full Name", name: "name", type: "text" },
                 { label: "Email Address", name: "email", type: "email" },
                 { label: "Phone Number", name: "phone", type: "tel" },
-                { label: "Designation", name: "designation", type: "text" },
               ].map(({ label, name, type }) => (
                 <motion.div key={name} whileHover={{ scale: 1.01 }}>
                   <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-2">
@@ -238,6 +242,52 @@ export default function CareerPage() {
                   )}
                 </motion.div>
               ))}
+              <motion.div whileHover={{ scale: 1.01 }}>
+  <label htmlFor="designation" className="block text-sm font-medium text-gray-700 mb-2">
+    Designation *
+  </label>
+  <select
+    id="designation"
+    name="designation"
+    required
+    value={formData.designation}
+    onChange={(e) => setFormData((prev) => ({ ...prev, designation: e.target.value }))}
+    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-black ${errors.designation
+        ? "border-red-300 bg-red-50"
+        : "border-gray-300 hover:border-gray-400"
+      }`}
+  >
+    <option value="" disabled>
+      Select Designation
+    </option>
+    <option value="HR">HR</option>
+    <option value="Accounts">Accounts</option>
+    <option value="Civil">Civil</option>
+    <option value="Purchase">Purchase</option>
+    <option value="CRM">CRM</option>
+    <option value="Administrator">Administrator</option>
+    <option value="Sales">Sales</option>
+    <option value="In-house Lawyer">In-house Lawyer</option>
+    <option value="Designer">Designer</option>
+    <option value="Other">Other</option>
+  </select>
+
+  {formData.designation === "Other" && (
+    <input
+      type="text"
+      name="designationOther"
+      placeholder="Please specify"
+      required
+      value={formData.designationOther}
+      onChange={handleInputChange}
+      className="mt-3 rounded-md border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-3 focus:ring-blue-400 transition"
+    />
+  )}
+
+  {errors.designation && (
+    <p className="mt-1 text-sm text-red-600">{errors.designation}</p>
+  )}
+</motion.div>
 
               {/* Resume Upload */}
               <motion.div whileHover={{ scale: 1.01 }}>
