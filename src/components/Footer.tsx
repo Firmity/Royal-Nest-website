@@ -70,11 +70,11 @@ const Footer = () => {
                 <h3 className="font-semibold text-lg mb-4">About Us</h3>
               </div>
             </Link>
-
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Career</h3>
-            </div>
-
+            <Link href="/CareerPage">
+              <div>
+                <h3 className="font-semibold text-lg mb-4">Career</h3>
+              </div>
+            </Link>
             <div>
               <h3 className="font-semibold text-lg mb-4">Media</h3>
             </div>
@@ -93,9 +93,8 @@ const Footer = () => {
               >
                 Head Office address
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    expandedSections.officeAddress ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform ${expandedSections.officeAddress ? "rotate-180" : ""
+                    }`}
                 />
               </button>
               {expandedSections.officeAddress && (
@@ -118,9 +117,8 @@ const Footer = () => {
                 Site Office address
 
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    expandedSections.registeredOffice ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform ${expandedSections.registeredOffice ? "rotate-180" : ""
+                    }`}
                 />
               </button>
               {expandedSections.registeredOffice && (
@@ -155,9 +153,8 @@ const Footer = () => {
               >
                 Customer care
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    expandedSections.customerCare ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform ${expandedSections.customerCare ? "rotate-180" : ""
+                    }`}
                 />
               </button>
               {expandedSections.customerCare && (

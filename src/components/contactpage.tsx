@@ -60,34 +60,42 @@ export default function ContactPage() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  if (!validateForm()) return;
 
-    setIsSubmitting(true);
-    
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      console.log('Form submitted:', formData);
+  setIsSubmitting(true);
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+    console.log("Submission response:", data);
+
+    if (response.ok) {
       setIsSubmitted(true);
       setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        city: ''
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        city: "",
       });
-    } catch (error) {
-      console.error('Submission error:', error);
-    } finally {
-      setIsSubmitting(false);
+    } else {
+      alert("Failed to send email. Please try again.");
     }
-  };
+  } catch (error) {
+    console.error("Submission error:", error);
+    alert("Something went wrong. Please try again later.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const resetForm = () => {
     setIsSubmitted(false);
@@ -95,8 +103,8 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white px-4 sm:px-0">
-      <div className="flex flex-col sm:flex-row min-h-screen">
+    <div className="bg-gradient-to-br from-gray-50 to-white px-4 sm:px-0 py-6">
+      <div className="flex flex-col sm:flex-row ">
         {/* Left Side - Family Photo */}
         <motion.div 
           className="w-full sm:w-1/2 relative overflow-hidden p-2 sm:p-4 sm:pt-6 lg:p-8 xl:p-12 h-auto"
@@ -249,7 +257,7 @@ export default function ContactPage() {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     placeholder="Enter your first name"
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 text-black ${
                       errors.firstName ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
                     }`}
                     required
@@ -275,7 +283,7 @@ export default function ContactPage() {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     placeholder="Enter your last name"
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 text-black ${
                       errors.lastName ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
                     }`}
                     required
@@ -305,7 +313,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="Enter your email address"
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 ${
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 text-black ${
                     errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
                   }`}
                   required
@@ -334,7 +342,7 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleInputChange}
                   placeholder="Enter your phone number"
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 ${
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 text-black ${
                     errors.phone ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
                   }`}
                   required
@@ -363,7 +371,7 @@ export default function ContactPage() {
                   value={formData.city}
                   onChange={handleInputChange}
                   placeholder="Enter your city"
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 ${
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 text-black ${
                     errors.city ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
                   }`}
                   required
