@@ -43,7 +43,7 @@ const OurVerticals: React.FC = () => {
       title: "Residential Real Estate Development",
       imageSrc: "/Herocarousel/Royal Nest Hill View Parking Area Evening.jpg",
       imageAlt: "Luxury Residences - Fountain Area",
-      link: "/residences"
+      link: "/RealEstatePage#residential"
     },
     {
       title: "Hospitality",
@@ -55,7 +55,7 @@ const OurVerticals: React.FC = () => {
       title: "Integrated Facility Management",
       imageSrc: "/Verticals/facility management cleaning.webp",
       imageAlt: "Integrated Facility Management",
-      link: "/infrastructure"
+      link: "https://ufirm.in/"
     },
     {
       title: "Construction Materials",
