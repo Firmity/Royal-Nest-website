@@ -26,8 +26,6 @@ export default function Home() {
       <PopupModal
         show={showModal}
         onClose={() => setShowModal(false)}
-        redirectUrl="/HillViewPage"
-        imageUrl="/tallest residential project royalnest group.png"
       />
     </>
   );
