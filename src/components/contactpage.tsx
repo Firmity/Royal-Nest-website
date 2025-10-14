@@ -5,7 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import Image from "next/image";
 
-export default function ContactPage() {
+interface ContactPageProps {
+  onSubmitSuccess?: () => void; // optional callback for brochure download
+}
+
+export default function ContactPage({ onSubmitSuccess }: ContactPageProps) {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -86,6 +90,9 @@ export default function ContactPage() {
         phone: "",
         city: "",
       });
+       if (onSubmitSuccess) {
+          onSubmitSuccess();
+        }
     } else {
       alert("Failed to send email. Please try again.");
     }

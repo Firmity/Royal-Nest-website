@@ -12,6 +12,14 @@ const PopupModal: React.FC<PopupModalProps> = ({ show, onClose }) => {
     document.body.style.overflow = show ? "hidden" : "auto";
   }, [show]);
 
+   const downloadBrochure = () => {
+    const link = document.createElement("a");
+    link.href = "/Brochure Royalnest Hill View_compressed.pdf"; // place the brochure in public folder
+    link.download = "Royalnest_Brochure";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   if (!show) return null;
 
   return (
@@ -62,7 +70,7 @@ const PopupModal: React.FC<PopupModalProps> = ({ show, onClose }) => {
         </button>
 
         {/* ✅ Keep the ContactPage layout exactly same */}
-        <ContactPage />
+        <ContactPage onSubmitSuccess={downloadBrochure} />
       </div>
     </div>
   );
