@@ -267,6 +267,16 @@ export default function Hamburger({ size = 34, color = "white" }) {
             padding: 2rem 1.5rem 1.2rem 1.5rem !important;
           }
         }
+        /* Make sidebar scrollable if content overflows */
+        .hamburger-sidebar {
+          overflow-y: auto;
+          scrollbar-width: thin;
+        }
+        /* Overlay z-index and transition */
+        .hamburger-overlay {
+          z-index: 99;
+          transition: background 0.2s;
+        }
       `}</style>
     </>
   );
