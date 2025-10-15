@@ -32,7 +32,6 @@ const PopupModal: React.FC<PopupModalProps> = ({ show, onClose }) => {
     setIsSubmitting(true);
 
     try {
-      // 1️⃣ Send data to API to send email
       const res = await fetch("/api/sendEmail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -41,13 +40,14 @@ const PopupModal: React.FC<PopupModalProps> = ({ show, onClose }) => {
 
       if (!res.ok) throw new Error("Failed to send email");
 
-      // 2️⃣ Download brochure
+      // Download brochure
       const link = document.createElement("a");
       link.href = "/Brochure Royalnest Hill View_compressed.pdf";
       link.download = "Royalnest_Brochure";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+
       onClose();
     } catch (error) {
       console.error(error);
@@ -61,22 +61,16 @@ const PopupModal: React.FC<PopupModalProps> = ({ show, onClose }) => {
 
   return (
     <div style={overlayStyle}>
-      <div style={modalStyle}>
+      <div style={modalStyle} className="popup-modal">
+        {/* Close Button */}
         <button onClick={onClose} style={closeButtonStyle}>✕</button>
 
-        {/* Left Side: Image */}
-        <div
-          style={{
-            flex: 1,
-            backgroundImage: "url('/tallest residential project royalnest group.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        ></div>
+        {/* ✅ Left Side: Image (still visible on mobile) */}
+        <div className="popup-image" style={imageSectionStyle}></div>
 
-        {/* Right Side: Form */}
-        <div style={formContainerStyle}>
-          <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: "1rem" }}>
+        {/* ✅ Right Side: Form */}
+        <div className="popup-form" style={formContainerStyle}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: "1rem", textAlign: "center" }}>
             Get the Brochure
           </h2>
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -104,10 +98,57 @@ const PopupModal: React.FC<PopupModalProps> = ({ show, onClose }) => {
           </form>
         </div>
       </div>
+
+      {/* ✅ Inline Responsive CSS */}
+      <style jsx>{`
+        /* Mobile styles */
+        @media (max-width: 768px) {
+          .popup-modal {
+            flex-direction: column;
+            max-width: 90%;
+            height: auto;
+          }
+
+          .popup-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 1rem 1rem 0 0;
+            background-position: center;
+          }
+
+          .popup-form {
+            padding: 1.5rem;
+          }
+
+          .popup-form h2 {
+            font-size: 1.25rem;
+          }
+
+          input {
+            font-size: 0.9rem;
+          }
+
+          button {
+            font-size: 0.95rem;
+          }
+        }
+
+        /* Tablet */
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .popup-modal {
+            max-width: 95%;
+          }
+
+          .popup-form {
+            padding: 1.8rem;
+          }
+        }
+      `}</style>
     </div>
   );
 };
 
+/* ====== Styles ====== */
 const overlayStyle: React.CSSProperties = {
   position: "fixed",
   top: 0,
@@ -133,6 +174,16 @@ const modalStyle: React.CSSProperties = {
   overflow: "hidden",
   display: "flex",
   boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
+};
+
+const imageSectionStyle: React.CSSProperties = {
+  flex: 1,
+  backgroundImage: "url('/tallest residential project royalnest group.png')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  borderTopLeftRadius: "1rem",
+  borderBottomLeftRadius: "1rem",
+  minHeight: "300px",
 };
 
 const closeButtonStyle: React.CSSProperties = {
