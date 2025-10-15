@@ -33,8 +33,8 @@ City: ${city}
         await transporter.sendMail(mailOptions);
 
         return NextResponse.json({ success: true });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Email error:", error);
-        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+        return NextResponse.json({ success: false, error: (error as Error).message }, { status: 500 });
     }
 }
