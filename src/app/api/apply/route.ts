@@ -1,74 +1,75 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { SendMailOptions } from "nodemailer";
+import { promises as fs } from "fs";
+import path from "path";
+import { tmpdir } from "os";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export const runtime = "nodejs"; // Ensure Node APIs are available
 
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const formData = await request.formData();
+    // Parse FormData directly
+    const formData = await req.formData();
 
-    const name = formData.get("name")?.toString() || "";
-    const email = formData.get("email")?.toString() || "";
-    const phone = formData.get("phone")?.toString() || "";
-    let department = formData.get("department")?.toString() || "";
-    const description = formData.get("describe")?.toString() || "";
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
+    const designation = formData.get("designation") as string;
+    const resume = formData.get("resume") as File | null;
 
-    if (department === "Other") {
-      const departmentOther = formData.get("departmentOther")?.toString() || "";
-      department = departmentOther || "";
-    }
-
-    const resumeFile = formData.get("resume") as File | null;
-
-    if (!name || !email || !phone || !department || !description || !resumeFile) {
+    if (!name || !email || !phone || !designation) {
       return NextResponse.json(
-        { success: false, message: "Missing required fields or resume" },
+        { success: false, message: "Missing required fields" },
         { status: 400 }
       );
     }
 
-    const buffer = Buffer.from(await resumeFile.arrayBuffer());
+    // Save resume temporarily if uploaded
+    let resumePath: string | null = null;
+    if (resume) {
+      const buffer = Buffer.from(await resume.arrayBuffer());
+      const tempPath = path.join(tmpdir(), resume.name);
+      await fs.writeFile(tempPath, buffer);
+      resumePath = tempPath;
+    }
 
+    // Configure mail transport
     const transporter = nodemailer.createTransport({
-      host: "smtpout.secureserver.net",
-      port: 465,
-      secure: true,
+      service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
     });
 
-    const mailText = `Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Department: ${department}
-Description: ${description}`;
-
-    await transporter.sendMail({
+    const mailOptions: SendMailOptions = {
       from: process.env.EMAIL_USER,
+      to: [process.env.EMAIL_USER ?? "", "Nest.atal@gmail.com"],
       replyTo: email,
-      to: process.env.RECEIVER_EMAIL,
       subject: `New Career Application from ${name}`,
-      text: mailText,
-      attachments: [
-        {
-          filename: resumeFile.name || "resume",
-          content: buffer,
-          contentType: resumeFile.type || "application/octet-stream",
-        },
-      ],
-    });
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nDesignation: ${designation}`,
+    };
 
-    return NextResponse.json({ success: true, message: "Application sent!" });
+    if (resumePath) {
+      mailOptions.attachments = [
+        {
+          filename: resume?.name ?? "resume",
+          path: resumePath,
+        },
+      ];
+    }
+
+    await transporter.sendMail(mailOptions);
+
+    // Cleanup
+    if (resumePath) await fs.unlink(resumePath);
+
+    return NextResponse.json({ success: true, message: "Application sent successfully!" });
   } catch (error) {
-    console.error("Error processing application:", error);
+    console.error("Career API Error:", error);
     return NextResponse.json(
-      { success: false, message: "Failed to process application." },
+      { success: false, message: "Failed to send application." },
       { status: 500 }
     );
   }

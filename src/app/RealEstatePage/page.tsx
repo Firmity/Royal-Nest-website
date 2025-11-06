@@ -52,7 +52,7 @@ export default function RealEstatePage() {
 
       {/* Header */}
       <header
-        className="relative bg-cover bg-center text-center pt-24 pb-40"
+        className="relative bg-cover bg-center text-center pt-35 pb-40"
         style={{ backgroundImage: "url('/RealEstate/Hero.jpg')" }}
       >
         <h1 className="text-white text-3xl md:text-5xl font-bold drop-shadow-md">
@@ -169,12 +169,12 @@ export default function RealEstatePage() {
 
         {/* Scroll to Top Button */}
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed right-4 bottom-4 bg-blue-700 text-white rounded-full p-3 shadow-md hover:bg-blue-800 transition"
-          aria-label="Scroll to Top"
-        >
-          ↑
-        </button>
+  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+  className="fixed right-4 bottom-4 w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center shadow-md hover:bg-blue-800 transition"
+  aria-label="Scroll to Top"
+>
+  ↑
+</button>
       </div>
     </div>
   );

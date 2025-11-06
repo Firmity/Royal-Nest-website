@@ -46,26 +46,22 @@ const Footer = () => {
             <div>
               <h3 className="font-semibold text-lg mb-4">Projects</h3>
               <div className="space-y-2 text-sm text-gray-300">
-                <p>
-                  <a
-                    href="/HillViewPage"
-                    className="hover:underline"
-                    target="_self"
-                    rel="noopener"
-                  >
-                    Royal Nest Hill View | Jammu
-                  </a>
-                </p>
-                <p>
-                  <a
-                    href="https://royalnestdharamshala.com/"
-                    className="hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Royal Nest Forest View | Dharamshala
-                  </a>
-                </p>
+                <p><a
+                  href="/HillViewPage"
+                  className="hover:underline"
+                  target="_self"
+                  rel="noopener"
+                >
+                  Royal Nest Hill View | Jammu
+                </a></p>
+                <p><a
+                  href="https://royalnestdharamshala.com/"
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Royal Nest Forest View | Dharamshala
+                </a></p>
                 <p>Royal Nest Sapphire | Jammu</p>
                 <p>Royal Nest | Greater Noida</p>
               </div>
@@ -78,7 +74,7 @@ const Footer = () => {
             </Link>
             <Link href="/CareerPage">
               <div>
-                <h3 className="font-semibold text-lg mb-4">CareerPage</h3>
+                <h3 className="font-semibold text-lg mb-4">Career</h3>
               </div>
             </Link>
             <div>
@@ -99,9 +95,8 @@ const Footer = () => {
               >
                 Head Office address
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    expandedSections.officeAddress ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform ${expandedSections.officeAddress ? "rotate-180" : ""
+                    }`}
                 />
               </button>
               {expandedSections.officeAddress && (
@@ -109,9 +104,8 @@ const Footer = () => {
                   <p>Business Park, Ground Floor, H-64, Sec-63,</p>
                   <p>Noida, Distt: Gautam Buddh Nagar,</p>
                   <p>Uttar Pradesh-201301</p>
-                  <p className="flex items-center">
-                    <Phone className="w-4 h-4 mr-1 inline" />
-                    Phone: +91 9540009950
+                  <p>
+                    Phone No. +91 95400 09950
                   </p>
                 </div>
               )}
@@ -124,9 +118,8 @@ const Footer = () => {
               >
                 Site Office address
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    expandedSections.registeredOffice ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform ${expandedSections.registeredOffice ? "rotate-180" : ""
+                    }`}
                 />
               </button>
               {expandedSections.registeredOffice && (
@@ -161,22 +154,15 @@ const Footer = () => {
               >
                 Customer care
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    expandedSections.customerCare ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform ${expandedSections.customerCare ? "rotate-180" : ""
+                    }`}
                 />
               </button>
               {expandedSections.customerCare && (
                 <div className="space-y-2 text-sm text-gray-300">
                   <p>Customer Support</p>
-                  <p className="flex items-center">
-                    <Phone className="w-4 h-4 mr-1 inline" />
-                    Phone: +91 9540009950
-                  </p>
-                  <p className="flex items-center">
-                    <Mail className="w-4 h-4 mr-1 inline" />
-                    Email: info@royalnestgroup.com
-                  </p>
+                  <p>Phone: +91 9540009950</p>
+                  <p>Email: info@royalnestgroup.com</p>
                 </div>
               )}
             </div>

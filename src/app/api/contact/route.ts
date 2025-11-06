@@ -1,47 +1,45 @@
 import nodemailer from "nodemailer";
-import { NextResponse } from "next/server";
 
-export async function POST(request: Request) {
-  try {
-    const data = await request.json();
-    const { firstName, lastName, email, phone, city } = data;
+export async function POST(req: Request) {
+    try {
+        const body = await req.json();
+        const { firstName, lastName, email, phone, city } = body;
 
-    if (!firstName || !lastName || !email || !phone || !city) {
-      return NextResponse.json(
-        { success: false, message: "Missing fields" },
-        { status: 400 }
-      );
+        if (!email) {
+            return new Response(JSON.stringify({ message: "Email is required" }), { status: 400 });
+        }
+
+        const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com", // or your SMTP host
+            port: 465,
+            secure: true, // SSL
+            auth: {
+                user: process.env.EMAIL_USER, // your email
+                pass: process.env.EMAIL_PASS, // app password
+            },
+        });
+
+        // Send mail
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,      // your verified email
+            replyTo: email,                     // user's email
+            to: [process.env.EMAIL_USER ?? "", "Nest.atal@gmail.com"], // multiple recipients
+            subject: `New Contact Form Submission from ${firstName} ${lastName}`,
+            html: `
+    <h2>Contact Form Submission</h2>
+    <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Phone:</strong> ${phone}</p>
+    <p><strong>City:</strong> ${city}</p>
+  `,
+        });
+
+        return new Response(JSON.stringify({ message: "Email sent successfully" }), { status: 200 });
+    } catch (error: unknown) {
+        console.error("Email sending error:", error instanceof Error ? error.message : error);
+        return new Response(
+            JSON.stringify({ message: "Failed to send email", error: error instanceof Error ? error.message : "Unknown error" }),
+            { status: 500 }
+        );
     }
-
-    const transporter = nodemailer.createTransport({
-      host: "smtpout.secureserver.net",
-      port: 465,
-      secure: true, // SSL
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.RECEIVER_EMAIL,
-      subject: `New Contact Submission from ${firstName} ${lastName}`,
-      text: `First Name: ${firstName}
-Last Name: ${lastName}
-Email: ${email}
-Phone: ${phone}
-City: ${city}`,
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    return NextResponse.json({ success: true, message: "Message sent!" });
-  } catch (error) {
-    console.error("POST error:", error);
-    return NextResponse.json(
-      { success: false, message: "Failed to send message." },
-      { status: 500 }
-    );
-  }
 }

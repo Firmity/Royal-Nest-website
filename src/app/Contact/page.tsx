@@ -53,17 +53,7 @@ const markers = [
 ];
 
 export default function Contact() {
-  const [, setIsVerified] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(markers[0]);
-
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    category: "",
-    message: "",
-    receiveComm: true,
-  });
 
   return (
     <div className="bg-white">

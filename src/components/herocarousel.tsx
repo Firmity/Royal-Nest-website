@@ -16,7 +16,7 @@ const slides = [
   {
     image: "/Herocarousel/front top view_rn forestview.jpg",
     title: "Royalnest Forest View | Dharamshala | Himachal Pradesh",
-    link: "#"
+    link: "https://royalnestdharamshala.com/"
   },
   {
     image: "/Herocarousel/ROYAL-SAFIRE-ROAD-17-01-20-HIRES.tif",

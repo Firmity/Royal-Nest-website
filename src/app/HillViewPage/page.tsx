@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
@@ -191,7 +191,6 @@ const specIcons: Record<string, string> = {
 };
 
 const CARD_WIDTH = 125;
-const GAP = 18;
 
 const VISIBLE_COUNT = 5;
 
@@ -216,8 +215,6 @@ export default function HillViewPage() {
     .map((_, i) => mod(centerIdx - 2 + i, project.specifications.length));
 
   // Carousel nav
-  const prev = () =>
-    setCenterIdx((c) => mod(c - 1, project.specifications.length));
 
   const next = () =>
     setCenterIdx((c) => mod(c + 1, project.specifications.length));
@@ -245,10 +242,10 @@ export default function HillViewPage() {
   const goTo = (i: number) => setCenterIdx(i);
 
   // Optional autoplay for specs
-  React.useEffect(() => {
+  useEffect(() => {
     const id = setInterval(() => next(), 4500);
     return () => clearInterval(id);
-  }, []);
+  }, [next]);
 
 
   return (
