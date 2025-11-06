@@ -42,7 +42,7 @@ const PopupModal: React.FC<PopupModalProps> = ({ show, onClose }) => {
 
       // Download brochure
       const link = document.createElement("a");
-      link.href = "/Brochure Royalnest Hill View_compressed.pdf";
+      link.href = "/a4_rera_TCP Approved_royal nest forest view br.pdf";
       link.download = "Royalnest_Brochure";
       document.body.appendChild(link);
       link.click();
@@ -178,7 +178,7 @@ const modalStyle: React.CSSProperties = {
 
 const imageSectionStyle: React.CSSProperties = {
   flex: 1,
-  backgroundImage: "url('/tallest residential project royalnest group.png')",
+  backgroundImage: "url('/DHARAMSHALA,HP.png')",
   backgroundSize: "cover",
   backgroundPosition: "center",
   borderTopLeftRadius: "1rem",

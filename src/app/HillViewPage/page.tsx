@@ -79,13 +79,6 @@ const project = {
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3358.292261421136!2d74.91956981006979!3d32.67827297359536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391e9d457db987e7%3A0x50d0229c93f9f5ae!2sRoyal%20Nest%20Hill%20View!5e0!3m2!1sen!2sin!4v1753344228472!5m2!1sen!2sin",
 };
 
-
-const baseButtonClass =
-  "px-5 py-2 rounded-lg font-semibold text-white shadow-md transition duration-300 ease-in-out select-none";
-
-const blueGradientButtonClass =
-  "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 focus:ring-4 focus:ring-blue-300";
-
 type Destination = {
   name: string;
   images: { src: string; alt: string }[];

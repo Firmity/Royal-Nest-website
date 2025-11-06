@@ -7,8 +7,6 @@ import {
   Linkedin,
   Youtube,
   Instagram,
-  Phone,
-  Mail,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -117,6 +115,7 @@ const Footer = () => {
                 className="flex items-center justify-between w-full text-left font-semibold text-lg mb-3"
               >
                 Site Office address
+
                 <ChevronDown
                   className={`w-4 h-4 transition-transform ${expandedSections.registeredOffice ? "rotate-180" : ""
                     }`}
