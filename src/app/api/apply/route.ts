@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
     const mailOptions: SendMailOptions = {
       from: process.env.EMAIL_USER,
-      to: [process.env.EMAIL_USER ?? "", "Nest.atal@gmail.com"],
+      to: [process.env.EMAIL_USER ?? "", "Nest.atal@gmail.com","richu@ufirm.in"],
       replyTo: email,
       subject: `New Career Application from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nDesignation: ${designation}`,
