@@ -1,5 +1,5 @@
-const fs = require("fs");
-const { google } = require("googleapis");
+import fs from "fs";
+import { google } from "googleapis";
 
 // Load OAuth credentials
 const credentials = JSON.parse(fs.readFileSync("client_secret_140661584368-p7lkmee3l6q5mt9jn5j77ju3o55iaf2t.apps.googleusercontent.com.json"));

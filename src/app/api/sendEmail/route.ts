@@ -4,9 +4,18 @@ import nodemailer from "nodemailer";
 
 export const runtime = "nodejs";
 
+interface LeadPayload {
+  name: string;
+  email: string;
+  phone: string;
+  city: string;
+}
+
 export async function POST(req: Request) {
   try {
-    const { name, email, phone, city } = await req.json();
+    const body = (await req.json()) as LeadPayload;
+
+    const { name, email, phone, city } = body;
 
     if (!name || !email || !phone || !city) {
       return NextResponse.json(
@@ -35,15 +44,7 @@ export async function POST(req: Request) {
       range: "Sheet1!A:E",
       valueInputOption: "RAW",
       requestBody: {
-        values: [
-          [
-            name,
-            email,
-            phone,
-            city,
-            new Date().toLocaleString(),
-          ],
-        ],
+        values: [[name, email, phone, city, new Date().toLocaleString()]],
       },
     });
 
@@ -75,12 +76,19 @@ Saved automatically to Google Sheet ✔
       `,
     });
 
-    return NextResponse.json({ success: true, message: "Lead saved + email sent" });
+    return NextResponse.json({
+      success: true,
+      message: "Lead saved + email sent",
+    });
+  } catch (error) {
+    // ⛔ No "any" used — strongly typed error handling
+    const message =
+      error instanceof Error ? error.message : "Unknown error occurred";
 
-  } catch (error: any) {
     console.error("API Error:", error);
+
     return NextResponse.json(
-      { success: false, message: "Failed", error: error.message },
+      { success: false, message: "Failed", error: message },
       { status: 500 }
     );
   }

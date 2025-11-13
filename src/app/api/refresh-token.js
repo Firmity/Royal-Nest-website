@@ -1,6 +1,6 @@
-const fs = require("fs");
-const readline = require("readline");
-const { google } = require("googleapis");
+import fs from "fs";
+import readline from "readline";
+import { google } from "googleapis";
 
 const credentials = JSON.parse(fs.readFileSync("client_secret_140661584368-v04nnd25lfcaj07evdbpvnquuort4ju6.apps.googleusercontent.com.json"));
 const { client_secret, client_id } = credentials.web;
