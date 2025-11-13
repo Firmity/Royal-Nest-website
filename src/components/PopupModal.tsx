@@ -42,7 +42,7 @@ const PopupModal: React.FC<PopupModalProps> = ({ show, onClose }) => {
 
       // Download brochure
       const link = document.createElement("a");
-      link.href = "/Brochure Royalnest Hill View_compressed.pdf";
+      link.href = "/Brochure_Royalnest_Dharamshala.pdf";
       link.download = "Royalnest_Brochure";
       document.body.appendChild(link);
       link.click();
