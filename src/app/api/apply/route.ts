@@ -1,86 +1,75 @@
 import { NextResponse } from "next/server";
-import { google } from "googleapis";
 import nodemailer from "nodemailer";
+import { SendMailOptions } from "nodemailer";
+import { promises as fs } from "fs";
+import path from "path";
+import { tmpdir } from "os";
 
-export const runtime = "nodejs";
+export const runtime = "nodejs"; // Ensure Node APIs are available
 
 export async function POST(req: Request) {
   try {
-    const { name, email, phone, city } = await req.json();
+    // Parse FormData directly
+    const formData = await req.formData();
 
-    if (!name || !email || !phone || !city) {
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
+    const designation = formData.get("designation") as string;
+    const resume = formData.get("resume") as File | null;
+
+    if (!name || !email || !phone || !designation) {
       return NextResponse.json(
         { success: false, message: "Missing required fields" },
         { status: 400 }
       );
     }
 
-    // -----------------------------------
-    // 🔹 1. SAVE TO GOOGLE SHEETS
-    // -----------------------------------
-    const oAuth2Client = new google.auth.OAuth2(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET,
-      process.env.GOOGLE_REDIRECT_URI
-    );
+    // Save resume temporarily if uploaded
+    let resumePath: string | null = null;
+    if (resume) {
+      const buffer = Buffer.from(await resume.arrayBuffer());
+      const tempPath = path.join(tmpdir(), resume.name);
+      await fs.writeFile(tempPath, buffer);
+      resumePath = tempPath;
+    }
 
-    oAuth2Client.setCredentials({
-      refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
-    });
-
-    const sheets = google.sheets({ version: "v4", auth: oAuth2Client });
-
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "Sheet1!A:E",
-      valueInputOption: "RAW",
-      requestBody: {
-        values: [
-          [
-            name,
-            email,
-            phone,
-            city,
-            new Date().toLocaleString(),
-          ],
-        ],
-      },
-    });
-
-    // -----------------------------------
-    // 🔹 2. SEND EMAIL NOTIFICATION
-    // -----------------------------------
+    // Configure mail transport
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // Gmail App Password
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    await transporter.sendMail({
+    const mailOptions: SendMailOptions = {
       from: process.env.EMAIL_USER,
+      to: [process.env.EMAIL_USER ?? "", "Nest.atal@gmail.com","richu@ufirm.in"],
       replyTo: email,
-      to: [process.env.EMAIL_USER ?? "", "Nest.atal@gmail.com"],
-      subject: "New Brochure Request",
-      text: `
-New Brochure Request Received:
+      subject: `New Career Application from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nDesignation: ${designation}`,
+    };
 
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-City: ${city}
+    if (resumePath) {
+      mailOptions.attachments = [
+        {
+          filename: resume?.name ?? "resume",
+          path: resumePath,
+        },
+      ];
+    }
 
-Saved automatically to Google Sheet ✔
-      `,
-    });
+    await transporter.sendMail(mailOptions);
 
-    return NextResponse.json({ success: true, message: "Lead saved + email sent" });
+    // Cleanup
+    if (resumePath) await fs.unlink(resumePath);
 
-  } catch (error: any) {
-    console.error("API Error:", error);
+    return NextResponse.json({ success: true, message: "Application sent successfully!" });
+  } catch (error) {
+    console.error("Career API Error:", error);
     return NextResponse.json(
-      { success: false, message: "Failed", error: error.message },
+      { success: false, message: "Failed to send application." },
       { status: 500 }
     );
   }
