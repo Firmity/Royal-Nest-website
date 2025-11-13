@@ -178,7 +178,7 @@ const modalStyle: React.CSSProperties = {
 
 const imageSectionStyle: React.CSSProperties = {
   flex: 1,
-  backgroundImage: "url('/tallest residential project royalnest group.png')",
+  backgroundImage: "url('/DHARAMSHALA,HP.png')",
   backgroundSize: "cover",
   backgroundPosition: "center",
   borderTopLeftRadius: "1rem",
