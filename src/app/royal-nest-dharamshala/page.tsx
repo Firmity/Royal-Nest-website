@@ -1514,7 +1514,7 @@ export default function RoyalNestDharamshalaPage() {
       <section className="relative w-full h-screen min-h-[500px] overflow-hidden">
         {images.map((src, i) => (
           <div key={src} className="absolute inset-0 transition-opacity duration-1000" style={{ opacity: i === activeSlide ? 1 : 0 }}>
-            <Image src={src} alt={`Royal Nest Dharamshala ${i + 1}`} fill className="object-cover" priority={i === 0} />
+            <Image src={src} alt={`Royal Nest Forest View ${i + 1}`} fill className="object-cover" priority={i === 0} />
           </div>
         ))}
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/75" />
@@ -1535,13 +1535,10 @@ export default function RoyalNestDharamshalaPage() {
             Shiv Nagar, Dharamshala, Himachal Pradesh
           </p>
           <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs sm:max-w-none sm:w-auto">
-            <button onClick={scrollToForm} className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-white text-slate-900 font-semibold rounded-full hover:bg-slate-100 transition-all duration-200 text-sm tracking-wide shadow-lg">
-              Download Brochure
-            </button>
-            <a href="tel:+919289349995" className="w-full sm:w-auto text-center px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-white/80 text-white font-semibold rounded-full hover:bg-white/15 transition-all duration-200 text-sm tracking-wide shadow-md">
-              Call Us
-            </a>
-          </div>
+  <button onClick={scrollToForm} className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-white text-slate-900 font-semibold rounded-full hover:bg-slate-100 transition-all duration-200 text-sm tracking-wide shadow-lg">
+    Download Brochure
+  </button>
+</div>
         </div>
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
           {images.map((_, i) => (
@@ -1603,15 +1600,21 @@ export default function RoyalNestDharamshalaPage() {
       </section>
 
       {/* ── GALLERY STRIP ── */}
-      <section className="py-4 px-4 sm:py-6 sm:px-6">
-        <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-6xl mx-auto">
-          {["/dharamshala_images (1).webp", "/dharamshala_images (4).webp", "/dharamshala_images (5).webp"].map((src, i) => (
-            <div key={i} className="relative aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden group">
-              <Image src={src} alt={`View ${i + 2}`} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-            </div>
-          ))}
-        </div>
-      </section>
+     <section className="py-4 px-4 sm:py-6 sm:px-6">
+  <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3 max-w-6xl mx-auto">
+    {[
+      "/dharamshala_images (1).webp",
+      "/dharamshala_images (4).webp",
+      "/dharamshala_images (5).webp",
+      "/IMG-20260601-WA0032.jpg.jpeg",
+      "/IMG-20260601-WA0030.jpg.jpeg",
+    ].map((src, i) => (
+      <div key={i} className="relative aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden group">
+        <Image src={src} alt={`View ${i + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* ── AMENITIES ── */}
       <section className="py-12 sm:py-20 px-4 sm:px-6 bg-slate-50">
@@ -1660,35 +1663,109 @@ export default function RoyalNestDharamshalaPage() {
       </section>
 
       {/* ── UNIT SIZES ── */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-slate-900 text-white">
-        <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-12">
-          <p className="text-[#7ec8e3] text-xs uppercase tracking-[0.3em] mb-3">Floor Plans</p>
-          <h2 className="text-3xl sm:text-4xl font-bold">Choose Your Space</h2>
-        </div>
-        <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8">
-          {[
-            { type: "1 BHK", area: "951 sq.ft.", tower: "Tower A", details: [{ k: "Covered Area", v: "741.64 sq.ft." }, { k: "Carpet Area", v: "521.09 sq.ft." }, { k: "Balcony Area", v: "179.97 sq.ft." }] },
-            { type: "2 BHK", area: "1321 sq.ft.", tower: "Tower A", details: [{ k: "Covered Area", v: "1056.83 sq.ft." }, { k: "Carpet Area", v: "775.38 sq.ft." }, { k: "Balcony Area", v: "216.84 sq.ft." }] },
-          ].map(({ type, area, tower, details }) => (
-            <div key={type} className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-7 hover:bg-white/10 transition-colors">
-              <div className="text-[#7ec8e3] text-xs uppercase tracking-widest mb-2">{tower}</div>
-              <div className="text-2xl sm:text-3xl font-bold mb-1">{type}</div>
-              <div className="text-white/60 text-sm mb-5 sm:mb-6">Super Area: {area}</div>
-              <div className="space-y-2">
-                {details.map(({ k, v }) => (
-                  <div key={k} className="flex justify-between text-sm">
-                    <span className="text-white/50">{k}</span>
-                    <span className="text-white font-medium">{v}</span>
-                  </div>
-                ))}
+      {/* ── UNIT SIZES ── */}
+// Tower A + Tower B, each with 1BHK and 2BHK, with floor plan images
+<section className="py-12 sm:py-20 px-4 sm:px-6 bg-slate-900 text-white">
+  <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-12">
+    <p className="text-[#7ec8e3] text-xs uppercase tracking-[0.3em] mb-3">Floor Plans</p>
+    <h2 className="text-3xl sm:text-4xl font-bold">Choose Your Space</h2>
+  </div>
+
+  {/* Tower A */}
+  <div className="max-w-3xl mx-auto mb-8">
+    <p className="text-[#7ec8e3] text-xs uppercase tracking-widest mb-4 text-center">Tower A</p>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8">
+      {[
+        {
+          type: "1 BHK", area: "951 sq.ft.", tower: "Tower A",
+          floorPlanImage: "/a tower 1bhk.jpeg",
+          details: [
+            { k: "Covered Area", v: "741.64 sq.ft." },
+            { k: "Carpet Area", v: "521.09 sq.ft." },
+            { k: "Balcony Area", v: "179.97 sq.ft." },
+          ],
+        },
+        {
+          type: "2 BHK", area: "1321 sq.ft.", tower: "Tower A",
+          floorPlanImage: "/atower 2bhk.jpeg",
+          details: [
+            { k: "Covered Area", v: "1056.83 sq.ft." },
+            { k: "Carpet Area", v: "775.38 sq.ft." },
+            { k: "Balcony Area", v: "216.84 sq.ft." },
+          ],
+        },
+      ].map(({ type, area, tower, floorPlanImage, details }) => (
+        <div key={`${tower}-${type}`} className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-7 hover:bg-white/10 transition-colors">
+          <div className="text-[#7ec8e3] text-xs uppercase tracking-widest mb-2">{tower}</div>
+          <div className="text-2xl sm:text-3xl font-bold mb-1">{type}</div>
+          <div className="text-white/60 text-sm mb-4">Super Area: {area}</div>
+          {/* Floor plan image */}
+          <div className="relative w-full h-44 rounded-xl overflow-hidden mb-5 bg-white/5">
+            <Image src={floorPlanImage} alt={`${tower} ${type} Floor Plan`} fill className="object-contain" />
+          </div>
+          <div className="space-y-2">
+            {details.map(({ k, v }) => (
+              <div key={k} className="flex justify-between text-sm">
+                <span className="text-white/50">{k}</span>
+                <span className="text-white font-medium">{v}</span>
               </div>
-              <button onClick={scrollToForm} className="mt-5 sm:mt-6 w-full py-2.5 border border-[#7ec8e3] text-[#7ec8e3] rounded-full text-sm hover:bg-[#7ec8e3] hover:text-slate-900 transition-all duration-200">
-                Get Price Details
-              </button>
-            </div>
-          ))}
+            ))}
+          </div>
+          <button onClick={scrollToForm} className="mt-5 sm:mt-6 w-full py-2.5 border border-[#7ec8e3] text-[#7ec8e3] rounded-full text-sm hover:bg-[#7ec8e3] hover:text-slate-900 transition-all duration-200">
+            Get Price Details
+          </button>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+
+  {/* Tower B */}
+  <div className="max-w-3xl mx-auto">
+    <p className="text-[#7ec8e3] text-xs uppercase tracking-widest mb-4 text-center">Tower B</p>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8">
+      {[
+        {
+          type: "1 BHK", area: "951 sq.ft.", tower: "Tower B",
+          floorPlanImage: "/btower 1bhk.jpeg",
+          details: [
+            { k: "Covered Area", v: "741.64 sq.ft." },
+            { k: "Carpet Area", v: "521.09 sq.ft." },
+            { k: "Balcony Area", v: "179.97 sq.ft." },
+          ],
+        },
+        {
+          type: "2 BHK", area: "1321 sq.ft.", tower: "Tower B",
+          floorPlanImage: "/btower 2bhk.jpeg",
+          details: [
+            { k: "Covered Area", v: "1056.83 sq.ft." },
+            { k: "Carpet Area", v: "775.38 sq.ft." },
+            { k: "Balcony Area", v: "216.84 sq.ft." },
+          ],
+        },
+      ].map(({ type, area, tower, floorPlanImage, details }) => (
+        <div key={`${tower}-${type}`} className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-7 hover:bg-white/10 transition-colors">
+          <div className="text-[#7ec8e3] text-xs uppercase tracking-widest mb-2">{tower}</div>
+          <div className="text-2xl sm:text-3xl font-bold mb-1">{type}</div>
+          <div className="text-white/60 text-sm mb-4">Super Area: {area}</div>
+          <div className="relative w-full h-44 rounded-xl overflow-hidden mb-5 bg-white/5">
+            <Image src={floorPlanImage} alt={`${tower} ${type} Floor Plan`} fill className="object-contain" />
+          </div>
+          <div className="space-y-2">
+            {details.map(({ k, v }) => (
+              <div key={k} className="flex justify-between text-sm">
+                <span className="text-white/50">{k}</span>
+                <span className="text-white font-medium">{v}</span>
+              </div>
+            ))}
+          </div>
+          <button onClick={scrollToForm} className="mt-5 sm:mt-6 w-full py-2.5 border border-[#7ec8e3] text-[#7ec8e3] rounded-full text-sm hover:bg-[#7ec8e3] hover:text-slate-900 transition-all duration-200">
+            Get Price Details
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* ── LOCATION ── */}
       <section className="py-12 sm:py-20 px-4 sm:px-6">
@@ -1730,7 +1807,7 @@ export default function RoyalNestDharamshalaPage() {
               </p>
               {/* Fixed height on mobile, flex-1 on desktop */}
               <div className="relative h-[220px] sm:h-[260px] lg:flex-1 lg:min-h-[260px] rounded-2xl overflow-hidden shadow-lg">
-                <Image src="/dharamshala_images (2).webp" alt="Royal Nest Dharamshala mountain view" fill className="object-cover" />
+                <Image src="/dharamshala_images (2).webp" alt="Royal Nest Forest View mountain view" fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 sm:bottom-5 sm:left-5 text-white">
                   <div className="text-sm sm:text-base font-semibold">Limited Edition</div>

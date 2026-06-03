@@ -302,7 +302,7 @@ import Image from "next/image";
 
 const navLinks = [
   {
-    label: "ROYAL NEST DHARAMSHALA",
+    label: "ROYAL NEST FOREST VIEW",
     href: "/royal-nest-dharamshala",
   },
   {
