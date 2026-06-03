@@ -1725,21 +1725,21 @@ export default function RoyalNestDharamshalaPage() {
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8">
       {[
         {
-          type: "1 BHK", area: "951 sq.ft.", tower: "Tower B",
+          type: "1 BHK", area: "770 sq.ft.", tower: "Tower B",
           floorPlanImage: "/btower 1bhk.jpeg",
           details: [
-            { k: "Covered Area", v: "741.64 sq.ft." },
-            { k: "Carpet Area", v: "521.09 sq.ft." },
-            { k: "Balcony Area", v: "179.97 sq.ft." },
+            { k: "Covered Area", v: "615.92 sq.ft." },
+            { k: "Carpet Area",  v: "466.83 sq.ft." },
+            { k: "Balcony Area", v: "115.82 sq.ft." },
           ],
         },
         {
-          type: "2 BHK", area: "1321 sq.ft.", tower: "Tower B",
+          type: "2 BHK", area: "1275 sq.ft.", tower: "Tower B",
           floorPlanImage: "/btower 2bhk.jpeg",
           details: [
-            { k: "Covered Area", v: "1056.83 sq.ft." },
-            { k: "Carpet Area", v: "775.38 sq.ft." },
-            { k: "Balcony Area", v: "216.84 sq.ft." },
+            { k: "Covered Area", v: "1014.18 sq.ft." },
+            { k: "Carpet Area",  v: "678.13 sq.ft."  },
+            { k: "Balcony Area", v: "276.63 sq.ft."  },
           ],
         },
       ].map(({ type, area, tower, floorPlanImage, details }) => (
