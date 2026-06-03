@@ -1664,7 +1664,7 @@ export default function RoyalNestDharamshalaPage() {
 
       {/* ── UNIT SIZES ── */}
       {/* ── UNIT SIZES ── */}
-// Tower A + Tower B, each with 1BHK and 2BHK, with floor plan images
+{/* Tower A + Tower B, each with 1BHK and 2BHK, with floor plan images */}
 <section className="py-12 sm:py-20 px-4 sm:px-6 bg-slate-900 text-white">
   <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-12">
     <p className="text-[#7ec8e3] text-xs uppercase tracking-[0.3em] mb-3">Floor Plans</p>
