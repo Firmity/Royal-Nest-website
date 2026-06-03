@@ -4,6 +4,7 @@ import Link from "next/link";
 
 const menuLinks = [
   { label: "About Us", href: "/Aboutus" },
+  { label: "Royal Nest Dharamshala", href: "/royal-nest-dharamshala" },
   { label: "Residential", href: "/RealEstatePage#residential" },
   {
     label: "Construction Material",
