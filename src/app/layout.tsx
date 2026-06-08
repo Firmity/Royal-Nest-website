@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import ClientRoot from "./ClientRoot";
-// Import Next.js Script component
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -20,6 +19,8 @@ export const metadata: Metadata = {
   title: "Royal Nest Group",
 };
 
+const GTM_ID = "GTM-53WBJ5WN";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,18 +28,40 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* GTM — fires after hydration, does not block render */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* GTM noscript fallback — must be first child of <body> */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+
         <ClientRoot>{children}</ClientRoot>
 
         {/* --- Google Analytics Tag Start --- */}
-        {/* Load the gtag.js script asynchronously */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-SLRHSX3WNF"
           strategy="afterInteractive"
         />
-        {/* Initialize Google Analytics */}
         <Script
           id="gtag-init"
           strategy="afterInteractive"
@@ -53,7 +76,8 @@ export default function RootLayout({
         />
         {/* --- Google Analytics Tag End --- */}
 
-        {/* WhatsApp Widget Script */}
+        {/* WhatsApp Widget Script — uncomment to enable */}
+           {/* WhatsApp Widget Script */}
         {/* Use next/script for proper client-side loading */}
         {/* <script
           dangerouslySetInnerHTML={{
