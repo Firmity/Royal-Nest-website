@@ -2263,14 +2263,14 @@ const handlePopupSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             >
               Download Brochure
             </button>
-            <a
+            {/* <a
               href="https://royalnestdharamshala.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto text-center px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-white/80 text-white font-semibold rounded-full hover:bg-white/15 transition-all duration-200 text-sm tracking-wide shadow-md"
             >
               Visit the Website
-            </a>
+            </a> */}
           </div>
         </div>
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
