@@ -23,7 +23,7 @@ export async function POST(req: Request) {
         await transporter.sendMail({
             from: process.env.EMAIL_USER,      // your verified email
             replyTo: email,                     // user's email
-            to: [process.env.EMAIL_USER ?? "", "Nest.atal@gmail.com"], // multiple recipients
+            to: [process.env.EMAIL_USER ?? "", "richu@ufirm.in"], // multiple recipients
             subject: `New Contact Form Submission from ${firstName} ${lastName}`,
             html: `
     <h2>Contact Form Submission</h2>
