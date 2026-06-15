@@ -57,25 +57,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <ClientRoot>{children}</ClientRoot>
 
-        {/* --- Google Analytics Tag Start --- */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-SLRHSX3WNF"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="gtag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-SLRHSX3WNF');
-            `,
-          }}
-        />
-        {/* --- Google Analytics Tag End --- */}
-
         {/* WhatsApp Widget Script — uncomment to enable */}
            {/* WhatsApp Widget Script */}
         {/* Use next/script for proper client-side loading */}
