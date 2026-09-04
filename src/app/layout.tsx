@@ -4,6 +4,7 @@ import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import ClientRoot from "./ClientRoot";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,6 +57,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
 
         <ClientRoot>{children}</ClientRoot>
+        <Analytics />
 
         {/* WhatsApp Widget Script — uncomment to enable */}
            {/* WhatsApp Widget Script */}
